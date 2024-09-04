@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "ItemRegist";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+    <script type="text/javascript" src="~/Scripts/js/Admin/_CommunityRegist.js"></script>
+    <style>
+
+
+    </style>
+    <!-- DevExtreme theme -->
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>답글 등록</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15" style="padding-left:20px; padding-bottom:20px; background:#fff;">
+                        <div class="st-panel">
+
+                            <div style="display:flex;">
+                                <div class="ad_label" style="font-size:18px">제목 :</div>
+                                <div style="display:flex; width:1028px; justify-content:space-between;">
+                                    <div class="sch_input" id="TITLE_AREA" style="margin-bottom:20px;"></div>
+                                    <div class="ad_btn_area" style="padding-left:40px; display:none;">
+                                        <button id="commu_save_ad" style="background:#fff; border:1px solid #00c6b9; color:#00c6b9; padding: 6px 15px; border-radius:5px;">저장</button>
+                                        <button id="commu_del_ad" style="background:#fff; border:1px solid #ff860f; color: #ff860f; padding: 6px 15px; border-radius:5px;">삭제</button>
+                                        <button id="commu_move_list" style="background: #006e6a; border: 1px solid #006e6a; color: #fff; padding: 6px 15px; border-radius: 5px;">목록</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:flex;">
+                                <div class="ad_label" style="font-size:18px">내용 :</div>
+                                <div id="editTest"></div>
+                            </div>
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="INS_PW"></div>
+        <div id="SCREAT_YN"></div>
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Container {
+    <div class="container">
+        <div class="join_width">
+            <div class="main_contents">
+                <h2 class="join_title">내정보수정</h2>
+                <div class="join_box">
+                    <div class="join_info">
+                        <h4>이메일</h4>
+                        <div class="int_box">
+                            <input type="text" id="modif_EMAIL" class="none_input" disabled/>
+                        </div>
+                    </div>
+                    <div class="join_info">
+                        <h4>비밀번호<span class="warn">*</span></h4>
+                        <div class="int_box">
+                            <input type="password" placeholder="비밀번호" maxlength="50" id="modif_PWD" />
+                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                        </div>
+                        <p class="mt_10 common-text--14 Span_Warning" id="NOWPWD_Empty" style="display: none">비밀번호를 입력 해 주세요.</p>
+                        <p class="mt_10 common-text--14 Span_Warning" id="NOWPWD_Wrong" style="display: none">현재 비밀번호가 맞지 않습니다.</p>
+                    </div>
+                    <div class="join_info">
+                        <h4>비밀번호 변경</h4>
+                        <div class="int_box">
+                            <input type="password" placeholder="비밀번호 변경" maxlength="50" id="modif_NEWPWD1" />
+                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                        </div>
+                        <p class="mt_10 common-text--14 Span_Warning" id="PW1_Empty" style="display: none">비밀번호를 입력 해 주세요.</p>
+                        <p class="mt_10 common-text--14 Span_Warning" id="PW1_OverSix" style="display: none">비밀번호를 8자리 이상 입력 해 주세요..</p>
+                        <p class="mt_10 common-text--14 Span_Warning" id="PW1_Regular" style="display: none"> 영문, 숫자, 특수문자 조합으로 비밀번호를 입력 해 주세요.</p>
+                        <input type="hidden" id="PW1_Hidden" value="false" />
+                    </div>
+                    <div class="join_info">
+                        <h4>비밀번호 변경 확인</h4>
+                        <div class="int_box">
+                            <input type="password" placeholder="비밀번호 변경 확인" maxlength="50" id="modif_NEWPWD2" />
+                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                        </div>
+                        <p class="mt_10 common-text--14 Span_Warning" id="PW2_Empty" style="display: none">비밀번호를 입력 해 주세요.</p>
+                        <p class="mt_10 common-text--14 Span_Warning" id="PW2_OverSix" style="display: none">비밀번호를 8자리 이상 입력 해 주세요.</p>
+                        <p class="mt_10 common-text--14 Span_Warning" id="PW2_Compare" style="display: none"> 비밀번호가 같지 않습니다. 확인하고 다시 입력 해 주세요.</p>
+                        <p class="mt_10 common-text--14 Span_Warning" id="PW2_Regular" style="display: none"> 영문, 숫자, 특수문자 조합으로 비밀번호를 입력 해 주세요.</p>
+                        <input type="hidden" id="PW2_Hidden" value="false" />
+                    </div>
+                    <div class="join_info">
+                        <h4>당담자 성함<span class="warn">*</span></h4>
+                        <div class="int_box">
+                            <input type="text" placeholder="당담자 성함" maxlength="40" id="modif_NAME" />
+                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                        </div>
+                        <p class="mt_10 common-text--14 Span_Warning" id="NAME_Empty" style="display: none">담당자 성함을 입력 해 주세요.</p>
+                        <p class="mt_10 common-text--14 Span_Warning" id="NAME_OverTwo" style="display: none">담당자 성함을 2자리 이상 적어주세요.</p>
+                        <input type="hidden" id="NAME_Hidden" value="false" />
+                    </div>
+                    <div class="join_info">
+                        <h4>연락처<span class="warn">*</span></h4>
+                        <div class="int_box">
+                            <input type="text" placeholder="연락처" maxlength="13" id="modif_TELNO" />
+                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                        </div>
+                        <p class="mt_10 common-text--14 Span_Warning" id="TEL_Empty" style="display: none">휴대폰번호를 입력 해 주세요.</p>
+                        <p class="mt_10 common-text--14 Span_Warning" id="TEL_NotNumber" style="display: none">숫자를 입력 해 주세요.</p>
+                        <input type="hidden" id="TEL_Hidden" value="false" />
+                    </div>
+                    <div class="join_info">
+                        <h4>회사/단체명</h4>
+                        <div class="int_box">
+                            <input type="text" placeholder="회사/단체명" maxlength="40" id="modif_COM" />
+                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                            <p class="incorrect_txt Span_Warning error" id="CUST_Empty">회사/단체명을 입력해주세요.</p>
+                            <input type="hidden" class="check_val" id="CustNAME_Hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="join_info">
+                        <h4>소속부서</h4>
+                        <div class="int_box">
+                            <input type="text" placeholder="소속부서" maxlength="20" id="modif_DEPT" />
+                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                            <p class="incorrect_txt Span_Warning error" id="DEPT_Empty">소속부서를 입력해주세요.</p>
+                            <input type="hidden" class="check_val" id="DeptNAME_Hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="join_btn">
+                        <button type="button" class="join_enter" id="modify_enter">수정완료</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/js/Modify/Index.js"></script>
+}

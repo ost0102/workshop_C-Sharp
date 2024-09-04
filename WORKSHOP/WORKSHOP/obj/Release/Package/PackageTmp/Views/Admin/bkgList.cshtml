@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "admin";
+    ViewBag.Sub = "bkgList";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+
+
+    <!-- DevExtreme theme -->
+    <script type="text/javascript" src="~/Scripts/js/Admin/_bkgList.js"></script>
+
+    <style>
+        #customer_info {
+            height: 850px;
+        }
+
+        .dx-datagrid-headers .dx-datagrid-action {
+            text-align: center !important;
+        }
+
+        #total_sub_price{
+            font-weight:bold;
+        }
+
+        /*.bkg_detail{}
+        #bkgList{
+            height: 850px;
+        }*/
+        .none {
+            margin: 0 auto;
+            background-color: #949fa7;
+            color: white;
+            cursor: pointer;
+            height: 27px;
+            width: 86%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .none:hover {
+            background-color: #afc0cc;
+        }
+        .cancel { /*취소*/
+            margin: 0 auto;
+            background-color: #f6bc5a;
+            color: white;
+            height: 27px;
+            width: 86%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .modify {
+            margin: 0 auto;
+            background-color: #ff860f;
+            color: white;
+            height: 27px;
+            width: 86%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .final { /*완료*/
+            margin: 0 auto;
+            background-color: #006e6a;
+            color: white;
+            height: 27px;
+            width: 86%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .complete { /*예약*/
+            margin: 0 auto;
+            background-color: #5accc8;
+            color: white;
+            cursor: pointer;
+            height: 27px;
+            width: 86%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .cancel_btn {
+            margin: 0 auto;
+            background-color: #db3636;
+            color: white;
+            cursor: pointer;
+            height: 27px;
+            width: 75%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .cancel_btn:hover {
+            margin: 0 auto;
+            background-color: #e17171;
+            color: white;
+            cursor: pointer;
+            height: 27px;
+            width: 75%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+
+        .cancel_btn:active {
+            margin: 0 auto;
+            background-color: #a92a29;
+            color: white;
+            cursor: pointer;
+            height: 27px;
+            width: 75%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+
+/*
+        .dx-toolbar-items-container {
+            background: url('/Images/test.png') no-repeat 50% 50%;
+            background-position-x: 35%;
+        }
+*/
+
+        .dx-scheduler-container > .dx-scheduler-header > .dx-toolbar > .dx-toolbar-items-container {
+            background: url('/Images/label_cal.png') no-repeat 50% 50%;
+            background-position-x: 35%;
+        }
+    </style>
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>예약 요청 조회</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel" style="margin-bottom:10px">
+                                <div class="ad_label">예약상태</div>
+                                <div id="BKG_STATUS"></div>
+                                <div class="ad_label">상품명</div>
+                                <div id="ITEM_NM"></div>
+                                <div class="ad_label">예약자명</div>
+                                <div id="CUST_NM"></div>
+
+                                <div id="btnSearch"></div>
+                            </div>
+                            <div id="gridTabs"></div>
+                            <div style="display:flex;height:735px" id="list_area">
+                                <div id="bkgList" style="height:696px;"></div>
+                                <div id="bkgDetail" style="height:696px;"></div>
+                            </div>
+                            <div id="bkgCalendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hidden_area">
+            
+            <div id="popup" class="bkg_detail"></div>
+            <div id="confirm_popup" class="bkg_pop"></div>
+            
+
+        </div>
+
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+
+    </div>
+
+}
+

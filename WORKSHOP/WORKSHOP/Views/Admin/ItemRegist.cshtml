@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "ItemRegist";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bded1c68f1bd22037dc06aa72933e526&libraries=services,clusterer,drawing"></script>
+    <script type="text/javascript" src="~/Scripts/js/Admin/_ItemRegist.js"></script>
+    <style>
+        /*#gridItem {
+            height: 450px;
+            width : 100%;
+        }*/
+        .dtl_grid {
+            height: 295px;
+            /*height:30%*/
+        }
+    </style>
+    <!-- DevExtreme theme -->
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>상품등록</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel">
+                                <div class="ad_label">지역</div>
+                                <div class="sch_input" id="GRP_CD"></div>
+                                <div class="ad_label">상품구분</div>
+                                <div class="sch_input" id="ITEM_TYPE"></div>
+                                <div class="ad_label">상품명</div>
+                                <div class="" id="ITEM_NM"></div>
+                                <div class="ad_label">등급</div>
+                                <div class="sch_input" id="ITEM_GRD"></div>
+                                <div class="ad_label">사용여부</div>
+                                <div class="sch_input" id="USE_YN"></div>
+                                <div id="btnSearch"></div>
+                            </div>
+
+                            <div id="gridItem"></div>
+                            <div class="dx-gridTabs"><div id="gridTabs"></div></div>
+                            <div class="gridGrp dtl_grid" id="gridHotel"></div>
+                            <div class="gridGrp dtl_grid" id="gridConference" style="display:none"></div>
+                            <div class="gridGrp dtl_grid" id="gridRoom" style="display:none"></div>
+                            <div class="gridGrp dtl_grid" id="gridMeal" style="display:none"></div>
+                            <div class="gridGrp dtl_grid" id="gridEtc" style="display:none"></div>
+                            <input type="file" id="imgupload" style="display:none" />
+                            <div id="xlx_json" style="display:none"></div>
+                            <div id="map" style="display:none"></div>
+
+
+
+                            <div class="doc_body" style="display:flex">
+                                <div>
+                                    <div class="doc_head" style="display:flex;margin-left:1%;margin-top:1%">
+                                        <div class="ad_label" id="pic_type" style="display:none;">사진종류 : </div>
+                                        <div class="sch_input" style="display:none" id="pic_type_select"></div>
+                                    </div>
+                                    <div class="gridGrp" id="file-uploader" style="display: none; margin-left: 1%;"></div>
+                                </div>
+                                <div class="gridGrp dtl_grid" id="gridDoc" style="display:none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_subLayout.cshtml";
+}
+
+@section Container {
+    <div class="container">
+        <div class="join_width">
+            <div class="main_contents">
+                <h2>마이보드</h2>
+                <div class="myboard_box">
+                    <div class="user_box">
+                        <div class="user_info">
+                            <div class="left_info">
+                                <div class="user_img">
+                                    <img src="~/Images/user_img.png" />
+                                </div>
+                                <div class="user_txt" id="myboard_userinfo">
+                                    
+                                </div>
+                            </div>
+                            <div class="right_info">
+                                <div class="user_info_modify">
+                                    <button type="button" class="info_modify_btn">정보수정</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user_box">
+                        <h4>진행정보</h4>
+                        <div class="progress_area">
+                            <div class="left_progress" id="myboard_no_left">
+                                <div class="progress_estimate">
+                                    견적 |<span id="quot_cnt"></span><span>건</span>
+                                </div>
+                            </div>
+                            <div class="right_progress" id="myboard_no_right">
+                                <div class="progress_reservation">
+                                    예약 |<span id="bkg_cnt"></span><span>건</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress_tb">
+                            <div class="no_info" id="myboard_no_info">
+                                @*<img src="~/Images/smile.png" />
+                                <p>진행 중인</p>
+                                <p>견적, 예약건이 없습니다.</p>*@
+                            </div>
+                            <table class="progress_table">
+                                <tbody id="my_quot">
+                                    @*<tr>
+                                        <td>2023.07.12</td>
+                                        <td>부산 파라다이스호텔 견적 요청</td>
+                                        <td>완료</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023.07.12</td>
+                                        <td>부산 파라다이스호텔 견적 요청</td>
+                                        <td>진행</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023.07.12</td>
+                                        <td>부산 파라다이스호텔 견적 요청</td>
+                                        <td>완료</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023.07.12</td>
+                                        <td>부산 파라다이스호텔 견적 요청</td>
+                                        <td>진행</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023.07.12</td>
+                                        <td>부산 파라다이스호텔 견적 요청</td>
+                                        <td>완료</td>
+                                    </tr>*@
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                    <div class="col3">
+                        <div class="point">
+                            <div class="point_info">
+                                <h4>마일리지</h4>
+                                <div class="point_box">
+                                    <div class="point_cont" id="point_top_mileage">
+                                        @*<p>100,000 M</p>
+                                        <p>※ 10,000원 단위로 사용가능합니다.</p>*@
+                                    </div>
+                                </div>
+                                <div class="point_tb" id="point_table_list">
+                                    @*<div class="no_info">
+                                        <img src="~/Images/scream.png" />
+                                        <p>마일리지가</p>
+                                        <p>없습니다.</p>
+                                    </div>*@
+                                    <table class="point_table">
+                                        @*<tr>
+                                            <td>2023.07.12</td>
+                                            <td>15,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023.07.08</td>
+                                            <td>150,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023.07.03</td>
+                                            <td>- 25,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023.06.08</td>
+                                            <td>15,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023.06.08</td>
+                                            <td>105,000</td>
+                                        </tr>*@
+                                    </table>
+                                </div>
+                                <div class="show_all">
+                                    <button type="button" class="show_all_btn" id="mileage_btn">마일리지 전체보기</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <div class="review_info">
+                                <h4>후기</h4>
+                                <div class="review_box" id="review_no_box">
+                                    <div class="review_con">
+                                        <div class="review_cont">
+                                            <p id="comment_top_list"></p>
+                                            <button type="button" id="report_review">후기작성</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review_tb" id="review_listtb">
+                                    <div class="no_info" id="myboard_no_review">
+                                        
+                                    </div>
+                                    <table class="review_table">
+                                        
+                                    </table>
+                                </div>
+                                <div class="show_all">
+                                    <button type="button" class="show_all_btn" id="show_review">후기 전체보기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/js/Myboard/Index.js"></script>
+}

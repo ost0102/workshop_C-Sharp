@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Container {
+    <div class="container">
+        <div class="common_width">
+            <div class="main_contents">
+                <div class="login_box">
+                    <div class="con1">
+                        <div class="login_box_bg">
+                            <img src="~/Images/login_bg.png" />
+                            <div class="main_title">
+                                <div class="title_top">
+                                    숙박 ·교통·식사·세미나·레크레이션
+                                </div>
+                                <div class="title_bottom">
+                                    워크샵은 연수다
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="con2">
+                        <div class="login_con">
+                            <div class="login_pop find_account">
+                                <div class="login_info">
+                                    <div class="find_page">
+                                        <div class="find-flex">
+                                            <div>
+                                                <h2>아이디 찾기</h2>
+                                                <div class="find-id">
+                                                    <p>가입시 등록한 정보를 입력하세요.</p>
+                                                    <div class="find-info">
+                                                        <p>이름</p>
+                                                        <div class="int_box">
+                                                            <input type="text" placeholder="이름" id="FindID_Name" maxlength="40" data-index="findUser1">
+                                                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                                                        </div>
+                                                        <p class="Span_Warning error" id="Span_Waning_ID" style="padding-top:0">이름을 입력해주세요.</p>
+                                                        <p>휴대전화 번호</p>
+                                                        <div class="int_box">
+                                                            <input type="text" placeholder="휴대전화 번호 ( '-' 를 빼고 입력해주세요.)" id="FindID_HP" maxlength="11" data-index="findUser2">
+                                                            <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                        </div>
+                                                        <p class="Span_Warning error" id="Span_Waning_PW" style="padding-top:0">휴대전화 번호를 입력해주세요.</p>
+                                                        <button type="button" class="btns find orange" id="SendEmail_GetID">아이디 찾기</button>
+                                                    </div>
+                                                    <div class="id-result" style="display:none">
+                                                        <p><span id="FindID_Result"></span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h2>비밀번호 찾기</h2>
+                                                <div class="find-pw">
+                                                    <p>아이디(이메일)을 입력해 주시면 임시 비밀번호를 전송해드립니다.</p>
+                                                    <div class="find-info">
+                                                        <p>이메일</p>
+                                                        <div class="int_box">
+                                                            <input type="text" id="FindPW_Email" placeholder="이메일">
+                                                            <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                        </div>
+                                                        <p class="Span_Warning error" id="Span_Waning_Email" style="padding-top: 0;">이메일을 입력해주세요.</p>
+                                                        <button type="button" class="btns find gray" id="SendEmail_GetConfirmKey">비밀번호 초기화</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layer_zone alert_layer" id="alert10" style="z-index: 10001;">
+        <div class="layer_wrap">
+            <div class="layer_inwrap">
+                <article class="layer_cont">
+                    <!-- alert_cont -->
+                    <div class="alert_cont">
+                        <div class="inner">존재하지않는 이메일입니다.</div>
+                    </div>
+                    <!-- //alert_cont -->
+                    <!-- btn_w -->
+                    <div class="btn_center">
+                        <button type="button" class="btn_ok" id="alert_close" onclick="layerClose('#alert10');">확인</button>
+                    </div>
+                    <!-- //btn_w -->
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/js/Find/Index.js"></script>
+}

@@ -1,0 +1,1759 @@
+﻿@{ // Main 언어 설정
+    string setLang = "";
+    if (HttpContext.Current.Session["Language"] == null)
+    {
+        setLang = "KO";
+    }
+    else
+    {
+        setLang = HttpContext.Current.Session["Language"].ToString();
+    }
+
+    if (string.IsNullOrEmpty(setLang))
+    {
+        setLang = "KO";
+    }
+}
+ 
+<!DOCTYPE html>
+@{
+    <html lang="ko">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+            <meta name="format-detection" content="telephone=no">
+            <title>Yeonsuda</title>
+            <link href="~/Content/css/media.css" rel="stylesheet">
+            <link rel="stylesheet" href="~/Content/css/slick.css">
+
+            <link rel="stylesheet" href="~/Content/API/swiper.min.css">
+            <link rel="stylesheet" href="~/Content/css/main.css">
+            <script src="~/Scripts/js/jquery-2.2.3.min.js"></script>
+            <script src="/Scripts/js/jquery.datetimepicker.full.js"></script>
+            <script src="~/Scripts/js/waypoints.min.js"></script>
+            <script src="~/Scripts/js/common.js"></script>
+            <script src="~/Scripts/js/Common/Comm.js"></script>
+            <script src="~/Scripts/js/Common/KeyEvent.js"></script>
+            <script src="~/Scripts/API/swiper.min.js"></script>
+            <script>
+                //포커스
+                var FocusData = false;
+            </script>
+        </head>
+        <body>
+            <!-- wrap -->
+            <div id="wrap" class="wrap">
+                <!-- header -->
+                <header id="header">
+
+                    @{
+                        if (Session["EMAIL"] == null)
+                        {
+
+                            <input type="hidden" id="Session_EMAIL" value="" />
+                            <input type="hidden" id="Session_GRP_CD" value="" />
+                            <input type="hidden" id="Session_CUST_NAME" value="" />
+                            <input type="hidden" id="Session_TELNO" value="" />
+                            <input type="hidden" id="Session_COMPANY" value="" />
+                            <input type="hidden" id="Session_DEPARTURE" value="" />
+                            <input type="hidden" id="Session_USER_TYPE" value="" />
+                        }
+                        else
+                        {
+                            <input type="hidden" id="Session_EMAIL" value="@Session["EMAIL"]" />
+                            <input type="hidden" id="Session_GRP_CD" value="@Session["GRP_CD"]" />
+                            <input type="hidden" id="Session_CUST_NAME" value="@Session["CUST_NAME"]" />
+                            <input type="hidden" id="Session_TELNO" value="@Session["TELNO"]" />
+                            <input type="hidden" id="Session_COMPANY" value="@Session["COMPANY"]" />
+                            <input type="hidden" id="Session_DEPARTURE" value="@Session["DEPARTURE"]" />
+                            <input type="hidden" id="Session_USER_TYPE" value="@Session["USER_TYPE"]" />
+                        }
+                    }
+
+                    <div class="common_width">
+                        <div class="inner">
+                            <div class="logo">
+                                <a href="/Home/index"></a>
+                            </div>
+                            @{ 
+                                if(Session["EMAIL"] == null) { 
+                                    <ul class="lnb right-padding">
+                                        @*<li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Inquiry")
+                                                {
+                                                    <a href="/InquiryList/Index" class="menu_on">견적문의</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/InquiryList/Index">견적문의</a>
+                                                }
+                                            }
+                                        </li>*@
+                                        <li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Estimate")
+                                                {
+                                                    <a href="/Estimate/Index" class="menu_on">견적관리</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/Estimate/Index">견적관리</a>
+                                                }
+                                            }
+                                        </li>
+                                        <li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Reserve")
+                                                {
+                                                    <a href="/Reservation/Index" class="menu_on">예약확인</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/Reservation/Index">예약확인</a>
+                                                }
+                                            }
+                                        </li>
+                                        <li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Community")
+                                                {
+                                                    <a href="/CommunityList/Index" class="menu_on">커뮤니티</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/CommunityList/Index">커뮤니티</a>
+                                                }
+                                            }
+                                        </li>
+                                        <li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Service")
+                                                {
+                                                    <a href="/Service/Index" class="menu_on">공지사항</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/Service/Index">공지사항</a>
+                                                }
+                                            }
+                                        </li>
+                                    </ul>
+                                }else{
+                                     <ul class="lnb no-padding">
+                                         @*<li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Inquiry")
+                                                {
+                                                    <a href="/InquiryList/Index" class="menu_on">견적문의</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/InquiryList/Index">견적문의</a>
+                                                }
+                                            }
+                                        </li>*@
+                                          <li>
+                                              @{
+                                                  if (ViewBag.MENU_NM == "Estimate")
+                                                  {
+                                                      <a href="/Estimate/Index" class="menu_on">견적관리</a>
+                                                  }
+                                                  else
+                                                  {
+                                                      <a href="/Estimate/Index">견적관리</a>
+                                                  }
+                                              }
+                                          </li>
+                                          <li>
+                                              @{
+                                                  if (ViewBag.MENU_NM == "Reserve")
+                                                  {
+                                                      <a href="/Reservation/Index" class="menu_on">예약확인</a>
+                                                  }
+                                                  else
+                                                  {
+                                                      <a href="/Reservation/Index">예약확인</a>
+                                                  }
+                                              }
+                                          </li>
+                                          <li>
+                                              @{
+                                                  if (ViewBag.MENU_NM == "Community")
+                                                  {
+                                                      <a href="/CommunityList/Index" class="menu_on">커뮤니티</a>
+                                                  }
+                                                  else
+                                                  {
+                                                      <a href="/CommunityList/Index">커뮤니티</a>
+                                                  }
+                                              }
+                                          </li>
+                                          <li>
+                                              @{
+                                                  if (ViewBag.MENU_NM == "Service")
+                                                  {
+                                                      <a href="/Service/Index" class="menu_on">공지사항</a>
+                                                  }
+                                                  else
+                                                  {
+                                                      <a href="/Service/Index">공지사항</a>
+                                                  }
+                                              }
+                                          </li>
+                                    </ul>     
+                                }
+                            }
+                            
+                            @*메인화면 PC*@
+                            <div class="notlogin pc">
+                                @{
+                                    if (Session["EMAIL"] == null)
+                                    {
+                                        <div class="user">
+                                            <span><a href="/Join/index">회원가입</a></span>
+                                            <span><a href="/Login/index">로그인</a></span>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="user login pc">
+                                @{
+                                    if (Session["EMAIL"] != null)
+                                    {
+                                        <span class="user_nm">안녕하세요, <strong id="UserName">@Session["CUST_NAME"]</strong>님</span>
+                                        <span class="logout" onclick="_fnLogout()"><button>로그아웃</button></span>
+                                        <a href="/Myboard/index" class="myboard">마이보드</a>
+                                    }
+                                }
+                            </div>
+                            <a href="#total_nav" id="hamberger"><span class="btn_total"></span></a>
+                            <nav class="total_menu" style="display: none;">
+                                <div class="dim" style="display: none;"></div>
+                                <div class="total_nav" id="total_nav" style="right: -78%;">
+                                    <div class="nav_tit">
+                                        <a href="/" class="nav_logo"><span class="hidden"></span></a>
+                                        <button type="button" class="close"><span class="blind">닫기</span></button>
+                                    </div>
+                                    @*메인화면 모바일*@
+                                    <div class="notlogin">
+                                        @{
+                                            if (Session["EMAIL"] == null)
+                                            {
+                                                <div class="btn_area">
+                                                    <a href="/Join/index" class="m_join">회원가입</a>
+                                                    <a href="/Login/index" class="m_login">로그인</a>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="user login">
+                                        @{
+                                            if (Session["EMAIL"] != null)
+                                            {
+                                                <div class="btn_area">
+                                                    <div class="user login">
+                                                        <span class="user_nm">안녕하세요, <strong id="UserName">@Session["CUST_NAME"]</strong>님</span>
+                                                        <span class="logout" onclick="_fnLogout()">로그아웃</span>
+                                                    </div>
+                                                    <a href="/Myboard/index" class="m_myboard">마이보드</a>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                    <ul class="menu">
+                                        <li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Estimate")
+                                                {
+                                                    <a href="/Estimate/Index" class="menu_on">견적관리</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/Estimate/Index">견적관리</a>
+                                                }
+                                            }
+                                        </li>
+                                        <li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Reserve")
+                                                {
+                                                    <a href="/Reservation/Index" class="menu_on">예약관리</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/Reservation/Index">예약관리</a>
+                                                }
+                                            }
+                                        </li>
+                                        <li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Service")
+                                                {
+                                                    <a href="/Service/Index" class="menu_on">공지사항</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/Service/Index">공지사항</a>
+                                                }
+                                            }
+                                        </li>
+                                        <li>
+                                            @{
+                                                if (ViewBag.MENU_NM == "Community")
+                                                {
+                                                    <a href="/CommunityList/Index" class="menu_on">커뮤니티</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="/CommunityList/Index">커뮤니티</a>
+                                                }
+                                            }
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+                @RenderSection("container", required: false)
+            </div>
+
+            <footer id="footer">
+                <div class="footer">
+                    <div class="common_width">
+                        <div class="footer_info">
+                            <div class="footer-left">
+                                <div class="footer-left__left">
+                                    <p class="tel">1800-8481</p>
+                                    <p class="e-mail">E-Mail. metakit0601@gmail.com</p>
+                                </div>
+                                <div class="footer-left__right common_text">
+                                    <p>상호명 : 메타케이아이티(주) | 사업자등록번호 : 466-81-03230</p>
+                                    <p>주소 : (08505) 서울 금천구 가산디지털2로 101, 한라원앤원 에이 1204-1</p>
+                                    <p>ⓒ Yeonsuda.  All Rights Reseved.</p>
+                                </div>
+                            </div>
+                            <div class="footer-right">
+                                <div class="footer-right__right">
+                                    <p class="protect">개인정보처리방침</p>
+                                    <p class="refusal">이메일무단수집거부</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <div class="layer_zone alert_layer" id="alert01" style="z-index:10001">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    <div class="inner_title">
+                                        <span id="01_item_nm"></span><span id="01_item_addr"></span><a href="" id="01_home_url" target="_blank"><img src="/Images/region_home.png" class="move_home"></a>
+                                        <button class="close" id="alert_close"><img src="/Images/close.png"></button>
+                                    </div>
+                                    <div class="sub_info_area" id="01_item_tag">
+
+                                    </div>
+                                    <div class="region_img_area">
+                                        <div class="img_slide">
+                                            <div class="img_slide_detail" id="01_top_img">
+                                                @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" alt="이미지1" /></div>
+                                            <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                            <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                            <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                            <div class="region_img5 region_img"><img src="~/Images/alert_slide_none_img.png" /></div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="region_img_bottom_area">
+                                        <div class="img_menu">
+                                            <div class="img_menu_con" id="01_bottom_img">
+                                                @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" /></div>
+                                            <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                            <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                            <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                            <div class="region_img5 region_img"><img src="~/Images/preview_slide_none_img.png" /></div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="estimate" name="img_ets_btn">
+                                        @*<button type="button" class="estimate_btn">견적문의</button>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            @{
+                if (Session["EMAIL"] != null)
+                {
+                    <!-- 견적문의_로그인 후 -->
+                    <div class="layer_zone alert_layer" id="alert03" style="z-index:10001;">
+                        <div class="layer_wrap">
+                            <div class="layer_inwrap">
+                                <article class="layer_cont">
+                                    <!-- alert_cont -->
+                                    <div class="alert_cont">
+                                        <div class="inner">
+                                            <h3>견적문의</h3>
+                                            <div class="col_group">
+                                                <div class="col1">
+                                                    <p class="col_common_text">주문상품 정보</p>
+                                                    <div class="col_left">
+                                                        <div class="region_info">
+                                                            <div class="region_flex">
+                                                                <p class="region_title" name="est_area" id="est_area_id"></p>
+                                                                <p class="region_sub" name="est_item_nm" id="est_item_nm_id"></p>
+                                                                <p class="line">|</p>
+                                                                <p class="star" name="est_item_grd"></p>
+                                                            </div>
+                                                            <p class="region_sub_title" name="est_addr"></p> @*///////////////////*@
+                                                        </div>
+                                                        <div class="sub_info_area" name="est_tag">
+                                                            @*///////////////////*@
+                                                            @*<div class="sub_info">
+                                                            <div class="_sub">50명 이상</div>
+                                                        </div>
+                                                        <div class="sub_info">
+                                                            <div class="_sub">세미나실 1</div>
+                                                        </div>
+                                                        <div class="sub_info">
+                                                            <div class="_sub">부산</div>
+                                                        </div>
+                                                        <div class="sub_info">
+                                                            <div class="_sub">숙박</div>
+                                                        </div>
+                                                        <div class="sub_info">
+                                                            <div class="_sub">조식</div>
+                                                        </div>
+                                                        <div class="sub_info">
+                                                            <div class="_sub">교통:버스</div>
+                                                        </div>*@
+                                                        </div>
+                                                        <div class="location_info">
+                                                            <div class="move_home2">
+                                                                <img src="~/Images/region_home.png" />
+                                                            </div>
+                                                            <span class="no-wrap">홈페이지 바로가기 : </span><span name="est_home_url"></span> @*///////////////////*@
+                                                        </div>
+                                                        <div class="layer_switch">
+                                                            <div class="layer_sort_switch">
+                                                                <input type="radio" id="EventPic" name="head_sort_toggle" checked="checked">
+                                                                <label for="EventPic" class="layer_switch_label">연수다 행사사진</label>
+                                                                <input type="radio" id="FacilitiesPic" name="head_sort_toggle">
+                                                                <label for="FacilitiesPic" class="layer_switch_label">시설사진</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="event_slide_box">
+                                                            <div class="region_img_area">
+                                                                <div class="img_slide">
+                                                                    @*///////////////////*@
+                                                                    @*<div class="img_slide_estimate2" id="layer_img_path">*@
+                                                                    <div class="img_slide_estimate" id="layer_evnet_img_path">
+                                                                        @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" alt="이미지1" /></div>
+                                                                    <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                                                    <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                                                    <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                                                    <div class="region_img5 region_img"><img src="~/Images/region_img5.png" /></div>*@
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="region_img_bottom_area">
+                                                                @*///////////////////*@
+                                                                <div class="img_menu">
+                                                                    <div class="img_menu_con" id="layer_event_bottom_img_path">
+                                                                        @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" /></div>
+                                                                    <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                                                    <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                                                    <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                                                    <div class="region_img5 region_img"><img src="~/Images/region_img5.png" /></div>*@
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="hotel_slide_box">
+                                                            <div class="region_img_area">
+                                                                <div class="img_slide">
+                                                                    @*///////////////////*@
+                                                                    @*<div class="img_slide_estimate2" id="layer_img_path">*@
+                                                                    <div class="img_slide_estimate" id="layer_img_path">
+                                                                        @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" alt="이미지1" /></div>
+                                                                    <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                                                    <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                                                    <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                                                    <div class="region_img5 region_img"><img src="~/Images/region_img5.png" /></div>*@
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="region_img_bottom_area">
+                                                                @*///////////////////*@
+                                                                <div class="img_menu">
+                                                                    <div class="img_menu_con" id="layer_bottom_img_path">
+                                                                        @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" /></div>
+                                                                    <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                                                    <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                                                    <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                                                    <div class="region_img5 region_img"><img src="~/Images/region_img5.png" /></div>*@
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col2">
+                                                    <p class="col_common_text">주문상품 정보</p>
+                                                    <div class="col_right">
+                                                        <div class="schedule">
+                                                            <div class="period">
+                                                                <h4>기간<span class="warn">*</span></h4>
+                                                                <div class="date_from_to">
+                                                                    <div class="start_date cal_date">
+                                                                        <input type="text" id="From_Date" class="date" placeholder="시작일" data-index="Regis1" readonly>
+                                                                        <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                                                    </div>
+                                                                    <span>~</span>
+                                                                    <div class="end_date cal_date">
+                                                                        <input type="text" id="To_Date" class="date" placeholder="종료일" data-index="Regis2" readonly>
+                                                                        <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="budget">
+                                                                <h4>예산 범위<span class="warn">*</span></h4>
+                                                                <div class="budget_from_to">
+                                                                    <div class="cal_budget int_box">
+                                                                        <input type="text" class="cost" id="est_min_prc" maxlength="12" placeholder="금액">
+                                                                        <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                                                                    </div>
+                                                                    <span>~</span>
+                                                                    <div class="cal_budget int_box">
+                                                                        <input type="text" class="cost" id="est_max_prc" maxlength="12" placeholder="금액">
+                                                                        <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="people">
+                                                                <h4>예상인원<span class="warn">*</span></h4>
+                                                                <div class="people_input_simple">
+                                                                    <input type="text" placeholder="인원" maxlength="4" id="est_head_cnt" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="stay" id="stay_room">
+                                                                <h4>숙박선택</h4><span id="room_select"></span>
+                                                                <div class="choice">
+                                                                    <div class="choice_stay1" id="room_select_btn">
+                                                                        <div class="room_head" style="display:none;">
+                                                                            <div class="r_head" data-value="ROOM_NM" id="room_validation"></div>
+                                                                            <div class="r_head" data-value="ROOM_CNT"></div>
+                                                                        </div>
+                                                                        <button class="stay_btn"><img src="~/Images/circle.png" />숙박</button>
+                                                                    </div>
+                                                                    <div class="choice_stay2" id="room_date_select_btn">
+                                                                        <button class="stay_btn"><img src="~/Images/x.png" />당일</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="stay_form_area" style="display:none;">
+                                                                    <h4>숙박형태</h4>
+                                                                    <div class="stay_form_con">
+                                                                        <div class="stay_form_box" id="room_form_box_1">
+                                                                            @*///////////////////*@
+                                                                        </div>
+                                                                    </div>
+                                                                    <button class="close_stay" id="close_stay"><img src="/Images/close.png"></button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="seminar_area" id="stay_seminar_area">
+                                                                <h4>세미나룸</h4>
+                                                                <div class="seminar_head" style="display:none;">
+                                                                    <div class="s_head" data-value="CONF_TYPE"></div>
+                                                                </div>
+                                                                <div class="seminar_box" id="conf_form_box_1">
+                                                                    @*///////////////////*@
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="add_option" id="stay_add_option">
+                                                                <h4>추가옵션(요청사항을 모두 선택해주세요)</h4>
+                                                                <div class="option_box" name="option_food_box" id="option_etc_box_1">
+                                                                    @*///////////////////*@
+                                                                    <!--<div class="option feed_btn">
+                                                                <button class="option_btn"><img src="~/Images/feed.png" />식사</button>
+                                                            </div>
+                                                            <div class="option_head" style="display:none;">
+                                                                <div class="o_head" data-value="SVC_CD"></div>
+                                                                <div class="o_head" data-value="SVC_NM"></div>
+                                                            </div>
+                                                            <div class="option video_btn">
+                                                                <button class="option_btn" id="option_etc_box_1"><img src="~/Images/camera.png" /></button>
+                                                            </div>
+                                                            <div class="feed_area" style="display: none;">
+                                                                <h4>식사</h4>
+                                                                <div class="feed_choice">
+                                                                    <div class="food_head" style="display:none;">
+                                                                        <div class="f_head" data-value="MEAL_CD"></div>
+                                                                        <div class="f_head" data-value="MEAL_NM"></div>
+                                                                    </div>
+                                                                    <div class="feed_box" id="feed_dtl_box_1">-->
+                                                                    @*///////////////////*@
+                                                                    <!--</div>
+                                                                </div>
+                                                                <button class="close_feed" id="close_feed"><img src="/Images/close.png"></button>
+                                                            </div>-->
+                                                                </div>
+                                                            </div>
+                                                            <div class="remark">
+                                                                <h4>Remark</h4>
+                                                                <div class="remark_box">
+                                                                    <textarea id="est_rmk" placeholder="옵션에 대한 디테일한 정보입력&#13;&#10;(행사여부, 지역관람, 인쇄 및 출력물)"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <p class="warn">※ 상황에 따라 요청하신 견적이 적용되지 않을 수 있습니다.</p>
+                                                            <div class="estimate" name="est_com_btn">
+                                                                <button type="button" class="compare_btn" id="est_compare_btn">비교견적 문의</button>
+                                                                <button type="button" class="estimate_btn" id="est_estimate_btn">견적문의</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="close" id="alert_close"><img src="~/Images/close.png" /></button>
+                                    </div>
+                                    <!-- //alert_cont -->
+                                    <!-- btn_w -->
+                                    <!-- //btn_w -->
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 견적문의_로그인 후 -->
+                }
+                else
+                {
+                    <!-- 견적문의_로그인 전 -->
+                    <div class="layer_zone alert_layer" id="alert02" style="z-index:10001">
+                        <div class="layer_wrap">
+                            <div class="layer_inwrap">
+                                <div class="layer_flex">
+                                    <article class="layer_cont">
+                                        <!-- alert_cont -->
+                                        <div class="alert_cont">
+                                            <div class="inner">
+                                                <h3>견적문의</h3>
+                                                <div class="col_group">
+                                                    <div class="col1">
+                                                        <p class="col_common_text">주문상품 정보</p>
+                                                        <div class="col_left">
+                                                            <div class="region_info">
+                                                                <div class="region_flex">
+                                                                    <p class="region_title" name="est_area" id="est_area_id"></p>
+                                                                    <p class="region_sub" name="est_item_nm" id="est_item_nm_id"></p>
+                                                                    <p class="line">|</p>
+                                                                    <p class="star" name="est_item_grd"></p>
+                                                                </div>
+                                                                <p class="region_sub_title" name="est_addr"></p> @*///////////////////*@
+                                                            </div>
+                                                            <div class="sub_info_area" name="est_tag">
+                                                                @*<div class="sub_info">
+                                                                <div class="_sub">50명 이상</div>
+                                                            </div>
+                                                            <div class="sub_info">
+                                                                <div class="_sub">세미나실 1</div>
+                                                            </div>
+                                                            <div class="sub_info">
+                                                                <div class="_sub">부산</div>
+                                                            </div>
+                                                            <div class="sub_info">
+                                                                <div class="_sub">숙박</div>
+                                                            </div>
+                                                            <div class="sub_info">
+                                                                <div class="_sub">조식</div>
+                                                            </div>
+                                                            <div class="sub_info">
+                                                                <div class="_sub">교통:버스</div>
+                                                            </div>*@
+                                                            </div>
+                                                            <div class="location_info">
+                                                                <div class="move_home2">
+                                                                    <img src="~/Images/region_home.png" />
+                                                                </div>
+                                                                <span class="no-wrap">홈페이지 바로가기 : </span><span name="est_home_url"></span>
+                                                            </div>
+                                                            <div class="layer_switch">
+                                                                <div class="layer_sort_switch">
+                                                                    <input type="radio" id="EventPic" name="head_sort_toggle" checked="checked">
+                                                                    <label for="EventPic" class="layer_switch_label">연수다 행사사진</label>
+                                                                    <input type="radio" id="FacilitiesPic" name="head_sort_toggle">
+                                                                    <label for="FacilitiesPic" class="layer_switch_label">시설사진</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="event_slide_box">
+                                                                <div class="region_img_area">
+                                                                    <div class="img_slide">
+                                                                        @*///////////////////*@
+                                                                        @*<div class="img_slide_estimate2" id="layer_img_path">*@
+                                                                        <div class="img_slide_estimate" id="layer_evnet_img_path">
+                                                                            @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" alt="이미지1" /></div>
+                                                                        <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                                                        <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                                                        <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                                                        <div class="region_img5 region_img"><img src="~/Images/region_img5.png" /></div>*@
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="region_img_bottom_area">
+                                                                    @*///////////////////*@
+                                                                    <div class="img_menu">
+                                                                        <div class="img_menu_con" id="layer_event_bottom_img_path">
+                                                                            @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" /></div>
+                                                                        <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                                                        <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                                                        <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                                                        <div class="region_img5 region_img"><img src="~/Images/region_img5.png" /></div>*@
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hotel_slide_box">
+                                                                <div class="region_img_area">
+                                                                    <div class="img_slide">
+                                                                        @*///////////////////*@
+                                                                        @*<div class="img_slide_estimate2" id="layer_img_path">*@
+                                                                        <div class="img_slide_estimate" id="layer_img_path">
+                                                                            @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" alt="이미지1" /></div>
+                                                                        <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                                                        <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                                                        <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                                                        <div class="region_img5 region_img"><img src="~/Images/region_img5.png" /></div>*@
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="region_img_bottom_area">
+                                                                    @*///////////////////*@
+                                                                    <div class="img_menu">
+                                                                        <div class="img_menu_con" id="layer_bottom_img_path">
+                                                                            @*<div class="region_img1 region_img"><img src="~/Images/region_img1.png" /></div>
+                                                                        <div class="region_img2 region_img"><img src="~/Images/region_img2.png" /></div>
+                                                                        <div class="region_img3 region_img"><img src="~/Images/region_img3.png" /></div>
+                                                                        <div class="region_img4 region_img"><img src="~/Images/region_img4.png" /></div>
+                                                                        <div class="region_img5 region_img"><img src="~/Images/region_img5.png" /></div>*@
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="login_pop mobile">
+                                                            <div class="login_info">
+                                                                <p class="login_info_title">로그인</p>
+                                                                <div class="id_info">
+                                                                    <div class="int_box">
+                                                                        <input type="text" class="id_input" name="id_login" placeholder="아이디">
+                                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pw_info">
+                                                                    <div class="int_box">
+                                                                        <input type="password" class="pw_input" name="pw_login" placeholder="패스워드">
+                                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="entering">
+                                                                    <button type="button" class="login_entering">로그인</button>
+                                                                </div>
+                                                                <p class="join">회원가입</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col2">
+                                                        <p class="col_common_text">주문상품 추가정보</p>
+                                                        <div class="col_right">
+                                                            <div class="schedule">
+                                                                <div class="period">
+                                                                    <h4>기간<span class="warn">*</span></h4>
+                                                                    <div class="date_from_to">
+                                                                        <div class="start_date cal_date">
+                                                                            <input type="text" id="From_Date" class="date" placeholder="시작일" data-index="Regis1" readonly>
+                                                                            <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                                                        </div>
+                                                                        <span>~</span>
+                                                                        <div class="end_date cal_date">
+                                                                            <input type="text" id="To_Date" class="date" placeholder="종료일" data-index="Regis2" readonly>
+                                                                            <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="budget">
+                                                                    <h4>예산 범위<span class="warn">*</span></h4>
+                                                                    <div class="budget_from_to">
+                                                                        <div class="cal_budget int_box">
+                                                                            <input type="text" class="cost" id="est_min_prc" maxlength="12" placeholder="금액">
+                                                                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                                                                        </div>
+                                                                        <span>~</span>
+                                                                        <div class="cal_budget int_box">
+                                                                            <input type="text" class="cost" id="est_max_prc" maxlength="12" placeholder="금액">
+                                                                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="people">
+                                                                    <h4>예상인원<span class="warn">*</span></h4>
+                                                                    <div class="people_input_simple">
+                                                                        <input type="text" placeholder="인원" maxlength="4" id="est_head_cnt" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="stay" id="stay_room">
+                                                                    <h4>숙박선택</h4><span id="room_select"></span>
+                                                                    <div class="choice">
+                                                                        <div class="choice_stay1" id="room_select_btn">
+                                                                            <div class="room_head" style="display:none;">
+                                                                                <div class="r_head" data-value="ROOM_NM" id="room_validation"></div>
+                                                                                <div class="r_head" data-value="ROOM_CNT"></div>
+                                                                            </div>
+                                                                            <button class="stay_btn"><img src="~/Images/circle.png" />숙박</button>
+                                                                        </div>
+                                                                        <div class="choice_stay2" id="room_date_select_btn">
+                                                                            <button class="stay_btn"><img src="~/Images/x.png" />당일</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="stay_form_area" style="display:none;">
+                                                                        <h4>숙박형태</h4>
+                                                                        <div class="stay_form_con">
+                                                                            <div class="stay_form_box" id="room_form_box_2">
+                                                                                @*////////////*@
+                                                                            </div>
+                                                                        </div>
+                                                                        <button class="close_stay" id="close_stay"><img src="/Images/close.png"></button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="seminar_area" id="stay_seminar_area">
+                                                                    <h4>세미나룸</h4>
+                                                                    <div class="seminar_head" style="display:none;">
+                                                                        <div class="s_head" data-value="CONF_TYPE"></div>
+                                                                    </div>
+                                                                    <div class="seminar_box" id="conf_form_box_2">
+                                                                        @*////////////////*@
+                                                                    </div>
+                                                                </div>
+                                                                <div class="add_option" id="stay_add_option">
+                                                                    <h4>추가옵션(요청사항을 모두 선택해주세요)</h4>
+                                                                    <div class="option_box" id="option_etc_box_2">
+                                                                        <!--<div class="option feed_btn" name="option_food_box">-->
+                                                                        @*////////////////*@
+                                                                        <!--<button class="option_btn"><img src="~/Images/feed.png" />식사</button>
+                                                                </div>
+                                                                <div class="option_head" style="display:none;">
+                                                                    <div class="o_head" data-value="SVC_CD"></div>
+                                                                    <div class="o_head" data-value="SVC_NM"></div>
+                                                                </div>
+                                                                <div class="option video_btn" id="option_etc_box_2">
+                                                                    <button class="option_btn"><img src="~/Images/camera.png" /></button>
+                                                                </div>
+                                                                <div class="feed_area" style="display:none;">
+                                                                    <h4>식사</h4>
+                                                                    <div class="feed_choice">
+                                                                        <div class="food_head" style="display:none;">
+                                                                            <div class="f_head" data-value="MEAL_CD"></div>
+                                                                            <div class="f_head" data-value="MEAL_NM"></div>
+                                                                        </div>
+                                                                        <div class="feed_box" id="feed_dtl_box_2">-->
+                                                                        @*//////////*@
+                                                                        <!--</div>
+                                                                    </div>
+                                                                    <button class="close_feed" id="close_feed"><img src="/Images/close.png"></button>
+                                                                </div>-->
+                                                                    </div>
+                                                                </div>
+                                                                <div class="remark">
+                                                                    <h4>Remark</h4>
+                                                                    <div class="remark_box">
+                                                                        <textarea id="est_rmk" placeholder="옵션에 대한 디테일한 정보입력&#13;&#10;(행사여부, 지역관람, 인쇄 및 출력물)"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <p class="warn">※ 상황에 따라 요청하신 견적이 적용되지 않을 수 있습니다.</p>
+                                                                <div class="estimate" name="est_com_btn">
+                                                                    <button type="button" class="compare_btn" id="est_compare_btn">비교견적 받기</button>
+                                                                    <button type="button" class="estimate_btn" id="est_estimate_btn">견적문의</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="close" id="alert_close"><img src="~/Images/close.png" /></button>
+                                        </div>
+                                        <!-- //alert_cont -->
+                                        <!-- btn_w -->
+                                        <!-- //btn_w -->
+                                    </article>
+                                    <article class="login_cont">
+                                        <div class="login_pop">
+                                            <div class="login_info">
+                                                <p class="login_info_title">로그인</p>
+                                                <div class="login_info_box">
+                                                    <div class="int_box">
+                                                        <input type="text" class="id_input" name="id_login" id="Estimate_id" placeholder="아이디">
+                                                        <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                    <p class="incorrect_txt Span_Warning error" id="Span_Waning_ID">이메일을 입력해주세요.</p>
+                                                </div>
+                                                <div class="login_info_box">
+                                                    <div class="int_box">
+                                                        <input type="password" class="pw_input" name="pw_login" id="Estimate_pw" placeholder="패스워드">
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                    <p class="incorrect_txt Span_Warning error" id="Span_Waning_PW">비밀번호를 입력해주세요.</p>
+                                                </div>
+                                                <div class="entering">
+                                                    <button type="button" class="login_entering" id="Estimate_login_btn">견적문의 로그인</button>
+                                                </div>
+                                                <p class="join">회원가입</p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 견적문의_로그인 전 -->
+                }
+            }
+
+            <!-- 간편견적 로그인 전 -->
+            <div class="layer_zone alert_layer" id="alert04" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    <div class="h3_bg">
+                                        <h3>간편견적문의</h3>
+                                        <button class="close" id="alert_close_4"><img src="/Images/close.png"></button>
+                                    </div>
+                                    <div class="col_group">
+                                        <div class="col1">
+                                            <h4>제목<span class="warn">*</span></h4>
+                                            <div class="inquiry_input">
+                                                <div class="int_box">
+                                                    <input type="text" placeholder="제목을 입력해주세요"/>
+                                                    <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                </div>
+                                                @*    <p class="incorrect_txt Span_Warning error" id="Span_Waning_ID_4">이메일 형식에 맞게 입력해주세요.</p>*@
+                                            </div>
+                                            <h4>지역<span class="warn">*</span></h4>
+                                            <div class="region_input">
+                                                <div class="int_box">
+                                                    <input type="text" placeholder="지역" class="select_region" id="Region_4" readonly data-index="Layer_Esti10" data-value="value0" />
+                                                    <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                </div>
+                                                <div class="popup pop-sch">
+                                                    <h2 class="common-text--18 pb-2 border-bottom border-gray-6 city-text-dpt">지역 선택</h2>
+                                                    <button class="close_region" id="close_region"><img src="/Images/close.png"></button>
+                                                    <div class="dpt_wrap">
+                                                        <div class="dpt_city">
+                                                            <ul class="d-flex flex-wrap justify-content-start" id="Region_Detail_4">
+                                                                @*<li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">서울</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">경기</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">인천</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">강원</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">세종</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">대전</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">충북</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">충남</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">대구</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">울산</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">부산</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">경북</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">경남</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">광주</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">전북</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">전남</button>
+                                                                </li>
+                                                                <li class="item">
+                                                                    <button type="button" class="city-btn quick_pol_port">제주</button>
+                                                                </li>*@
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4>기간<span class="warn">*</span></h4>
+                                            <div class="date_from_to">
+                                                <div class="start_date cal_date">
+                                                    <input type="text" id="From_Date_4" class="date " placeholder="날짜" data-index="Regis1" value="" maxlength="10" readonly>
+                                                    <button type="button" class="btns icon calendar "><span class="blind">달력</span></button>
+                                                </div>
+                                                <span>~</span>
+                                                <div class="end_date cal_date">
+                                                    <input type="text" id="To_Date_4" class="date " placeholder="날짜" data-index="Regis2" maxlength="10" readonly>
+                                                    <button type="button" class="btns icon calendar "><span class="blind">달력</span></button>
+                                                </div>
+                                            </div>
+                                            <div class="budget">
+                                                <h4>예산 범위<span class="warn">*</span></h4>
+                                                <div class="budget_from_to">
+                                                    <div class="cal_budget int_box">
+                                                        <input type="text" class="cost" id="From_cost4" maxlength="12" autocomplete="off" data-index="Layer_Esti1" data-value="value1">
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                    <span>~</span>
+                                                    <div class="cal_budget int_box">
+                                                        <input type="text" class="cost" id="To_cost4" maxlength="12" autocomplete="off" data-index="Layer_Esti2" data-value="value2">
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4>인원<span class="warn">*</span></h4>
+                                            <div class="people_input_NoLogin">
+                                                <input type="text" id="input_people_NoLogin" value="1" placeholder="인원" maxlength="4" autocomplete="off" data-index="Layer_Esti3" data-value="value3" />
+                                                <div class="count_btn_NoLogin">
+                                                    <button class="minus" id="minus"></button>
+                                                    <input type="text" id="quotCount" value="1" maxlength="4" />
+                                                    <button class="plus" id="plus"></button>
+                                                </div>
+                                            </div>
+                                            <h4>추가 옵션(요청사항을 모두 선택해주세요)</h4>
+                                            <div class="add_option" id="add_opt_4">
+                                                @*<div class="option">
+                <button type="button"><img src="~/Images/stay.png" />숙박</button>
+            </div>
+            <div class="option">
+                <button type="button"><img src="~/Images/seminar.png" />세미나실</button>
+            </div>
+            <div class="option">
+                <button type="button"><img src="~/Images/feed.png" />식사</button>
+            </div>
+            <div class="option">
+                <button type="button"><img src="~/Images/camera.png" />영상시스템</button>
+            </div>
+            <div class="option">
+                <button type="button"><img src="~/Images/car.png" />차량지원</button>
+            </div>
+            <div class="option">
+                <button type="button"><img src="~/Images/print.png" />인쇄 및 홍보물</button>
+            </div>
+            <div class="option">
+                <button type="button"><img src="~/Images/play.png" />레크레이션</button>
+            </div>
+            <div class="option">
+                <button type="button"><img src="~/Images/tour.png" />문화투어</button>
+            </div>
+            <div class="option">
+                <button type="button"><img src="~/Images/gift.png" />기념품</button>
+            </div>*@
+                                            </div>
+                                            <h4>Remark</h4>
+                                            <div class="remark_box">
+                                                <textarea id="Rmk_4" placeholder="옵션에 대한 디테일한 정보입력&#13;&#10;(행사여부, 지역관람, 인쇄 및 출력물)" maxlength="200" autocomplete="off" data-value="value4"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col2">
+                                            <div class="border_bottom">
+                                                <h4>이메일<span class="warn">*</span></h4>
+                                                <div class="email_input">
+                                                    <div class="int_box">
+                                                        <input type="text" id="Email_4" placeholder="이메일" autocomplete="off" data-index="Layer_Esti4" data-value="value5" />
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                    @*    <p class="incorrect_txt Span_Warning error" id="Span_Waning_ID_4">이메일 형식에 맞게 입력해주세요.</p>*@
+                                                </div>
+                                                <h4 style="display:none">비밀번호</h4>
+                                                <div class="password_input" style="display:none">
+                                                    <div class="int_box">
+                                                        <input type="password" id="Pwd_4" placeholder="비밀번호" />
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                </div>
+                                                <h4>이름<span class="warn">*</span></h4>
+                                                <div class="nm_input" style="border:none; color:unset; border-radius:unset; padding:0;">
+                                                    <div class="int_box">
+                                                        <input type="text" id="Name_4" placeholder="이름" maxlength="10" autocomplete="off" data-index="Layer_Esti5" data-value="value6" />
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                </div>
+                                                <h4>연락처<span class="warn">*</span></h4>
+                                                <div class="num_input">
+                                                    <div class="int_box">
+                                                        <input type="text" id="Tel_4" placeholder="연락처" maxlength="13" autocomplete="off" data-index="Layer_Esti6" data-value="value7" />
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="policy">
+                                                <div class="chk_box">
+                                                    <span class="check type1">
+                                                        <input type="checkbox" id="login_keep_pc" name="login_keep" class="chk">
+                                                        <label for="login_keep_pc">개인정보 처리방침 동의(필수)</label>@*<span class="show_policy">보기</span>*@
+                                                    </span>
+                                                </div>
+                                                <div class="policy_text">
+                                                    <p class="policy_text_area">
+                                                        '메타케이아이티'이하 '메타케이아이티 홈페이지')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
+                                                        '메타케이아이티' 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.
+                                                        <br />
+                                                        <br />
+                                                        ○ 본 방침은부터 2020년 1월 1일부터 시행됩니다.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p class="warn">※ 견적정보를 메일로 전달드립니다.</p>
+                                            <div class="estimate">
+                                                <button type="button" id="Req_submit" class="estimate_btn">간편견적문의</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <!-- 간편견적 로그인 전 -->
+            <!-- 간편견적 로그인 후 -->
+            <div class="layer_zone alert_layer" id="alert05" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    <div class="h3_bg">
+                                        <h3>간편견적문의</h3>
+                                        <button class="close" id="alert_close_5"><img src="/Images/close.png"></button>
+                                    </div>
+                                    <div class="col_group">
+                                        <div class="col1">
+                                            <h4>지역<span class="warn">*</span></h4>
+                                            <div class="region_input">
+                                                <div class="int_box">
+                                                    <input type="text" placeholder="지역" class="select_region" id="Region_5" readonly data-index="Layer_Esti13" data-value="value12" />
+                                                    <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                </div>
+                                                <div class="popup pop-sch">
+                                                    <h2 class="common-text--18 pb-2 border-bottom border-gray-6 city-text-dpt">지역 선택</h2>
+                                                    <button class="close_region" id="close_region"><img src="/Images/close.png"></button>
+                                                    <div class="dpt_wrap">
+                                                        <div class="dpt_city">
+                                                            <ul class="d-flex flex-wrap justify-content-start" id="Region_Detail_5">
+                                                                @*<li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">서울</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">경기</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">인천</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">강원</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">세종</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">대전</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">충북</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">충남</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">대구</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">울산</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">부산</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">경북</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">경남</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">광주</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">전북</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">전남</button>
+                                                            </li>
+                                                            <li class="item">
+                                                                <button type="button" class="city-btn quick_pol_port">제주</button>
+                                                            </li>*@
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4>기간<span class="warn">*</span></h4>
+                                            <div class="date_from_to">
+                                                <div class="start_date cal_date">
+                                                    <input type="text" id="From_Date_5" class="date" placeholder="날짜" data-index="Regis1" maxlength="10" autocomplete="off" readonly>
+                                                    <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                                </div>
+                                                <span>~</span>
+                                                <div class="end_date cal_date">
+                                                    <input type="text" id="To_Date_5" class="date" placeholder="날짜" data-index="Regis2" maxlength="10" autocomplete="off" readonly>
+                                                    <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                                </div>
+                                            </div>
+                                            <div class="budget">
+                                                <h4>예산 범위<span class="warn">*</span></h4>
+                                                <div class="budget_from_to">
+                                                    <div class="cal_budget int_box">
+                                                        <input type="text" class="cost" id="From_cost5" maxlength="12" autocomplete="off" data-index="Layer_Esti15" data-value="value13">
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                    <span>~</span>
+                                                    <div class="cal_budget int_box">
+                                                        <input type="text" class="cost" id="To_cost5" maxlength="12" autocomplete="off" data-index="Layer_Esti16" data-value="value14">
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4>인원<span class="warn">*</span></h4>
+                                            <div class="people_input_simple">
+                                                <input type="text" id="input_people_simple" value="1" placeholder="인원" maxlength="4" data-index="Layer_Esti17" data-value="value15" />
+                                                <div class="count_btn_simple">
+                                                    <button class="minus" id="minus"></button>
+                                                    <input type="text" id="count_simple" value="1" maxlength="4" />
+                                                    <button class="plus" id="plus"></button>
+                                                </div>
+                                            </div>
+                                            <h4>추가 옵션(요청사항을 모두 선택해주세요)</h4>
+                                            <div class="add_option" id="add_opt_5">
+                                                @*<div class="option">
+                                                <button type="button"><img src="~/Images/stay.png" />숙박</button>
+                                            </div>
+                                            <div class="option">
+                                                <button type="button"><img src="~/Images/seminar.png" />세미나실</button>
+                                            </div>
+                                            <div class="option">
+                                                <button type="button"><img src="~/Images/feed.png" />식사</button>
+                                            </div>
+                                            <div class="option">
+                                                <button type="button"><img src="~/Images/camera.png" />영상시스템</button>
+                                            </div>
+                                            <div class="option">
+                                                <button type="button"><img src="~/Images/car.png" />차량지원</button>
+                                            </div>
+                                            <div class="option">
+                                                <button type="button"><img src="~/Images/print.png" />인쇄 및 홍보물</button>
+                                            </div>
+                                            <div class="option">
+                                                <button type="button"><img src="~/Images/play.png" />레크레이션</button>
+                                            </div>
+                                            <div class="option">
+                                                <button type="button"><img src="~/Images/tour.png" />문화투어</button>
+                                            </div>
+                                            <div class="option">
+                                                <button type="button"><img src="~/Images/gift.png" />기념품</button>
+                                            </div>*@
+                                            </div>
+                                            <h4>Remark</h4>
+                                            <div class="remark_box">
+                                                <textarea id="Rmk_5" placeholder="옵션에 대한 디테일한 정보입력&#13;&#10;(행사여부, 지역관람, 인쇄 및 출력물)" maxlength="200" autocomplete="off" data-value="value16"></textarea>
+                                            </div>
+                                            <p class="warn">※ 견적정보를 메일로 전달드립니다.</p>
+                                            <div class="estimate">
+                                                <button type="button" id="Login_Req_submit" class="estimate_btn">간편견적문의</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <!-- 간편견적 로그인 후 -->
+            <!--<div class="layer_zone alert_layer" id="alert09" style="z-index:10001;">
+    <div class="layer_wrap">
+        <div class="layer_inwrap">
+            <article class="layer_cont">-->
+            <!-- alert_cont -->
+            <!--<div class="alert_cont">
+        <div class="inner">
+            <div class="login_layer">
+                <div class="login_pop" id="login_pop">
+                    <button class="close" id="alert_close" onclick="layerClose('#alert09');"><img src="/Images/close.png"></button>
+                    <div class="login_info">
+                        <div class="login_info_box login_id">
+                            <div class="int_box id_info">
+                                <input type="text" class="id_input" name="id_login" placeholder="아이디">
+                                <button type="button" class="btns icon delete" tabindex="-1" style="display: inline-block;"><span class="blind">삭제</span></button>
+                            </div>
+                            <p class="incorrect_txt Span_Warning error" id="ID_Warning" style="display: none;">아이디를 입력해주세요.</p>
+                        </div>
+                        <div class="login_info_box">
+                            <div class="int_box pw_info">
+                                <input type="password" class="pw_input" name="pw_login" placeholder="패스워드">
+                                <button type="button" class="btns icon delete" tabindex="-1" style="display: inline-block;"><span class="blind">삭제</span></button>
+                            </div>
+                            <p class="incorrect_txt Span_Warning error" id="Password_Warning" style="display: none;">비밀번호를 입력해주세요.</p>
+                        </div>
+                        <div class="agreement-container">
+                            <div class="chk_box agree">
+                                <span class="check type1">
+                                    <input type="checkbox" id="agree" name="login_keep" class="chk">
+                                    <label for="agree">아이디 저장</label>
+                                </span>
+                            </div>
+                            <span class="forgot">
+                                <a href="/Find/index" id="FindPwd">아이디/비밀번호 찾기</a>
+                            </span>
+                        </div>
+                        <div class="entering">
+                            <button type="button" class="login_entering" id="layer_login_btn">로그인</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+            <!-- //alert_cont -->
+            <!-- btn_w -->
+            <!-- //btn_w -->
+            <!--</article>
+            </div>
+        </div>
+    </div>-->
+            @*<div class="loading" id="ProgressBar_Loading" style="display:none">
+            <div class="ispinner ispinner-large">
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+                <div class="ispinner-blade"></div>
+            </div>
+        </div>*@
+            <div class="layer_zone alert_type" id="alertpop" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <img src="~/Images/icn_alert.png" />
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    <h5>가입이 완료 되었습니다.</h5>
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <div class="btn_w">
+                                <button type="button" class="btns radius cr1 loginChk" id="Join_confirm" onclick="layerClose('#alertpop');">확인</button>
+                            </div>
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="layer_zone alert_type" id="alertcheck" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <img src="~/Images/icn_alert.png" />
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    <h5>필수체크값 확인이 필요합니다.</h5>
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <div class="btn_w">
+                                <button type="button" class="btns radius cr1 loginChk" onclick="layerClose('#alertcheck');" id="findpwalert">확인</button>
+                            </div>
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="layer_zone alert_type" id="alertcheck_2" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <img src="~/Images/icn_alert.png" />
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    <h5></h5>
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <div class="btn_w">
+                                <button type="button" class="btns radius cr1 loginChk" onclick="layerClose('#alertcheck_2');" id="estalert">확인</button>
+                                <input type="hidden" id="Est_MngtNo">
+                            </div>
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="layer_zone alert_type" id="alertLayercheck" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <img src="~/Images/icn_alert.png" />
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    <h5>필수체크값 확인이 필요합니다.</h5>
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <div class="btn_w">
+                                <button type="button" class="btns radius cr1 loginLayerChk" data-index="Layer_Esti0" @*onclick="layerCloseLayer('#alertLayercheck')"*@>확인</button>
+                            </div>
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="layer_zone alert_type" id="alertagree" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <img src="~/Images/icn_alert.png" />
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    약관동의가 필요합니다.
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <div class="btn_w">
+                                <button type="button" class="btns radius cr1 loginChk" onclick="layerClose('#alertagree');">확인</button>
+                            </div>
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="layer_zone alert_type" id="ConFirm" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <img src="~/Images/icn_alert.png" />
+                            <div class="alert_cont">
+                                <div class="inner">
+
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <div class="btn_w">
+                                <button type="button" class="btns radius cr1 ok_btn" id="QuotRevConfirm" onclick="layerClose('#ConFirm');">확인</button>
+                                <button type="button" class="btns radius cr1 cancle_btn" onclick="layerClose('#ConFirm');">취소</button>
+                            </div>
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="layer_zone alert_type" id="ConFirm_1" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <img src="~/Images/icn_alert.png" />
+                            <div class="alert_cont">
+                                <div class="inner">
+
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <div class="btn_w">
+                                <button type="button" class="btns radius cr1 ok_btn" id="QuotConfirm_1">확인</button>
+                                <input type="hidden" id="EasyQuotNo" />
+                                <button type="button" class="btns radius cr1 cancle_btn" onclick="layerClose('#ConFirm_1');">취소</button>
+                            </div>
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="layer_zone alert_type" id="protect" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    <div class="sub-title">
+                                        <h1 class="sub-title__title">개인정보처리방침</h1>
+                                    </div>
+                                    <div class="text-left text-keep text-gray-5 font-weight-light">
+                                        <!-- S : 약관 -->
+                                        <div class="terms_area">
+                                            <div class="grp">
+                                                <p>
+                                                    <span class="cr_blue">&lt;메타케이아이티(주)&gt;</span>('<a href="http://www.yjit.co.kr/"><span lang="EN-US" style="color: #337ab7">www.yjit.co.kr</span></a>'이하 '메타케이아이티 홈페이지')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다. <br>
+                                                    <span class="cr_blue">&lt;메타케이아이티(주)&gt;</span>('메타케이아이티 홈페이지') 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다. <br>
+                                                    <br>
+                                                    ○ 본 방침은부터 2020년 1월 1일부터 시행됩니다.
+                                                </p>
+                                            </div>
+                                            <div class="grp">
+                                                <h3 class="title my-5">1. 개인정보의 처리 목적</h3>
+                                                <p>&lt;메타케이아이티(주)&gt;('www.yjit.co.kr'이하 '메타케이아이티 홈페이지')은(는) 개인정보를 다음의 목적을 위해 처리합니다. 처리한 개인정보는 다음의 목적이외의 용도로는 사용되지 않으며 이용 목적이 변경될 시에는 사전동의를 구할 예정입니다.</p>
+                                                <ul>
+                                                    <li>
+                                                        <strong class="tit font-weight-medium">가. 홈페이지 회원가입 및 관리</strong>
+                                                        <p>회원 가입의사 확인, 회원제 서비스 제공에 따른 본인 식별·인증, 회원자격 유지·관리, 제한적 본인확인제 시행에 따른 본인확인 등을 목적으로 개인정보를 처리합니다.</p>
+                                                    </li>
+                                                    <li>
+                                                        <strong class="tit font-weight-medium">나. 재화 또는 서비스 제공</strong>
+                                                        <p>서비스 제공, 콘텐츠 제공, 맞춤 서비스 제공, 본인인증 등을 목적으로 개인정보를 처리합니다.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="grp">
+                                                <h3 class="title my-5">2. 개인정보 파일 현황</h3>
+                                            </div>
+                                            <div class="grp">
+                                                <ul>
+                                                    <li>
+                                                        1. 개인정보 파일명 : 회원관리
+                                                        <ul class="list03">
+                                                            <li>- 개인정보 항목 : 이메일, 휴대전화번호, 비밀번호, 로그인ID, 회사명</li>
+                                                            <li>- 수집방법 : 홈페이지</li>
+                                                            <li>- 보유근거 : 회원관리의 목적</li>
+                                                            <li>- 보유기간 : 5년</li>
+                                                            <li>- 관련법령 : 신용정보의 수집/처리 및 이용 등에 관한 기록 : 3년, 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년, 계약 또는 청약철회 등에 관한 기록 : 5년</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="grp">
+                                                <h3 class="title my-5">3. 개인정보의 처리 및 보유 기간</h3>
+                                            </div>
+                                            <div class="grp">
+                                                <ul>
+                                                    <li>① &lt;메타케이아이티(주)&gt;('메타케이아이티 홈페이지')은(는) 법령에 따른 개인정보 보유·이용기간 또는 정보주체로부터 개인정보를 수집시에 동의 받은 개인정보 보유,이용기간 내에서 개인정보를 처리,보유합니다.</li>
+                                                    <li>
+                                                        ② 각각의 개인정보 처리 및 보유 기간은 다음과 같습니다.
+                                                        <ul class="list03">
+                                                            <li>
+                                                                1.&lt;홈페이지 회원가입 및 관리&gt; <br>
+                                                                &lt;홈페이지 회원가입 및 관리&gt;와 관련한 개인정보는 수집.이용에 관한 동의일로부터&lt;&gt;준영구&gt;까지 위 이용목적을 위하여 보유.이용됩니다. <br>
+                                                                -보유근거 : 회원관리의 목적 <br>
+                                                                -관련법령 : <br>
+                                                                &nbsp;&nbsp;1)신용정보의 수집/처리 및 이용 등에 관한 기록 : 3년<br>
+                                                                &nbsp;&nbsp;2) 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="grp">
+                                                <h3 class="title my-5">4. 정보주체와 법정대리인의 권리·의무 및 그 행사방법</h3>
+                                                <p>이용자는 개인정보주체로써 다음과 같은 권리를 행사할 수 있습니다.</p>
+                                            </div>
+
+                                            <div class="grp">
+                                                <ul>
+                                                    <li>① 정보주체는 메타케이아이티(주)에 대해 언제든지 개인정보 열람,정정,삭제,처리정지 요구 등의 권리를 행사할 수 있습니다.</li>
+                                                    <li>② 제1항에 따른 권리 행사는 메타케이아이티(주)에 대해 개인정보 보호법 시행령 제41조제1항에 따라 서면, 전자우편, 모사전송(FAX) 등을 통하여 하실 수 있으며 메타케이아이티(주)은(는) 이에 대해 지체 없이 조치하겠습니다.</li>
+                                                    <li>③ 제1항에 따른 권리 행사는 정보주체의 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수 있습니다. 이 경우 개인정보 보호법 시행규칙 별지 제11호 서식에 따른 위임장을 제출하셔야 합니다.</li>
+                                                    <li>④ 개인정보 열람 및 처리정지 요구는 개인정보보호법 제35조 제5항, 제37조 제2항에 의하여 정보주체의 권리가 제한 될 수 있습니다.</li>
+                                                    <li>⑤ 개인정보의 정정 및 삭제 요구는 다른 법령에서 그 개인정보가 수집 대상으로 명시되어 있는 경우에는 그 삭제를 요구할 수 없습니다.</li>
+                                                    <li>⑥ 메타케이아이티(주)은(는) 정보주체 권리에 따른 열람의 요구, 정정·삭제의 요구, 처리정지의 요구 시 열람 등 요구를 한 자가 본인이거나 정당한 대리인인지를 확인합니다.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="grp">
+                                                <h3 class="title my-5">5. 처리하는 개인정보의 항목 작성</h3>
+                                                <ul>
+                                                    <li>
+                                                        ① &lt;메타케이아이티(주)&gt;('www.yjit.co.kr'이하 '메타케이아이티 홈페이지')은(는) 다음의 개인정보 항목을 처리하고 있습니다.<br>
+                                                        &lt;홈페이지 회원가입 및 관리&gt;<br>
+                                                        - 필수항목 : 이메일, 휴대전화번호, 비밀번호, 로그인ID, 회사명
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="grp">
+                                                <h3 class="title my-5">6. 개인정보의 파기</h3>
+                                                <p>&lt;메타케이아이티(주)&gt;('메타케이아이티 홈페이지')은(는) 원칙적으로 개인정보 처리목적이 달성된 경우에는 지체없이 해당 개인정보를 파기합니다. 파기의 절차, 기한 및 방법은 다음과 같습니다.</p>
+                                            </div>
+                                            <div class="grp">
+                                                <ul>
+                                                    <li>
+                                                        - 파기절차<br>
+                                                        이용자가 입력한 정보는 목적 달성 후 별도의 DB에 옮겨져(종이의 경우 별도의 서류) 내부 방침 및 기타 관련 법령에 따라 일정기간 저장된 후 혹은 즉시 파기됩니다. 이 때, DB로 옮겨진 개인정보는 법률에 의한 경우가 아니고서는 다른 목적으로 이용되지 않습니다.
+                                                    </li>
+                                                    <li>
+                                                        - 파기기한<br>
+                                                        이용자의 개인정보는 개인정보의 보유기간이 경과된 경우에는 보유기간의 종료일로부터 5일 이내에, 개인정보의 처리 목적 달성, 해당 서비스의 폐지, 사업의 종료 등 그 개인정보가 불필요하게 되었을 때에는 개인정보의 처리가 불필요한 것으로 인정되는 날로부터 5일 이내에 그 개인정보를 파기합니다.
+                                                    </li>
+                                                    <li>
+                                                        - 파기방법<br>
+                                                        전자적 파일 형태의 정보는 기록을 재생할 수 없는 기술적 방법을 사용합니다.
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="grp">
+                                                <h3 class="title my-5">7. 개인정보 자동 수집 장치의 설치•운영 및 거부에 관한 사항</h3>
+                                                <ul>
+                                                    <li>① 메타케이아이티(주) 은 개별적인 맞춤서비스를 제공하기 위해 이용정보를 저장하고 수시로 불러오는 ‘쿠기(cookie)’를 사용합니다.</li>
+                                                    <li>
+                                                        ② 쿠키는 웹사이트를 운영하는데 이용되는 서버(http)가 이용자의 컴퓨터 브라우저에게 보내는 소량의 정보이며 이용자들의 PC 컴퓨터내의 하드디스크에 저장되기도 합니다.
+                                                        <ul class="list03">
+                                                            <li>가. 쿠키의 사용 목적 : 이용자가 방문한 각 서비스와 웹 사이트들에 대한 방문 및 이용형태, 인기 검색어, 보안접속 여부, 등을 파악하여 이용자에게 최적화된 정보 제공을 위해 사용됩니다.</li>
+                                                            <li>나. 쿠키의 설치•운영 및 거부 : 웹브라우저 상단의 도구&gt;인터넷 옵션&gt;개인정보 메뉴의 옵션 설정을 통해 쿠키 저장을 거부 할 수 있습니다.</li>
+                                                            <li>다. 쿠키 저장을 거부할 경우 맞춤형 서비스 이용에 어려움이 발생할 수 있습니다.</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="grp">
+                                                <h3 class="title my-5">8. 개인정보 처리방침 변경</h3>
+                                                <p>①이 개인정보처리방침은 시행일로부터 적용되며, 법령 및 방침에 따른 변경내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항의 시행 7일 전부터 공지사항을 통하여 고지할 것입니다.</p>
+                                            </div>
+                                            <div class="grp">
+                                                <h3 class="title my-5">9. 개인정보의 안전성 확보 조치</h3>
+                                                <p>&lt;메타케이아이티(주)&gt;('메타케이아이티 홈페이지')은(는) 개인정보보호법 제29조에 따라 다음과 같이 안전성 확보에 필요한 기술적/관리적 및 물리적 조치를 하고 있습니다.</p>
+                                            </div>
+                                            <div class="grp">
+                                                <ul>
+                                                    <li>
+                                                        <strong class="tit">1. 내부관리계획의 수립 및 시행</strong>
+                                                        <ul class="list03">
+                                                            <li>개인정보의 안전한 처리를 위하여 내부관리계획을 수립하고 시행하고 있습니다.</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <strong class="tit">2. 개인정보에 대한 접근 제한</strong>
+                                                        <ul class="list03">
+                                                            <li>개인정보를 처리하는 데이터베이스시스템에 대한 접근권한의 부여,변경,말소를 통하여 개인정보에 대한 접근통제를 위하여 필요한 조치를 하고 있으며 침입차단시스템을 이용하여 외부로부터의 무단 접근을 통제하고 있습니다.</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- E : 약관 -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <button class="close" onclick="layerClose('#protect');"><img src="/Images/close.png"></button>
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="layer_zone alert_type" id="refusal" style="z-index:10001;">
+                <div class="layer_wrap">
+                    <div class="layer_inwrap">
+                        <article class="layer_cont">
+                            <!-- alert_cont -->
+                            <div class="alert_cont">
+                                <div class="inner">
+                                    <div class="sub-title">
+                                        <h1 class="sub-title__title">이메일무단수집거부</h1>
+                                    </div>
+                                    <div class="text-left text-keep text-gray-5 font-weight-light">
+                                        <!-- S : 약관 -->
+                                        <div class="terms_area">
+                                            <div class="grp">
+                                                <p>본 웹사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 무단으로 수집되는 것을 거부하며, 이를 위반 시 정보통신망법에 의해 형사처벌 됨을 유념하시기 바랍니다.</p>
+                                            </div>
+                                            <h3 class="title2 mt-5">정보통신망 이용촉진 및 정보보호 등에 관한 법률</h3>
+                                            <div class="grp mt-5">
+                                                <h3 class="tit">제50조의2 (전자우편주소의 무단 수집행위 등 금지)</h3>
+                                                <ul>
+                                                    <li>- 누구든지 인터넷 홈페이지 운영자 또는 관리자의 사전동의 없이 인터넷 홈페이지에서 자동으로 전자우편 주소를 수집하는 프로그램 그 밖의 기술적 장치를 이용하여 전자우편주소를 수집하여서는 아니 된다.</li>
+                                                    <li>- 누구든지 제1항의 규정을 위반하여 수집된 전자우편주소를 판매·유통하여서는 아니 된다.</li>
+                                                    <li>- 누구든지 제1항 및 제2항의 규정에 의하여 수집·판매 및 유통이 금지된 전자우편주소임을 알고 이를 정보 전송에 이용하여서는 아니 된다.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="grp mt-5">
+                                                <h3 class="tit">제65조 (벌칙)</h3>
+                                                <p>- 다음 각 호의 어느 하나에 해당하는 자는 1년 이하의 징역 또는 1천만원 이하의 벌금에 처한다.</p>
+                                            </div>
+                                            <div class="grp mt-5">
+                                                <h3 class="tit">제50조의2의 규정을 위반하여 전자우편 주소를 수집·판매·유통 또는 정보전송에 이용한 자</h3>
+                                            </div>
+                                        </div>
+                                        <!-- E : 약관 -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //alert_cont -->
+                            <!-- btn_w -->
+                            <button class="close" onclick="layerClose('#refusal');"><img src="/Images/close.png"></button>
+                            <!-- //btn_w -->
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="loading-image" id="ProgressBar_Loading" style=" display: none;">
+                <img src="/Images/loading.svg" alt="">
+            </div>
+        </body>
+</html>
+
+}
+

@@ -1,0 +1,220 @@
+﻿@{
+    ViewBag.Title = "ItemRegist";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+    <script type="text/javascript" src="~/Scripts/js/Admin/_Community.js"></script>
+    <link href="~/Content/css/layout.css" rel="stylesheet">
+    <style>
+        .write_modify, .write_modify_coc, .write_del{background:#fff;}
+        .write_cont > input, .comment_list > button{border:none;}
+        .commu_comments_list_box{height:227px; overflow-y:scroll;}
+        .commu_comments_list_box::-webkit-scrollbar{width:5px;}
+        .commu_comments_list_box::-webkit-scrollbar-thumb {background: #d4d3d3; border-radius: 10px;}
+        .commu_comments_list_box::-webkit-scrollbar-track {background: transparent;}
+        .commu_comments_list_tit{padding:10px;border-bottom : 2px dotted #a6a6a6;}
+        .coc{border-bottom:1px solid #dddddd;}
+        .comment{padding:0px;}
+        ..commu_box{padding-bottom:10px}
+        .coc_box{margin-left:10px;margin-right:10px;}
+    </style>
+    <!-- DevExtreme theme -->
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>커뮤니티 관리</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel">
+                                <div class="ad_label">조건</div>
+                                <div class="" id="SELECT_TOPIC"></div>
+
+                                <div class="sch_input" id="TEXT_AREA"></div>
+
+                                <div id="btnSearch"></div>
+                            </div>
+                            <div class="origin">
+                                <div class="ad_label dtl_label" id="total_cnt">총 N 건</div>
+                                <div style="display:flex;">
+                                    <div class="gridGrp" id="gridItem"></div>
+                                    @* Community/index *@
+                                <div class="community" style="padding-top:20px; padding-right:25px;width:920px">
+                                    <div class="commu_box">
+                                        <div class="commu_area">
+                                            <div class="commu_header">
+                                                <div class="commu_header_area">
+                                                    <div class="commu_tit">@*커뮤니티 게시판<img src="~/Images/icn_lock.png" />*@</div>
+                                                    <div class="commu_tit_etc">
+                                                        @*<span class="etc_tit">메타케이아이티</span>
+                                                        <span class="etc_date">2023.07.27</span>
+                                                        <span class="etc_show"><img src="~/Images/icn_view.png" />123회</span>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="commu_con">
+                                                <div class="commu_txt">
+                                                    @*커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판
+                                                    커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판
+                                                    커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판 커뮤니티 게시판*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="commu_comments_list_box">
+                                        <div class="commu_comments_list">
+                                            @*<div class="commu_comments_list_tit">댓글목록</div>*@
+                                            <!--<div class="comment comment_rel">
+                                                <div class="comment_left">
+                                                    <div class="writer">양재아이티</div>
+                                                    <div class="write_cont">
+                                                        <input type="text" value="시간 드럽게 안가네 진짜?" disabled />
+                                                    </div>
+                                                </div>
+                                                <div class="comment_rigth">
+                                                    <div class="write_etc">
+                                                        <span class="write_date">2023.10.17</span>-->
+                                                        @*<button type="button" class="write_modify">수정</button>*@
+                                                        <!--<button type="button" class="write_del">삭제</button>
+                                                    </div>
+                                                </div>
+                                                <div class="del_pw_box">
+                                                    <div class="del_pw_area">
+                                                        <input type="password" placeholder="비밀번호" />
+                                                        <button type="button" id="DelComment">확인</button>
+                                                        <button type="button" id="ClosePw">
+                                                            <img src="~/Images/close_pw.png" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                        <!--<div class="coc">
+                                            <div class="comment comment_rel">
+                                                <div class="comment_left">
+                                                    <div class="writer">양재아이티</div>
+                                                    <div class="write_cont">
+                                                        <input type="text" value="시간드럽게 안가네 진짜?" disabled />
+                                                    </div>
+                                                </div>
+                                                <div class="comment_rigth">
+                                                    <div class="write_etc">
+                                                        <span class="write_date">2023.10.17</span>-->
+                                                        @*<button type="button" class="write_modify">수정</button>*@
+                                                        <!--<button type="button" class="write_del">삭제</button>
+                                                    </div>
+                                                </div>
+                                                <div class="del_pw_box">
+                                                    <div class="del_pw_area">
+                                                        <input type="password" placeholder="비밀번호" />
+                                                        <button type="button" id="DelComment">확인</button>
+                                                        <button type="button" id="ClosePw">
+                                                            <img src="~/Images/close_pw.png" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            @*<div class="coc_list">*@
+                                            <!--<div class="coc_box">
+                                                 <div class="coc_area comment_rel">
+                                                     <div class="coc_left">
+                                                         <img src="~/Images/coc.png" />
+                                                         <span class="writer">메타케이아이티</span>
+                                                         <span class="write_cont">
+                                                             <input type="text" value="그니까ㅋㅋ" disabled />
+                                                         </span>
+                                                     </div>
+                                                     <div class="coc_right">
+                                                         <span class="write_date">2023.10.17</span>-->
+                                                         @*<button type="button" class="write_modify_coc">수정</button>*@
+                                                         <!--<button type="button" class="write_del">삭제</button>
+                                                     </div>
+                                                     <div class="del_pw_box">
+                                                         <div class="del_pw_area">
+                                                             <input type="password" placeholder="비밀번호" />
+                                                             <button type="button" id="DelComment">확인</button>
+                                                             <button type="button" id="ClosePw">
+                                                                 <img src="~/Images/close_pw.png" />
+                                                             </button>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                            <div class="coc_box">
+                                                <div class="coc_area comment_rel">
+                                                    <div class="coc_left">
+                                                        <img src="~/Images/coc.png" />
+                                                        <span class="writer">메타케이아이티</span>
+                                                        <span class="write_cont">
+                                                            <input type="text" value="그니까ㅋㅋ" disabled />
+                                                        </span>
+                                                    </div>
+                                                    <div class="coc_right">
+                                                        <span class="write_date">2023.10.17</span>-->
+                                                        @*<button type="button" class="write_modify_coc">수정</button>*@
+                                                        <!--<button type="button" class="write_del">삭제</button>
+                                                    </div>
+                                                    <div class="del_pw_box">
+                                                        <div class="del_pw_area">
+                                                            <input type="password" placeholder="비밀번호" />
+                                                            <button type="button" id="DelComment">확인</button>
+                                                            <button type="button" id="ClosePw">
+                                                                <img src="~/Images/close_pw.png" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            @*</div>*@
+                                        <!--</div>-->
+                                        
+                                    </div>
+                                    <div class="comment_btn_box">
+                                        <div class="comment_btn_area" id="btn_area" style="display:none">
+                                            <div class="comment_modify">
+                                                <button type="button">답글</button>
+                                            </div>
+                                            <div class="comment_del">
+                                                <button type="button" id="Commu_del">삭제</button>
+                                            </div>
+                                            @*<div class="comment_list">
+                                                <button type="button">목록</button>
+                                            </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                                    @* Community/index *@
+                                </div>
+                            </div>
+                            @*<div id="editTest"></div>
+                            <div> <button id="commu_save">저장</button> </div>*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="MNGT_NO"></div>
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+    </div>
+
+}

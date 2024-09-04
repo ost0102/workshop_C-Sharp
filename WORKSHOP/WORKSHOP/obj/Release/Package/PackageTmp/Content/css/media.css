@@ -1,0 +1,18 @@
+@media (max-width: 768px) {
+  .mo {
+    display: block;
+  }
+  .pc {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .mo {
+    display: none;
+  }
+  .pc {
+    display: block;
+  }
+}
+
+/*# sourceMappingURL=media.css.map */

@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "pop";
+    Layout = "";
+}
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    @Styles.Render("~/Content/fonts.css")
+    @Styles.Render("~/Content/css/layout.css")
+    @Styles.Render("~/Content/css/media.css")
+    @Styles.Render("~/Content/admin.css")
+    @Styles.Render("~/Content/API/bootstrap/css/bootstrap.min.css")
+    @Styles.Render("~/Content/API/font-awesome/css/font-awesome.min.css")
+    @Styles.Render("~/Content/API/libs.common.min.css")
+    @Styles.Render("~/Content/API/just.css")
+
+    @Scripts.Render("~/Scripts/API/jquery-2.2.3.min.js")
+    @Scripts.Render("~/Scripts/Pub/ion.rangeSlider.min.js")
+    @Scripts.Render("~/Scripts/Pub/jquery.slimscroll.min.js")
+    @Scripts.Render("~/Scripts/Pub/jquery.datetimepicker.full.js")
+    @Scripts.Render("~/Scripts/Pub/common.js")
+    @Scripts.Render("~/Scripts/js/common/Comm.js")
+    @*@Scripts.Render("~/Scripts/js/common/_layout.js")*@
+    @Scripts.Render("~/Scripts/API/jquery.AutoComplete.js")
+    @Scripts.Render("~/Scripts/API/scrolloverflow.js")
+    @Scripts.Render("~/Scripts/API/bluebird.min.js")
+    @Scripts.Render("~/Scripts/API/smtp.js")
+    
+    @Scripts.Render("~/Scripts/js/Admin/infoPop.js")
+
+    @Scripts.Render("~/Scripts/js/common/KeyEvent.js")
+
+    @Scripts.Render("~/Scripts/API/jquery.signalR-1.1.4.js")
+    @Scripts.Render("~/Scripts/API/toastr.js")
+
+    <script type="text/javascript">
+        @*var _Domain = '@System.Configuration.ConfigurationManager.AppSettings["Domain"]';*@
+        var _HomeUrl = window.location.origin;
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
+</head>
+
+<body style="background-color:#f8f8f8;">
+    <header id="admin_header" style="display: block;" class="">
+        <div class="fixed_in type1">
+            <div class="top_row">
+                <h1 class="logo"><img src="~/Images/logo.png" /></h1>
+            </div>
+        </div>
+    </header>
+    <div class="sub_visual">
+    </div>
+    <div class="">
+        <div class="main_contents">
+            <div class="login_box">
+                <div class="con2">
+                    <div class="login_con">
+                        <div class="login_pop login_page">
+                            <div class="login_info">
+                                <div class="login_title">
+                                    상품 정보
+                                </div>
+                                <div class="item_info_area">
+                                    <div class="item_row">
+                                        <div class="title">상&nbsp;품&nbsp;명 : </div>
+                                        <div class="data_info">파라다이스</div>
+                                    </div>
+                                    <div class="item_row">
+                                        <div class="title">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역 : </div>
+                                        <div class="data_info">서울</div>
+                                    </div>
+                                    <div class="item_row">
+                                        <div class="title">담&nbsp;당&nbsp;자 : </div>
+                                        <div class="data_info">김양재</div>
+                                    </div>
+                                    <div class="item_row">
+                                        <div class="title">연&nbsp;락&nbsp;처 : </div>
+                                        <div class="data_info"> 02-555-1818</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+
+</html>

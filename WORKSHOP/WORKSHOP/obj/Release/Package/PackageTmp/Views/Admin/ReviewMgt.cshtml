@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "ReviewMgt";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+    <script type="text/javascript" src="~/Scripts/js/Admin/_reviewMgt.js"></script>
+    <style>
+        #gridReview{height:350px;}
+        #DetailTitle{width:1000px;}
+        #DetailContents{height:250px;margin-top:10px;width:1000px;height:300px;}
+        .title_area{display:flex;margin-top:10px;}
+        .detail_label{font-size : 15px;margin-left: 15px;margin-right:5px;}
+        .detail_label span{line-height:35px;}
+        #RvImgList{width:430px;height:300px;}
+        .st-panel{margin-left:20px;}
+        .dtl_rv{margin-top:10px;}
+        #RvImgList > .dx-datagrid {padding:0!important;}
+    </style>
+    <!-- DevExtreme theme -->
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>리뷰관리</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel">
+                                <div class="ad_label">기간:</div>
+                                <div id="STRT_YMD"></div>
+                                <div class="ad_dash">-</div>
+                                <div id="END_YMD"></div>
+                                <div class="ad_label">상품명:</div>
+                                <div id="ITEM_NM"></div>
+                                <div class="ad_label">태그:</div>
+                                <div id="TAG"></div>
+                                <div id="btnSearch"></div>
+                            </div>
+
+                            <div class="review_list" id="gridReview"></div>
+                            <div class="expand-col text-ellipsis dtl_rv">
+                                <div class="st-header__title">
+                                    <span>리뷰상세</span>
+                                </div>
+                            </div>
+                            <div class="title_area">
+                                <div class="detail_label"><span>제목:</span></div>
+                                <div class="review_dtl" id="DetailTitle"></div>
+                                <div class="detail_label"><span>작성자:</span></div>
+                                <div class="review_dtl" id="DetailWriter"></div>
+                                <div class="detail_label"><span>작성일:</span></div>
+                                <div class="review_dtl" id="DetailDate"></div>
+                            </div>
+                            <div class="title_area">
+                                <div class="detail_label"><span>내용:</span></div>
+                                <div class="review_dtl" id="DetailContents"></div>
+                                <div class="detail_label"><span>이미지:</span></div>
+                                <div class="review_dtl" id="RvImgList"></div>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+
+    </div>
+
+}

@@ -1,0 +1,71 @@
+/* img {border: medium none;} */
+@import url(fonts.css);
+
+body {font-size: 13px;}
+.max_width {max-width:1400px !important; }
+
+.well {
+  min-height: 34px;
+  padding: 6px 12px;
+  margin-bottom: 5px;
+  background-color: #fefefe;
+  border: 1px solid #e3e3e3;
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+.well blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, .15);
+}
+.well-lg {
+  padding: 24px;
+  border-radius: 6px;
+}
+.well-sm {
+  padding: 9px;
+  border-radius: 3px;
+}
+
+.login-panel {
+  margin-top: 25%;
+}
+
+
+.form-horizontal .control-label {
+    font-weight: 700;
+	padding-top: 8px;
+}
+
+.form-horizontal .control-desc {
+	padding-top: 8px;
+}
+
+@media (min-width: 768px) {
+	.form-horizontal .control-label {
+		font-weight: 700;
+		padding-top: 7px;
+		margin-bottom: 0px;
+		text-align: right;
+	}
+	
+	.form-horizontal .control-desc {
+		padding-top: 7px;
+		margin-bottom: 0px;
+	}
+}
+
+
+
+.table-cal-style{border-color: #d7dce0;border-style: solid;}
+.table-cal-style .num{cursor:pointer;}
+.table-cal-style .today {background: #2A3F54; color: #ffffff;}
+.table-cal-style th {text-align:center;}
+.table-cal-style tr {text-align:center;}
+.table-cal-style th:nth-of-type(7),td:nth-of-type(7) {color: blue;}
+.table-cal-style th:nth-of-type(1),td:nth-of-type(1) {color: red;}
+.table-cal-style tr:first-child th{background-color:#F6F6F6; text-align:center; font-size: 15px;}
+
+
+
+

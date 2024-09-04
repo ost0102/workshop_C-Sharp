@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Container {
+    <div class="container">
+        <div class="join_width">
+            <div class="main_contents">
+                <h2 class="join_title">회원가입</h2>
+                <div class="join_box join__box">
+                    <div class="join_info">
+                        <h4>이메일<span class="warn">*</span></h4>
+                        <div class="join-info__box">
+                            <div class="int_box">
+                                <input type="text" id="RES_EMAIL" placeholder="이메일" maxlength="30" class="input_text" />
+                                <input type="hidden" id="id_mngt_no" />
+                                <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                            </div>
+                            <p class="incorrect_txt Span_Warning error" id="Email_Empty">이메일을 적어주세요.</p>
+                            <p class="incorrect_txt Span_Warning error" id="Email_Warning">이메일 형식을 맞춰서 입력해주세요. EX)abc@naver.com </p>
+                            <p class="incorrect_txt Span_Warning error" id="Email_SCWarning">특수기호(*,%,&amp;,+,\,:,',&lt;,&gt;,/)는 사용 할 수 없습니다.</p>
+                            <p class="incorrect_txt Span_Warning error" id="Email_CheckID">이미 사용중인 이메일 입니다.</p>
+                            <p class="incorrect_txt Span_Warning error" id="Email_Refuser">거절 된 아이디 입니다. 담당자에게 문의하세요</p>
+                            <input type="hidden" class="check_val" id="Email_Hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="join_info">
+                        <h4>비밀번호<span class="warn">*</span></h4>
+                        <div class="join-info__box">
+                            <div class="int_box">
+                                <input type="password" id="RES_PWD" placeholder="비밀번호" maxlength="50" class="input_text"/>
+                                <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                            </div>
+                            <p class="incorrect_txt Span_Warning error" id="PW1_Empty">비밀번호를 입력 해 주세요.</p>
+                            <p class="text02 Span_Warning error" id="PW1_OverSix">비밀번호를 8자리 이상 입력 해 주세요.</p>
+                            <p class="incorrect_txt Span_Warning error" id="PW1_Regular"> 영문, 숫자, 특수문자 조합으로 비밀번호를 입력 해 주세요.</p>
+                            <input type="hidden" class="check_val" id="PW1_Hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="join_info">
+                        <h4>비밀번호 확인<span class="warn">*</span></h4>
+                        <div class="join-info__box">
+                            <div class="int_box">
+                                <input type="password" id="RES_PWD2" placeholder="비밀번호 확인" maxlength="50" class="input_text"/>
+                                <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                            </div>
+                            <p class="incorrect_txt Span_Warning error" id="PW2_Empty">비밀번호를 입력 해 주세요.</p>
+                            <p class="text02 Span_Warning error" id="PW2_OverSix">비밀번호를 8자리 이상 입력 해 주세요.</p>
+                            <p class="incorrect_txt Span_Warning error" id="PW2_Compare"> 비밀번호가 같지 않습니다. 확인하고 다시 입력 해 주세요.</p>
+                            <p class="incorrect_txt Span_Warning error" id="PW2_Regular"> 영문, 숫자, 특수문자 조합으로 비밀번호를 입력 해 주세요.</p>
+                            <input type="hidden" class="check_val" id="PW2_Hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="join_info">
+                        <h4>담당자 성함<span class="warn">*</span></h4>
+                        <div class="join-info__box">
+                            <div class="int_box">
+                                <input type="text" id="RES_NAME" placeholder="담당자 성함" maxlength="40" class="input_text"/>
+                                <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                            </div>
+                            <p class="incorrect_txt Span_Warning error" id="NAME_Empty">담당자 성함을 입력 해 주세요.</p>
+                            <p class="text02 Span_Warning error" id="NAME_OverTwo">담당자 성함을 2자리 이상 적어주세요.</p>
+                            <input type="hidden" class="check_val" id="NAME_Hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="join_info">
+                        <h4>연락처<span class="warn">*</span></h4>
+                        <div class="join-info__box">
+                            <div class="int_box">
+                                <input type="text" id="RES_TEL" placeholder="연락처" maxlength="13" class="input_text"/>
+                                <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                            </div>
+                            <p class="incorrect_txt Span_Warning error" id="TEL_Empty">휴대폰번호를 입력 해 주세요.</p>
+                            <p class="text02 Span_Warning error" id="TEL_NotNumber">숫자를 입력 해 주세요.</p>
+                            <input type="hidden" class="check_val" id="TEL_Hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="join_info">
+                        <h4>회사/단체명</h4>
+                        <div class="join-info__box">
+                            <div class="int_box">
+                                <input type="text" id="CUST_NM" placeholder="회사/단체명" maxlength="50" class="input_text"/>
+                                <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                            </div>
+                            <p class="incorrect_txt Span_Warning error" id="CUST_Empty">회사/단체명을 입력해주세요.</p>
+                            <input type="hidden"class="check_val" id="CustNAME_Hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="join_info">
+                        <h4>소속부서</h4>
+                        <div class="join-info__box">
+                            <div class="int_box">
+                                <input type="text" id="DEPT_NM" placeholder="소속부서" maxlength="20" class="input_text"/>
+                                <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                            </div>
+                            <p class="incorrect_txt Span_Warning error" id="DEPT_Empty">소속부서를 입력해주세요.</p>
+                            <input type="hidden" class="check_val" id="DeptNAME_Hidden" value="false">
+                        </div>
+                    </div>
+                    <div class="agreement-container">
+                        <div class="chk_box agree">
+                            <span class="check type1">
+                                <input type="checkbox" id="agree" name="login_keep" class="chk">
+                                <label for="agree">전체동의</label>
+                            </span>
+                        </div>
+                        <div class="chk_box padding check-group">
+                            <span class="check type1">
+                                <input type="checkbox" id="essential" name="login_keep" class="chk">
+                                <label for="essential">개인정보 처리방침 동의(필수)</label><span id="show_policy">보기</span>
+                            </span>
+                        </div>
+                        <div class="policy_text" style="display:none;">
+                            <div class="policy_text_area">
+                                메타케이아이티'이하 '메타케이아이티 홈페이지')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
+                                메타케이아이티 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.
+                                메타케이아이티'이하 '메타케이아이티 홈페이지')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
+                                메타케이아이티 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.
+                            </div>
+                        </div>
+                        <div class="chk_box service check-group">
+                            <span class="check type1">
+                                <input type="checkbox" id="service" name="login_keep" class="chk">
+                                <label for="service">서비스 이용약관 동의(필수)</label><span id="show_service">보기</span>
+                            </span>
+                        </div>
+                        <div class="service_text" style="display:none;">
+                            <div class="service_text_area">
+                                메타케이아이티'이하 '메타케이아이티 홈페이지')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
+                                메타케이아이티 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.
+                                메타케이아이티'이하 '메타케이아이티 홈페이지')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
+                                메타케이아이티 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="join_btn">
+                        <button type="button" class="join_enter">회원가입</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/js/Join/Index.js"></script>
+}

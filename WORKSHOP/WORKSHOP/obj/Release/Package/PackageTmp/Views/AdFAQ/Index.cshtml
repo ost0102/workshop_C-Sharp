@@ -1,0 +1,351 @@
+﻿@{
+    ViewBag.Title = "ReviewMgt";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+    <script type="text/javascript" src="~/Scripts/js/Admin/_adminFAQ.js"></script>
+    <style>
+        #gridFAQ {
+            height: 830px;
+        }
+
+        #DetailTitle {
+            width: 1000px;
+        }
+
+        #DetailContents , #DetailWriter {
+            height: 300px;
+            margin-top: 10px;
+            width: 700px;
+        }
+
+        .title_area {
+            display: flex;
+        }
+
+        .detail_label {
+            font-size: 15px;
+            margin-left: 15px;
+            margin-right: 5px;
+        }
+
+            .detail_label span {
+                line-height: 35px;
+            }
+
+        #RvImgList {
+            width: 430px;
+            height: 300px;
+        }
+
+        .st-panel {
+            margin-left: 20px;
+        }
+
+        .dtl_rv {
+            margin-top: 10px;
+        }
+
+        #btnSave {
+            float:right
+        }
+    </style>
+    <!-- DevExtreme theme -->
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>문의하기</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel">
+                                <div class="ad_label">기간:</div>
+                                <div id="STRT_YMD"></div>
+                                <div class="ad_dash">-</div>
+                                <div id="END_YMD"></div>
+                                <div class="ad_label">상태:</div>
+                                <div id="STATUS"></div>
+                                <div class="ad_label">예약자 명:</div>
+                                <div id="CUST_NM"></div>
+                                <div class="ad_label">회사명:</div>
+                                <div id="CUST_H_NM"></div>
+                                <div class="ad_label">상품명:</div>
+                                <div id="ITEM_NM"></div>
+                                <div id="btnSearch"></div>
+                            </div>
+                            <div style="display:flex; padding-top:20px;padding-right:20px;">
+                                <div class="review_list" id="gridFAQ"></div>
+                                <div>
+                                <div class="review_detail" id="gridFAQDetail"></div>
+                                <div class="col2" style="display:flex; flex-direction:column; justify-content:space-between; padding-right:20px; width:95%; background:#eee; border-radius:15px;margin:20px;">
+                                    <div class="col_right1" style="padding:0 20px; padding-top:20px;">
+                                        <h4>문의</h4>
+                                        <style>
+                                            .chat_box {
+                                                background: rgba(0,0,0,.5);
+                                                width: 100%;
+                                                height: 100%;
+                                                top: 0;
+                                                left: 0;
+                                                z-index: 9999;
+                                            }
+
+                                            .col_chat {
+                                                background: #fff;
+                                                position: absolute;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%);
+                                                max-width: 900px;
+                                                width: 100%;
+                                                padding: 20px;
+                                                border-radius: 15px;
+                                            }
+
+                                            .chat {
+                                                display: flex;
+                                                align-items: center;
+                                                padding-bottom: 20px;
+                                            }
+
+                                            .talk_box {
+                                                height: 397px;
+                                                overflow-y: scroll;
+                                                overflow-x: hidden;
+                                                padding: 0 10px;
+                                            }
+
+                                                .talk_box::-webkit-scrollbar {
+                                                    width: 5px;
+                                                }
+
+                                                .talk_box::-webkit-scrollbar-thumb {
+                                                    background: #04c2bb;
+                                                    border-radius: 10px;
+                                                }
+
+                                                .talk_box::-webkit-scrollbar-track {
+                                                    background: transparent;
+                                                }
+
+                                            .chat .textbox {
+                                                position: relative;
+                                                display: inline-block;
+                                                padding: 10px;
+                                                margin-top: 7px;
+                                                font-size: 16px;
+                                                border-radius: 10px;
+                                                color: #888888;
+                                                font-weight: 400;
+                                                margin-bottom: 5px;
+                                            }
+
+                                            .chat .talk_area {
+                                                position: relative;
+                                            }
+
+                                            .chat .talk_date {
+                                                color: #989999;
+                                                font-size: 11px;
+                                                position: absolute;
+                                            }
+
+                                            .chat.ch1 .talk_date {
+                                                left: 22px;
+                                                width: 100px !important;
+                                            }
+
+                                            .chat.ch2 .talk_date {
+                                                right: 14px;
+                                                width: 100px !important;
+                                            }
+
+                                            .chat .textbox::before {
+                                                position: absolute;
+                                                display: block;
+                                                top: 0;
+                                                font-size: 1.5rem;
+                                            }
+
+                                            .ch1 .textbox {
+                                                margin-left: 20px;
+                                                background-color: #d6d6d6;
+                                                max-width: 250px;
+                                                word-break: break-word;
+                                            }
+
+                                                .ch1 .textbox::before {
+                                                    left: -10px;
+                                                    content: "◀";
+                                                    color: #d6d6d6;
+                                                }
+
+                                            .ch2 .icon {
+                                                background: url('/Images/chat_bot.png')no-repeat 100% 50%;
+                                                min-width: 60px;
+                                                min-height: 60px;
+                                            }
+
+                                            .ch2 {
+                                                flex-direction: row-reverse;
+                                            }
+
+                                                .ch2 .textbox {
+                                                    margin-right: 20px;
+                                                    background-color: #c7e9e8;
+                                                    max-width: 300px;
+                                                    word-break: break-word;
+                                                }
+
+                                                    .ch2 .textbox::before {
+                                                        right: -10px;
+                                                        content: "▶";
+                                                        color: #c7e9e8;
+                                                    }
+
+                                            .fa-user:before {
+                                                display: none;
+                                            }
+
+                                            .close {
+                                                position: absolute;
+                                                top: 15px;
+                                                right: 20px;
+                                            }
+                                        </style>
+                                        <div class="talk_box" id="talk_box">
+                                            @*<div class="chat ch2">
+                                                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                                                <div class="talk_area">
+                                                    <div class="textbox">문의사항 남겨주세요.</div>
+                                                </div>
+                                            </div>
+                                            <div class="chat ch1">
+                                                <div class="icon"><i class="fa-solid fa-user"></i></div>
+                                                <div class="talk_area">
+                                                    <div class="textbox">hjhjhj</div>
+                                                    <p class="talk_date">2023.09.19 17:23</p>
+                                                </div>
+                                            </div>*@
+                                        </div>
+                                    </div>
+                                    <div class="col_right2" style="padding-top: 10px; padding-left: 20px;  position: relative;">
+                                        @*<h4 id="Inq_Cnt">문의횟수 : 0회</h4>*@
+                                        <div class="inquiry" style="position:relative;padding-bottom:10px;">
+                                            <style>
+                                                #InquiryText::placeholder {
+                                                    font-size: 15px;
+                                                    font-weight: 500;
+                                                }
+
+                                                #InquiryText:focus {
+                                                    outline: none;
+                                                }
+                                            </style>
+                                            <textarea placeholder="답변내용" id="InquiryText" maxlength="100" style="width: 100%; height: 110px; border-radius: 10px; border: 1px solid #cfcfcf; resize: none; padding:10px; padding-right:140px; font-size:15px;"></textarea>
+                                            <button type="button" class="input_inquiry_btn" id="btn_talk" style="position: absolute; top: 10px; right: 10px; height: 90px; width: 90px; background: #00c6b9; border:none; border-radius:10px; color:#fff; font-weight:600; font-size:17px">입력</button>
+                                            <input type="hidden" name="QuotNo" id="Quot_MngtNo" value="QUOT20230914114015665">
+                                            <input type="hidden" name="ReqNo" id="ReqNo" value="REQ20230914113955137">
+                                            <input type="hidden" id="Start_Dt" value="20230914">
+                                            <input type="hidden" id="End_Dt" value="20230924">
+                                            <input type="hidden" id="Head_Cnt" value="20">
+                                            <input type="hidden" id="Item_Cd" value="ITEM20230822200456509">
+                                        </div>
+                                        @*<div style="position:absolute; top:17px; left:140px; padding-left:10px; cursor:pointer;">
+                                            <img id="Refresh" src="/Images/refresh.png" style="width:20px;">
+                                        </div>*@
+                                    </div>
+                                </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel" style="justify-content:right; background:none;">
+                                <div id="btnHistory" style="margin-right:10px;"></div>
+                                <div id="btnSave"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+        <!--#region 팝업-->
+        <div class="chat_box" style="display:none;">
+            <div class="col_chat">
+                <h4>대화내역</h4>
+                <button class="close" id="talk_close"><img src="/Images/close.png"></button>
+                <div class="talk_box" id="talk_box">
+                    <div class="chat ch1">
+                        <div class="icon"><i class="fa-solid fa-user"></i></div>
+                        <div class="talk_area">
+                            <div class="textbox">문의사항 남겨주세요.</div>
+                        </div>
+                    </div>
+                    <div class="chat ch2">
+                        <div class="icon"><i class="fa-solid fa-user"></i></div>
+                        <div class="talk_area">
+                            <div class="textbox"></div>
+                            <p class="talk_date">2023.09.01 14:52</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--#endregion -->
+
+        <div class="st-content  max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="title_area">
+                                @*<div class="detail_label"><span>내용:</span></div>
+                                <div class="review_dtl" id="DetailContents"></div>
+                                <div class="detail_label"><span>답변:</span></div>
+                                <div class="review_dtl" id="DetailWriter"></div>*@
+                                <div id="MNGT_NO"></div>
+                                <div id="MNGT_SEQ"></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+
+    </div>
+
+}

@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "quotRegist";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+    <script type="text/javascript" src="~/Scripts/js/Admin/_bkgRegist.js"></script>
+    <style>
+        #gridItem {
+            height: 510px;
+        }
+        .bkg_end {
+            margin: 0 auto;
+            background-color: #5accc8;
+            color: white;
+            height: 27px;
+            width: 75%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .end_process {
+            margin: 0 auto;
+            background-color: #006e6a;
+            color: white;
+            height: 27px;
+            width: 75%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .bkg_req {
+            margin: 0 auto;
+            background-color: #949fa7;
+            color: white;
+            height: 27px;
+            width: 75%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .bkg_cancel {
+            margin: 0 auto;
+            background-color: #f6bc5a;
+            color: white;
+            height: 27px;
+            width: 75%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+    </style>
+    <!-- DevExtreme theme -->
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>예약 관리</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+
+                            <div id="gridItem"></div>
+                            <div id="gridTabs"></div>
+                            <div class="gridGrp" id="gridConference"></div>
+                            <div class="gridGrp" id="gridRoom" style="display:none"></div>
+                            <div class="gridGrp" id="gridMeal" style="display:none"></div>
+                            <div class="gridGrp" id="gridEtc" style="display:none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hidden_area">
+            <div id="popup"></div>
+
+            @*<div id="quotTest"></div>*@
+            @*<div id="ITEM_NM"></div>*@
+            <div id="BKG_NO"></div>
+            <div id="BKG_TYPE"></div>
+
+        </div>
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+
+    </div>
+
+}

@@ -1,0 +1,410 @@
+﻿@{ ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_subLayout2.cshtml";
+}
+
+@section Container {
+
+    <input type="hidden" id="View_MNGT_NO" value="@ViewBag.MNGT_NO" />
+    <div class="content">
+        <div class="main_visual">
+            <img src="~/Images/estimate_visual.png" class="pc" />
+            <img src="/Images/main_visual_m.png" class="mo">
+        </div>
+        <div class="main_title" style="font-size: 60px; font-weight:600; color: #fff; text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);">
+            견적관리
+        </div>
+    </div>
+    <div class="container">
+        <div class="common_width">
+            <div class="main_contents">
+                <div class="search_condition">
+                    <div class="condition_list">
+                        <div class="sort_radio">
+                            <div class="online">
+                                <input type="radio" id="online" name="sort_btn" value="B" checked />
+                                <label for="online">온라인견적</label>
+                            </div>
+                            <div class="simple">
+                                <input type="radio" id="simple" name="sort_btn" value="A" />
+                                <label for="simple">간편견적문의</label>
+                            </div>
+                        </div>
+                        <div class="region">
+                            <div class="condition_title">지역</div>
+                            <select id="Region">
+                                @*<option>지역</option>
+                                    <option>지역1</option>
+                                    <option>지역2</option>*@
+                            </select>
+                        </div>
+                        <div class="period">
+                            <div class="date_from_to">
+                                <div class="condition_title">기간</div>
+                                <div class="start_date cal_date no_past">
+                                    <input type="text" id="From_Date_Quot" class="date" placeholder="시작일" data-index="Regis1" readonly>
+                                    <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                </div>
+                                <span>~</span>
+                                <div class="end_date cal_date">
+                                    <input type="text" id="To_Date_Quot" class="date" placeholder="종료일" data-index="Regis2" readonly>
+                                    <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="state">
+                            <div class="condition_title">상태</div>
+                            <select id="Status">
+                                <option value="">전체</option>
+                                <option value="N">요청중</option>
+                                <option value="Y">완료</option>
+                            </select>
+                        </div>
+                        <div class="condition_search">
+                            <div class="condition_title"></div>
+                            <a class="search_btn" id="estimate_search">검색</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="no_data_area" style="display:none;">
+                    <div class="no-data pc" id="No_data">
+                        <p>
+                            요청하신<br />
+                            <span>견적내역이</span> 없습니다.
+                        </p>
+                    </div>
+                    <div class="no-data mo" id="No_Mo_data">
+                        <p>요청하신 <span>견적내역이</span> 없습니다.</p>
+                    </div>
+                </div>
+                <div class="con_area" id="search_position" style="padding-top:30px;">
+                    <div class="estimate_con1">
+                        <div class="con_title">
+                            나의견적요청
+                        </div>
+                        @*<div class="estimate_tab">
+                                <div class="tab1 on" id="request_btn">견적요청</div>
+                                <div class="tab2" id="done_btn">견적완료</div>
+                            </div>*@
+                        @*<div class="estimate_list request">
+                                <div class="estimate_list_box online_box">
+                                    <div class="estimate_online">
+                                        <div class="estimate_img"><img src="~/Images/region_img1.png" /></div>
+                                        <div class="estimate_contents">
+                                            <div class="token">
+                                                <span>온라인견적</span>
+                                            </div>
+                                            <div class="estimate_date">
+                                                <span>2023.06.27 - 2023.06.28</span>
+                                            </div>
+                                            <div class="estimate_info">
+                                                <div class="estimate_title">
+                                                    <span class="location_title">부산</span><span class="location_detail">시그니엘 부산(해운대구, 부산) | 5성급 | 호텔</span>
+                                                </div>
+                                                <div class="price">
+                                                    <span class="price_title">예산범위&nbsp;:</span><span class="orange">&nbsp;18,000,000 - 20,000,000</span><span class="won">원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="request_option">
+                                        <div class="option_list">
+                                            <h4>요청옵션</h4>
+                                            <div class="option_div">
+                                                <img src="~/Images/stay.png" /><span>숙박</span><span>옵션 : 1인실 : 5개 | 3인실 : 10개 | 5인실 : 5개</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/feed.png" /><span>식사</span><span>옵션 : 조식, 중식, 석식, 커피브레이크</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/camera.png" /><span>영상시스템</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/car.png" /><span>차량지원</span>
+                                            </div>
+                                            <div class="etc_option">
+                                                <p>
+                                                    세미나룸 : 세미나룸A | 세미나룸B<br />
+                                                    Remark : 인쇄물 요청
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div id="Simple_Quot_List">
+                            <div class="estimate_list">
+                                @*<div class="estimate_list_box">
+                                        <div class="estimate_simple">
+                                            <div class="estimate_simple_img"><img src="~/Images/estimate_none.png" /></div>
+                                            <div class="estimate_simple_contents">
+                                                <div class="token">
+                                                    <span>간편견적</span>
+                                                </div>
+                                                <div class="estimate_simple_date">
+                                                    <span>2023.06.27 - 2023.06.28</span>
+                                                </div>
+                                                <div class="estimate_simple_info">
+                                                    <div class="estimate_simple_title">
+                                                        <span class="location_title">지역 : 부산 &nbsp;&nbsp;|&nbsp;&nbsp; 인원 : 100명</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="request_option">
+                                            <div class="option_list">
+                                                <h4>요청옵션</h4>
+                                                <div class="add_option" id="Simple_AddoptQuot_List">
+                                                    <div class="option" style="pointer-events:none;">
+                                                        <button type="button"><img src="/Images/stay.png">숙박</button>
+                                                    </div>
+                                                    <div class="option" style="pointer-events:none;">
+                                                        <button type="button"><img src="/Images/seminar.png">세미나실</button>
+                                                    </div>
+                                                    <div class="option" style="pointer-events:none;">
+                                                        <button type="button"><img src="/Images/feed.png">식사</button>
+                                                    </div>
+                                                    <div class="option" style="pointer-events:none;">
+                                                        <button type="button"><img src="/Images/camera.png">영상시스템</button>
+                                                    </div>
+                                                    <div class="option" style="pointer-events:none;">
+                                                        <button type="button"><img src="/Images/car.png">차량지원</button>
+                                                    </div>
+                                                    <div class="option" style="pointer-events:none;">
+                                                        <button type="button"><img src="/Images/print.png">인쇄 및 홍보물</button>
+                                                    </div>
+                                                </div>
+                                                <div class="remark">
+                                                    <span>Remark : 인쇄물 요청</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                        <!--<div class="estimate_list" id="QuotCompleteText">-->
+                        @*<div class="estimate_list_box online_box">
+                                <div class="estimate_online">
+                                    <div class="estimate_img"><img src="~/Images/region_img1.png" /></div>
+                                    <div class="estimate_contents">
+                                        <div class="token">
+                                            <span id="QuotType">온라인견적</span>
+                                        </div>
+                                        <div class="estimate_date">
+                                            <span id="QuotPeriod">2023.06.27 - 2023.06.28</span>
+                                        </div>
+                                        <div class="estimate_info">
+                                            <div class="estimate_title">
+                                                <span class="location_title">부산</span><span class="location_detail">시그니엘 부산(해운대구, 부산) | 5성급 | 호텔</span>
+                                            </div>
+                                            <div class="price">
+                                                <span class="price_title">예산범위&nbsp;:</span><span class="orange" id="QuotRange">&nbsp;18,000,000 - 20,000,000</span><span class="won">원</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="request_option">
+                                    <div class="option_list">
+                                        <h4>요청옵션</h4>
+                                        <div class="option_div">
+                                            <img src="~/Images/stay.png" /><span>숙박</span><span>옵션 : 1인실 : 5개 | 3인실 : 10개 | 5인실 : 5개</span>
+                                        </div>
+                                        <div class="option_div">
+                                            <img src="~/Images/feed.png" /><span>식사</span><span>옵션 : 조식, 중식, 석식, 커피브레이크</span>
+                                        </div>
+                                        <div class="option_div">
+                                            <img src="~/Images/camera.png" /><span>영상시스템</span>
+                                        </div>
+                                        <div class="option_div">
+                                            <img src="~/Images/car.png" /><span>차량지원</span>
+                                        </div>
+                                        <div class="etc_option">
+                                            <p>
+                                                세미나룸 : 세미나룸A | 세미나룸B<br />
+                                                Remark : 인쇄물 요청
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <!--</div>-->
+                    </div>
+                    <div class="estimate_con2" id="CompareQuotDiv" style="display:none;">
+                        <div class="con_title">
+                            비교견적(<span id="quot_cnt">0개</span>)
+                        </div>
+                        <div id="CompareQuotNoData">
+                            <div class="no-data pc">
+                                <img src="~/Images/no_data_estimate_pc.png" />
+                                <p>
+                                    요청받은<br />
+                                    <span>비교견적이 </span> 없습니다.
+                                </p>
+                            </div>
+                            <div class="no-data mo">
+                                <img src="~/Images/no_data_mo.png" />
+                                <p>요청받은 <span>비교견적이</span> 없습니다.</p>
+                            </div>
+                        </div>
+                        <div class="compare" id="Compare_List">
+                            @*<div class="compare_list recomm">
+                                    <div class="compare_img"><img src="~/Images/region_img1.png" /></div>
+                                    <div class="compare_contents">
+                                        <div class="times">
+                                            <div class="times_title">
+                                                문의횟수
+                                            </div>
+                                            <div class="num_time">
+                                                3
+                                            </div>
+                                        </div>
+                                        <div class="compare_info">
+                                            <div class="compare_title">
+                                                <span class="location_title">부산</span><span class="location_detail">시그니엘 부산(해운대구, 부산) | 5성급 | 호텔</span>
+                                            </div>
+                                            <div class="price">
+                                                <span class="price_title">총 견적금액&nbsp;:</span><span class="orange">&nbsp;금액 별도문의</span><span class="won"></span>
+                                            </div>
+                                            <div class="compare_detail">
+                                                <span class="show_detail">견적상세보기</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="compare_list">
+                                    <div class="compare_img"><img src="~/Images/estimate_img1.png" /></div>
+                                    <div class="compare_contents">
+                                        <div class="times">
+                                            <div class="times_title">
+                                                문의횟수
+                                            </div>
+                                            <div class="num_time">
+                                                1
+                                            </div>
+                                        </div>
+                                        <div class="compare_info">
+                                            <div class="compare_title">
+                                                <span class="location_title">부산</span><span class="location_detail">파라다이스호텔(해운대구, 부산) | 5성급 | 호텔</span>
+                                            </div>
+                                            <div class="price">
+                                                <span class="price_title">총 견적금액&nbsp;:</span><span class="orange">&nbsp;금액 별도문의</span><span class="won"></span>
+                                            </div>
+                                            <div class="compare_detail">
+                                                <span class="show_detail">견적상세보기</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="compare_list">
+                                    <div class="compare_img"><img src="~/Images/estimate_img2.png" /></div>
+                                    <div class="compare_contents">
+                                        <div class="times">
+                                            <div class="times_title">
+                                                문의횟수
+                                            </div>
+                                            <div class="num_time">
+                                                1
+                                            </div>
+                                        </div>
+                                        <div class="compare_info">
+                                            <div class="compare_title">
+                                                <span class="location_title">부산</span><span class="location_detail">켄싱턴호텔 설악(속초시, 강원) | 4성급 | 호텔</span>
+                                            </div>
+                                            <div class="price">
+                                                <span class="price_title">총 견적금액&nbsp;:</span><span class="orange">&nbsp;금액 별도문의</span><span class="won"></span>
+                                            </div>
+                                            <div class="compare_detail">
+                                                <span class="show_detail">견적상세보기</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="con_area_simple" id="search_position_simple" style="padding-top:30px; display:none;">
+                    @*<div class="con_title">나의견적요청</div>
+                    <div class="estimate_list request">
+                        <div class="list_box--padding">
+                            <div class="estimate_list_box">
+                                <div class="simple_estimate">
+                                    <div class="estimate_simple">
+                                        <div class="estimate_simple_img">
+                                            <img src="/Images/Simple_img.png" />
+                                        </div>
+                                        <div class="estimate_simple_contents">
+                                            <div class="token">
+                                                <span>간편견적</span>
+                                            </div>
+                                            <div class="estimate_simple_date">
+                                                <span>2023.09.07 - 2023.09.17</span>
+                                            </div>
+                                            <div class="estimate_simple_info">
+                                                <div class="estimate_simple_title">
+                                                    <span class="location_title">지역 : 인천 &nbsp;&nbsp;|&nbsp;&nbsp; 인원 :  1 명</span>
+                                                    <input type="hidden" name="ReqNo" value="REQ202324DD112411737">
+                                                    <input type="hidden" id="HeaderStatus" value="N">
+                                                </div>
+                                            </div>
+                                            <div class="price">
+                                                <span class="price_title">총 견적금액&nbsp;:</span>
+                                                <span class="orange">&nbsp; 40,000원 ~ 500,000원</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="request_option">
+                                        <div class="option_list">
+                                            <h4>요청옵션</h4>
+                                            <div class="add_option" id="Simple_AddoptQuot_List">
+                                                <div class="option" style="pointer-events:none">
+                                                    <button type="button">
+                                                        <img src="/Files/Admin/20230811/20230811142750044/seminar.png">세미나실
+                                                    </button>
+                                                </div>
+                                                <div class="option" style="pointer-events:none">
+                                                    <button type="button">
+                                                        <img src="/Files/Admin/20230811/20230811142833132/camera.png">영상시스템
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="remark">
+                                            <span>Remark : 테스트입니다 </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="down_estimate">
+                                    <a>견적서 다운로드</a>
+                                    <input type="hidden" name="File_Path" value="/Files/Admin/20230907/20230907113024914">
+                                    <input type="hidden" name="File_Nm" value="sample-file.pdf">
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layer_zone alert_type" id="alertcheck_1" style="z-index:10011;">
+        <div class="layer_wrap">
+            <div class="layer_inwrap">
+                <article class="layer_cont">
+                    <!-- alert_cont -->
+                    <img src="~/Images/icn_alert.png" />
+                    <div class="alert_cont">
+                        <div class="inner">
+                            <h5>필수체크값 확인이 필요합니다.</h5>
+                        </div>
+                    </div>
+                    <!-- //alert_cont -->
+                    <!-- btn_w -->
+                    <div class="btn_w">
+                        <button type="button" class="btns radius cr1 loginChk" onclick="layerClose('#alertcheck_1');" id="alert_1">확인</button>
+                    </div>
+                    <!-- //btn_w -->
+                </article>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/js/slick.min.js"></script>
+    <script src="~/Scripts/js/Estimate/Index.js"></script>
+}

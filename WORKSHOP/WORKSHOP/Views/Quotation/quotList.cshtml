@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "Quotation";
+    ViewBag.Sub = "quotList";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+    <style>
+        #quotList {
+            height: 790px;
+        }
+        .quot_btn1 {
+            margin: 0 auto;
+            
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #949fa7;
+            height: 27px;
+        }
+        .quot_btn1:hover{
+            background-color: #afc0cc;
+        }
+        .dx-fileuploader-button {
+            margin: 0 auto;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #949fa7;
+            height: 27px;
+        }
+        .dx-fileuploader-button:hover {
+            background-color: #afc0cc;
+        }
+        .doc_quot_btn>.dx-fileuploader-button:hover {
+            color: #afc0cc;
+        }
+/*        .doc_quot_btn .dx-fileuploader-wrapper {
+            padding: 0px;
+            padding-top: 4px;
+            padding-left : 8px;
+        }*/
+        td  .dx-fileuploader-wrapper {
+            height: 30px;
+        }
+
+        .easy_q {
+            margin: 0 auto;
+            background-color: #f6bc5a;
+            color: white;
+            height: 27px;
+            width: 75%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .online_q {
+            margin: 0 auto;
+            background-color: #5accc8;
+            color: white;
+            height: 27px;
+            width: 75%;
+            font-size: 15px;
+            padding-top: 5px;
+        }
+        .dx-command-select {
+            width: 30px !important;
+            min-width: 30px !important;
+        }  
+    </style>
+    <!-- DevExtreme theme -->
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>견적 요청 조회</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel">
+                                <div class="ad_label">기간:</div>
+                                <div id="STRT_YMD"></div>
+                                <div class="ad_dash">-</div>
+                                <div id="END_YMD"></div>
+                                <div class="ad_label">견적 구분:</div>
+                                <div id="QUOT_TYPE"></div>
+                                <div class="ad_label">회원 구분:</div>
+                                <div id="USR_TYPE"></div>
+                                <div class="ad_label">지역:</div>
+                                <div id="AREA"></div>
+                                @*<div class="ad_label">요청자 명:</div>
+            <div id="REQ_NM"></div>*@
+                                <div class="ad_label">견적 등록 여부:</div>
+                                <div id="QUOT_YN"></div>
+                                <div class="ad_label">메일전송여부:</div>
+                                <div id="STATUS"></div>
+                                <div id="btnSearch"></div>
+                            </div>
+                            <div style="display:flex;">
+                                <div id="quotList"></div>
+                                <div id="quotDetail"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hidden_area">
+            <div id="GRP_KIND"></div>
+            <div id="popup"></div>
+            <div id="quotTest"></div>
+
+        </div>
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="~/Scripts/js/Admin/_quotEasy.js"></script>
+
+}

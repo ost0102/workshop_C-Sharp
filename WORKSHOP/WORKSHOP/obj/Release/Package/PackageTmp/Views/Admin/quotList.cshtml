@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "admin";
+    ViewBag.Sub = "quotList";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+    <style>
+        #quotList {
+            height: 770px;
+        }
+
+    </style>
+    <!-- DevExtreme theme -->
+    <script type="text/javascript" src="~/Scripts/js/Admin/_quotList.js"></script>
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>견적 리스트</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel">
+                                <div class="ad_label">기간:</div>
+                                <div id="STRT_YMD"></div>
+                                <div class="ad_dash">-</div>
+                                <div id="END_YMD"></div>
+                                <div class="ad_label">지역:</div>
+                                <div id="GRP_CD"></div>
+                                <div class="ad_label">상품명:</div>
+                                <div id="ITEM_NM"></div>
+                                <div class="ad_label">상태:</div>
+                                <div id="STATUS"></div>
+                                <div id="btnSearch"></div>
+                            </div>
+                            <div id="quotList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hidden_area">
+            <div id="GRP_KIND"></div>
+            <div id="popup"></div>
+            <div id="quotTest"></div>
+
+        </div>
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+
+    </div>
+
+}

@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_subLayout.cshtml";
+}
+
+@section Container {
+    <div class="container">
+        <div class="common_width">
+            <div class="main_contents">
+                <div class="login_box">
+                    <div class="con1">
+                        <div class="login_box_bg">
+                            <img src="~/Images/login_bg.png" />
+                            <div class="main_title">
+                                <div class="title_top">
+                                    숙박 ·교통·식사·세미나·레크레이션
+                                </div>
+                                <div class="title_bottom">
+                                    워크샵은 연수다
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="con2">
+                        <div class="login_con">
+                            <div class="login_pop login_page">
+                                <div class="login_info">
+                                    <div class="login_title">
+                                        로그인
+                                    </div>
+                                    <div class="login_id">
+                                        <p>이메일</p>
+                                        <div class="int_box id_info">
+                                            <input type="text" class="id_input" name="id_login" id="top_id" placeholder="이메일" />
+                                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                                        </div>
+                                        <p class="incorrect_txt Span_Warning error" id="Span_Waning_ID">이메일을 입력해주세요.</p>
+                                    </div>
+                                    <div class="login_pw">
+                                        <p>비밀번호</p>
+                                        <div class="int_box pw_info">
+                                            <input type="password" class="pw_input" name="pw_login" id="top_pw" placeholder="비밀번호" />
+                                            <button type="button" class="btns icon delete" tabindex="-1"><span class="blind">삭제</span></button>
+                                        </div>
+                                        <p class="incorrect_txt Span_Warning error" id="Span_Waning_PW">비밀번호를 입력해주세요.</p>
+                                    </div>
+                                    <div class="agreement-container">
+                                        <div class="chk_box agree">
+                                            <span class="check type1">
+                                                <input type="checkbox" id="id_keep" name="login_keep" class="chk">
+                                                <label for="id_keep">아이디 저장</label>
+                                            </span>
+                                        </div>
+                                        <span class="forgot">
+                                            <a href="/Find/index" id="FindPwd">아이디/비밀번호 찾기</a>
+                                        </span>
+                                    </div>
+                                    <div class="entering">
+                                        <button type="button" class="login_entering" id="layer_login_btn3">로그인</button>
+                                    </div>
+                                    <div class="join_txt">연수다와 함께하세요</div>
+                                    <div class="entering">
+                                        <a href="/Join/index" class="join_entering">회원가입</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/js/Service/Index.js"></script>
+}

@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "";
+}
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    @Styles.Render("~/Content/fonts.css")
+    @Styles.Render("~/Content/css/layout.css")
+    @Styles.Render("~/Content/css/media.css")
+    @Styles.Render("~/Content/admin.css")
+    @Styles.Render("~/Content/API/bootstrap/css/bootstrap.min.css")
+    @Styles.Render("~/Content/API/font-awesome/css/font-awesome.min.css")
+    @Styles.Render("~/Content/API/libs.common.min.css")
+    @Styles.Render("~/Content/API/just.css")
+
+    @Scripts.Render("~/Scripts/API/jquery-2.2.3.min.js")
+    @Scripts.Render("~/Scripts/Pub/ion.rangeSlider.min.js")
+    @Scripts.Render("~/Scripts/Pub/jquery.slimscroll.min.js")
+    @Scripts.Render("~/Scripts/Pub/jquery.datetimepicker.full.js")
+    @Scripts.Render("~/Scripts/Pub/common.js")
+    @Scripts.Render("~/Scripts/js/common/Comm.js")
+    @*@Scripts.Render("~/Scripts/js/common/_layout.js")*@
+    @Scripts.Render("~/Scripts/API/jquery.AutoComplete.js")
+    @Scripts.Render("~/Scripts/API/scrolloverflow.js")
+    @Scripts.Render("~/Scripts/API/bluebird.min.js")
+    @Scripts.Render("~/Scripts/API/smtp.js")
+    @Scripts.Render("~/Scripts/js/Admin/_login.js")
+
+    @Scripts.Render("~/Scripts/js/common/KeyEvent.js")
+
+    @Scripts.Render("~/Scripts/API/jquery.signalR-1.1.4.js")
+    @Scripts.Render("~/Scripts/API/toastr.js")
+
+    <script type="text/javascript">
+        @*var _Domain = '@System.Configuration.ConfigurationManager.AppSettings["Domain"]';*@
+        var _HomeUrl = window.location.origin;
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
+</head>
+
+<body style="background-color:#f8f8f8;">
+    <header id="admin_header" style="display: block;" class="">
+        <div class="fixed_in type1">
+            <div class="top_row">
+                <h1 class="logo"><a href="/" class="e-logo"><img src="~/Images/logo.png" /></a></h1>
+            </div>
+        </div>
+    </header>
+    <div class="sub_visual">
+        @*<div class="inner">
+            </div>*@
+    </div>
+    <div class="common_width">
+        <div class="main_contents">
+            <div class="login_box">
+                <div class="con1">
+                    <div class="login_box_bg">
+                        <img src="/Images/login_bg.png">
+                        <div class="main_title">
+                            <div class="title_top">
+                                숙박 ·교통·식사·세미나·레크레이션
+                            </div>
+                            <div class="title_bottom">
+                                워크샵은 연수다
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="con2">
+                    <div class="login_con">
+                        <div class="login_pop login_page">
+                            <div class="login_info">
+                                <div class="login_title">
+                                    관리자 페이지
+                                </div>
+                                <div class="login_id">
+                                    <p>이메일</p>
+                                    <div class="int_box id_info">
+                                        <input type="text" class="id_input" name="id_login" id="ad_top_id" placeholder="이메일">
+                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                    </div>
+                                    <p class="incorrect_txt Span_Warning error" id="Span_Waning_ID">이메일을 입력해주세요.</p>
+                                </div>
+                                <div class="login_pw">
+                                    <p>비밀번호</p>
+                                    <div class="int_box pw_info">
+                                        <input type="password" class="pw_input" name="pw_login" id="ad_top_pw" placeholder="비밀번호">
+                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                    </div>
+                                    <p class="incorrect_txt Span_Warning error" id="Span_Waning_PW">비밀번호를 입력해주세요.</p>
+                                </div>
+                                <div class="agreement-container">
+                                    <div class="chk_box agree">
+                                        <span class="check type1">
+                                            <input type="checkbox" id="Admin_id_keep" name="login_keep" class="chk">
+                                            <label for="Admin_id_keep">아이디 저장</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="entering">
+                                    <button type="button" class="login_entering" id="ad_layer_login_btn">로그인</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer_zone alert_type" id="alertcheck" style="z-index:10001;">
+        <div class="layer_wrap">
+            <div class="layer_inwrap">
+                <article class="layer_cont">
+                    <!-- alert_cont -->
+                    <img src="~/Images/icn_alert.png" />
+                    <div class="alert_cont">
+                        <div class="inner">
+                            <h5>필수체크값 확인이 필요합니다.</h5>
+                        </div>
+                    </div>
+                    <!-- //alert_cont -->
+                    <!-- btn_w -->
+                    <div class="btn_w">
+                        <button type="button" class="btns radius cr1 loginChk" onclick="layerClose('#alertcheck');" id="findpwalert">확인</button>
+                    </div>
+                    <!-- //btn_w -->
+                </article>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

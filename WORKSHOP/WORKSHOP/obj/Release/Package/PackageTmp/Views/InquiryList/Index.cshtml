@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_subLayout.cshtml";
+}
+
+@section Container {
+    <div class="content">
+        <div class="main_visual">
+            <img src="~/Images/estimate_visual.png" class="pc" />
+            <img src="/Images/main_visual_m.png" class="mo">
+
+        </div>
+        <div class="main_title" style="font-size: 60px; font-weight:600; color: #fff; text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);">
+            견적문의
+        </div>
+    </div>
+    <div class="container">
+        <div class="common_width">
+            <div class="main_contents">
+                <div class="con_area service" style="padding-top:30px;">
+                    <div class="search_condition" style="padding-bottom:20px;">
+                        <div class="condition_list">
+                            <div class="period">
+                                <div class="date_from_to">
+                                    <div class="condition_title">기간</div>
+
+                                    <div class="start_date_R cal_date_R">
+
+                                        <input type="text" id="From_Date_Office" class="date_R" placeholder="시작일" data-index="Regis1" readonly>
+                                        <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                    </div>
+                                    <span>~</span>
+                                    <div class="end_date_R cal_date_R">
+                                        <input type="text" id="To_Date_Office" class="date_R" placeholder="종료일" data-index="Regis2" readonly>
+                                        <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="state">
+                                <div class="condition_title">검색구분</div>
+                                <select id="ResStatus">
+                                    <option value="">전체</option>
+                                    <option value="T">제목</option>
+                                    <option value="C">내용</option>
+                                </select>
+                            </div>
+                            <div class="search_con">
+                                <div class="condition_title">검색어</div>
+                                <div class="search_input_area">
+                                    <div class="search_int">
+                                        <input type="text" id="Keyword_Office" maxlength="10" style="text-align:center" placeholder="검색어를 입력하세요." />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="condition_search">
+                                <div class="condition_title"></div>
+                                <a class="search_btn" id="search_Office">검색</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="estimate_con2">
+                        <div class="confirm_box">
+                            <div class="tab_area">
+                                <div class="r_tab on" id="notice_show">견적현황</div>
+                            </div>
+                            <div class="commu_list_area">
+                                <div class="commu_list_box" id="CommShow">
+                                    <div class="write_txt">
+                                        <button type="button" class="write_btn">글쓰기</button>
+                                    </div>
+                                    <table class="commu_tb">
+                                        <thead>
+                                            <tr>
+                                                <th>번호</th>
+                                                <th>제목</th>
+                                                <th>글쓴이</th>
+                                                <th>날짜</th>
+                                                <th>조회</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                @*<td>1</td>
+                                    <td>연수다 홈페이지 오픈</td>
+                                    <td>글쓴이</td>
+                                    <td>2023.07.27</td>
+                                    <td>12345</td>*@
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="paging-area">
+                                        <ul>
+                                            <li>
+                                                <a href="javascript:;" class="prev-first"><span>To the front</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="prev"><span>Before</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="active">1<span></span></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="next"><span>Next</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="next-last"><span>At the very end</span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/js/InquiryList/InquiryList.js"></script>
+}

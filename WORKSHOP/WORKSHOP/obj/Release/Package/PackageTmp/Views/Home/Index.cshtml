@@ -1,0 +1,251 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Container {
+    <style>
+        .map {
+            height: 1020px;
+        }
+
+        #map {
+            border-radius: 20px;
+            width: 100%;
+        }
+
+        #koreaMap {
+            fill: #daf2f1;
+            border-radius: 20px;
+            /*overflow-x:scroll;
+            overflow-y:hidden;*/
+            /*position:relative;*/
+        }
+        /*#koreaMap::-webkit-scrollbar{height:7px;}
+        #koreaMap::-webkit-scrollbar-thumb {background: #006e6a; border-radius: 10px;}
+        #koreaMap::-webkit-scrollbar-track {background: #eeeff0;}*/
+
+        #states path {
+            fill: #00c4bd;
+            stroke: #daf2f1;
+            stroke-width: 1.5px;
+        }
+
+            #states path:hover {
+                fill: #009f99;
+            }
+
+        #states .active {
+            fill: #009f99;
+        }
+
+        #states .activeDetail {
+            fill: #00B700;
+        }
+
+        #states path {
+            cursor: auto;
+        }
+
+        #states text {
+            cursor: pointer;
+            font-size: 12px;
+            fill: #008984;
+            font-weight: 800;
+        }
+    </style>
+    <script type="text/javascript" src="~/Scripts/js/d3.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bded1c68f1bd22037dc06aa72933e526&libraries=services,clusterer,drawing"></script>
+    <div class="content">
+        <div class="main_visual">
+            <img src="~/Images/main_visual.png" class="pc" />
+            <img src="~/Images/main_visual_m.png" class="mo" />
+        </div>
+        <div class="main_title">
+            <div class="title_top">
+                숙박 ·교통·식사·세미나·레크레이션
+            </div>
+            <div class="title_bottom">
+                워크샵은 연수다
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="common_width">
+            <div class="main_contents">
+                <div class="search_condition">
+                    <div class="condition_list main_search">
+                        <div class="state">
+                            <div class="condition_title">숙박종류</div>
+                            <select id="select_itemTpye">
+                                <option value="ALL">전체/호텔/리조트</option>
+                                @*<option value="ALL">전체</option>*@
+                                <option value="호텔">호텔</option>
+                                <option value="리조트">리조트</option>
+                            </select>
+                        </div>
+                        <div class="region">
+                            <div class="condition_title">지역</div>
+                            <select id="select_area">
+                                <option value="ALL">전체</option>
+                                <option value="서울">서울</option>
+                                <option value="경기">경기</option>
+                                <option value="충북">충북</option>
+                                <option value="경북">경북</option>
+                                <option value="전남">전남</option>
+                                <option value="인천">인천</option>
+                                <option value="대전">대전</option>
+                                <option value="부산">부산</option>
+                                <option value="충남">충남</option>
+                                <option value="강원">강원</option>
+                                <option value="세종">세종</option>
+                                <option value="대구">대구</option>
+                                <option value="울산">울산</option>
+                                <option value="전북">전북</option>
+                                <option value="광주">광주</option>
+                                <option value="제주">제주</option>
+                                <option value="경남">경남</option>
+                            </select>
+                        </div>
+                        <div class="people_cnt">
+                            <div class="condition_title">인원</div>
+                            <div class="people_input_area">
+                                <div class="people_int">
+                                    <input type="text" id="MAX_TO" maxlength="4" style="text-align:right" />
+                                    <span>명</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search_con">
+                            <div class="condition_title">검색</div>
+                            <div class="search_input_area">
+                                <div class="search_int">
+                                    <input type="text" id="Keyword" maxlength="10" style="text-align:center" placeholder="검색어를 입력하세요." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="condition_search">
+                            <div class="condition_title"></div>
+                            <a class="search_btn" id="estimate_search" onclick="fnMovePage('con_area')">검색</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="con_area" id="con_area">
+                    <div class="con1">
+                        <div id="koreaMap" class="map" style="background:#daf2f1;"></div>
+                        <div id="map" class="map" style="width:100%; height:1020px; display:none;"></div>
+                        <script>
+                            $(function () {
+                                drawMap('#koreaMap', "ROAD");
+                            });
+
+                        </script>
+                        @*<img src="~/Images/map.png" style="max-width:100%; width:100%; height:auto; border-radius:20px; cursor:pointer;">*@
+                    </div>
+                    <div class="con2" id="result_map">
+                        <div class="switch">
+                            <div class="head_switch">
+                                <input type="radio" id="recommend" name="head_toggle" checked>
+                                <label for="recommend" class="head_switch_label">연수다 추천</label>
+                                <input type="radio" id="location" name="head_toggle">
+                                <label for="location" class="head_switch_label">어디로 가실래요?</label>
+                                <input type="radio" id="time" name="head_toggle">
+                                <label for="time" class="head_switch_label">연수다와 함께한 시간</label>
+                            </div>
+                        </div>
+                        <div class="recommend_con" id="recommend_area">
+                        </div>
+                        <div class="location_con" id="location_area" style="display:none;">
+                        </div>
+                        <div class="time_con" id="time_area" style="display:none;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scss-test">
+            <span>scss테스트</span>
+        </div>
+        <div class="main_intro">
+            <img src="~/Images/main_intro.png" class="pc" />
+            <img src="~/Images/main_intro_m.png" class="mo" />
+        </div>
+        <div class="common_width">
+            <div class="simple-estimate">
+                <div class="banner">
+                    @{
+                        if (Session["EMAIL"] != null)
+                        {
+                            <img src="~/Images/estimate.png" id="Login_Quot" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/estimate.png" id="Not_login_Quot" />
+
+                        }
+                    }
+
+                </div>
+                <div class="banner_sns">
+                    <div class="sns">
+                        <a href="https://blog.naver.com/metait" target="_blank"><img src="~/Images/blog.png" /></a>                            
+                    </div>
+                    <div class="sns">
+                        <img src="~/Images/instar.png" />
+                    </div>
+                    <div class="sns">
+                        <img src="~/Images/youtube.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login_layer" id="login_time_area" style="display:none;">
+        <div class="login_pop" id="login_pop">
+            <div class="login_info">
+                <div class="login_logo">
+                    <img src="~/Images/logo.png" />
+                </div>
+                <div class="login_id">
+                    <p>이메일</p>
+                    <div class="int_box id_info">
+                        <input type="text" class="id_input" name="id_login" id="main_id" placeholder="이메일" />
+                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                    </div>
+                    <p class="incorrect_txt Span_Warning error" id="Span_Waning_ID">이메일을 입력해주세요.</p>
+                </div>
+                <div class="login_pw">
+                    <p>비밀번호</p>
+                    <div class="int_box pw_info">
+                        <input type="password" class="pw_input" name="pw_login" id="main_pw" placeholder="비밀번호" />
+                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                    </div>
+                    <p class="incorrect_txt Span_Warning error" id="Span_Waning_PW">비밀번호를 입력해주세요.</p>
+                </div>
+                <div class="agreement-container">
+                    <div class="chk_box agree">
+                        <span class="check type1">
+                            <input type="checkbox" id="id_keep2" name="login_keep" class="chk">
+                            <label for="id_keep2">아이디 저장</label>
+                        </span>
+                    </div>
+                    <span class="forgot">
+                        <a href="/Find/index" id="FindPwd">아이디/비밀번호 찾기</a>
+                    </span>
+                </div>
+                <div class="entering">
+                    <button type="button" class="login_entering" id="main_login_btn">로그인하고 전체보기</button>
+                </div>
+                <div class="join_txt">연수다와 함께하세요</div>
+                <div class="entering">
+                    <a href="/Join/index" class="join_entering">회원가입</a>
+                </div>
+                <button class="close" id="login_close"><img src="/Images/close.png"></button>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/js/slick.min.js"></script>
+    <script src="~/Scripts/js/Home/korea.js"></script>
+    <script src="~/Scripts/js/Home/Index.js"></script>
+}

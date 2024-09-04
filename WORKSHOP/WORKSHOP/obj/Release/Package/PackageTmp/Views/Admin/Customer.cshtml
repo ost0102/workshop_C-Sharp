@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "admin";
+    ViewBag.Sub = "Customer";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+
+
+    <!-- DevExtreme theme -->
+    <script type="text/javascript" src="~/Scripts/js/Admin/_Customer.js"></script>
+
+    <style>
+        #customer_info {
+            height: 850px;
+        }
+
+
+    </style>
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>회원관리</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel">
+                                <div class="ad_label">그룹코드</div>
+                                <div class="sch_input" id="GRP_CD"></div>
+                                <div class="ad_label">담당자명</div>
+                                <div class="" id="CUST_NAME"></div>
+                                <div class="ad_label">회사명</div>
+                                <div class="sch_input" id="COMPANY"></div>
+                                <div class="ad_label">소속부서</div>
+                                <div class="sch_input" id="DEPARTURE"></div>
+                                <div class="ad_label">승인여부</div>
+                                <div class="sch_input" id="USE_YN"></div>
+                                <div class="ad_label">관리자여부</div>
+                                <div class="sch_input" id="ADMIN_YN"></div>
+                                <div id="btnSearch"></div>
+                            </div>
+                            <div id="customer_info"></div>
+                            <input type="file" id="imgupload" style="display:none" />
+                            <div id="xlx_json" style="display:none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hidden_area">
+            <div id="GRP_KIND"></div>
+
+        </div>
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+
+    </div>
+
+}

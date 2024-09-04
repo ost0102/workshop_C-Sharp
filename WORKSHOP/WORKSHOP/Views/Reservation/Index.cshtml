@@ -1,0 +1,1196 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_subLayout.cshtml";
+}
+
+@section Container {
+
+    <input type="hidden" id="View_MNGT_NO" value="@ViewBag.MNGT_NO" />
+    <input type="hidden" id="View_QUOT_NO" value="@ViewBag.QUOT_NO" />
+    <div class="content">
+        <div class="main_visual">
+            <img src="~/Images/estimate_visual.png" class="pc"/>
+            <img src="/Images/main_visual_m.png" class="mo">
+        </div>
+        <div class="main_title" style="font-size: 60px; font-weight:600; color: #fff; text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);">
+            예약확인
+        </div>
+    </div>
+    <div class="container">
+        <div class="common_width">
+            <div class="main_contents">
+                <div class="search_condition">
+                    <div class="condition_list">
+                        <div class="sort_radio" style="display:none;">
+                            <div class="online">
+                                <input type="radio" id="online" name="sort_btn" value="B" checked>
+                                <label for="online">온라인견적</label>
+                            </div>
+                            <div class="simple">
+                                <input type="radio" id="simple" name="sort_btn" value="A">
+                                <label for="simple">간편견적문의</label>
+                            </div>
+                        </div>
+                        <div class="region">
+                            <div class="condition_title">지역</div>
+                            <select id="Region">
+                            </select>
+                        </div>
+                        <div class="period">
+                            <div class="date_from_to">
+                                <div class="condition_title">기간</div>
+                                <div class="start_date_R cal_date_R">
+                                    <input type="text" id="From_Date_Quot" class="date_R" placeholder="시작일" data-index="Regis1" readonly>
+                                    <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                </div>
+                                <span>~</span>
+                                <div class="end_date_R cal_date_R">
+                                    <input type="text" id="To_Date_Quot" class="date_R" placeholder="종료일" data-index="Regis2" readonly>
+                                    <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="state">
+                            <div class="condition_title">상태</div>
+                            <select id="ResStatus">
+                                <option value="">전체</option>
+                                <option value="N">진행중</option>
+                                <option value="C">취소</option>
+                                <option value="M">수정</option>
+                                <option value="Y">확정</option>
+                                <option value="F">최종확정</option>
+                            </select>
+                        </div>
+                        <div class="condition_search">
+                            <div class="condition_title"></div>
+                            <a class="search_btn" id="estimate_search_Reserve">검색</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="no_data_area" style="display:none;">
+                        <div class="no-data pc" id="No_data">
+                            <p>
+                                요청하신<br />
+                                <span>예약내역이</span> 없습니다.
+                            </p>
+                        </div>
+                        <div class="no-data mo" id="No_Mo_data">
+                            <p>요청하신 <span>예약내역이</span> 없습니다.</p>
+                        </div>
+                    </div>
+                    <div class="con_area reserve" id="search_position" style="padding-top: 30px; display:none;">
+                        <div class="estimate_con1">
+                            <div class="con_title">
+                                예약요청
+                            </div>
+                            <div id="CompareBkgNoData">
+                                <div class="no-data pc">
+                                    <img src="~/Images/no_data_estimate_pc.png" />
+                                    <p>
+                                        요청하신<br />
+                                        <span>예약내역이</span> 없습니다.
+                                    </p>
+                                </div>
+                                <div class="no-data mo">
+                                    <img src="~/Images/no_data_mo.png" />
+                                    <p>요청하신 <span>예약내역이</span> 없습니다.</p>
+                                </div>
+                            </div>
+                            <div class="compare" onclick="fnMoveList('SearchList')" id="ReserveCompleted">
+                                <div class="compare_box reserve compelete on">
+                                    <div class="compare_list">
+                                        <div class="compare_img"><img src="~/Images/region_img1.png" /></div>
+                                        <div class="compare_contents">
+                                            <div class="compare_date">
+                                                2023.07.08-2023.07.09
+                                            </div>
+                                            <div class="compare_info">
+                                                <div class="compare_title">
+                                                    <span class="location_title">부산</span><span class="location_detail">시그니엘 부산(해운대구, 부산) | 5성급 | 호텔</span>
+                                                </div>
+                                                <div class="price">
+                                                    <span class="price_title">총 예상금액&nbsp;:</span><span class="orange">&nbsp;18,000,000</span><span class="won">원</span>
+                                                </div>
+                                                <div class="compare_detail">
+                                                    <span class="show_detail">예약상세보기</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="reserve_num">예약번호:000001</div>
+                                    </div>
+                                    <div class="request_option">
+                                        <div class="option_list">
+                                            <h4>요청옵션<span class="hide_option">접기</span></h4>
+                                            <div class="option_div">
+                                                <img src="~/Images/stay.png" /><span>숙박</span><span>옵션 : 1인실 : 5개 | 3인실 : 10개 | 5인실 : 5개</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/feed.png" /><span>식사</span><span>옵션 : 조식, 중식, 석식, 커피브레이크</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/camera.png" /><span>영상시스템</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/car.png" /><span>차량지원</span>
+                                            </div>
+                                            <div class="etc_option">
+                                                <p>
+                                                    세미나룸 : 세미나룸A | 세미나룸B<br />
+                                                    Remark : 인쇄물 요청
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="compare_box reserve cancle">
+                                    <div class="compare_list">
+                                        <div class="compare_img"><img src="~/Images/estimate_img1.png" /></div>
+                                        <div class="compare_contents">
+                                            <div class="compare_date">
+                                                2023.07.08-2023.07.09
+                                            </div>
+                                            <div class="compare_info">
+                                                <div class="compare_title">
+                                                    <span class="location_title">부산</span><span class="location_detail">파라다이스호텔(해운대구, 부산) | 5성급 | 호텔</span>
+                                                </div>
+                                                <div class="price">
+                                                    <span class="price_title">총 예상금액&nbsp;:</span><span class="orange">&nbsp;20,000,000</span><span class="won">원</span>
+                                                </div>
+                                                <div class="compare_detail">
+                                                    <span class="show_detail">예약상세보기</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="reserve_num">예약번호:000002</div>
+                                    </div>
+                                    <div class="request_option">
+                                        <div class="option_list">
+                                            <h4>요청옵션<span class="hide_option">접기</span></h4>
+                                            <div class="option_div">
+                                                <img src="~/Images/stay.png" /><span>숙박</span><span>옵션 : 1인실 : 5개 | 3인실 : 10개 | 5인실 : 5개</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/feed.png" /><span>식사</span><span>옵션 : 조식, 중식, 석식, 커피브레이크</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/camera.png" /><span>영상시스템</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/car.png" /><span>차량지원</span>
+                                            </div>
+                                            <div class="etc_option">
+                                                <p>
+                                                    세미나룸 : 세미나룸A | 세미나룸B<br />
+                                                    Remark : 인쇄물 요청
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="compare_box reserve final">
+                                    <div class="compare_list">
+                                        <div class="compare_img"><img src="~/Images/estimate_img2.png" /></div>
+                                        <div class="compare_contents">
+                                            <div class="compare_date">
+                                                2023.07.08-2023.07.09
+                                            </div>
+                                            <div class="compare_info">
+                                                <div class="compare_title">
+                                                    <span class="location_title">부산</span><span class="location_detail">켄싱턴호텔 설악(속초시, 강원) | 4성급 | 호텔</span>
+                                                </div>
+                                                <div class="price">
+                                                    <span class="price_title">총 예상금액&nbsp;:</span><span class="orange">&nbsp;22,000,000</span><span class="won">원</span>
+                                                </div>
+                                                <div class="compare_detail">
+                                                    <span class="show_detail">예약상세보기</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="reserve_num">예약번호:000003</div>
+                                    </div>
+                                    <div class="request_option">
+                                        <div class="option_list">
+                                            <h4>요청옵션<span class="hide_option">접기</span></h4>
+                                            <div class="option_div">
+                                                <img src="~/Images/stay.png" /><span>숙박</span><span>옵션 : 1인실 : 5개 | 3인실 : 10개 | 5인실 : 5개</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/feed.png" /><span>식사</span><span>옵션 : 조식, 중식, 석식, 커피브레이크</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/camera.png" /><span>영상시스템</span>
+                                            </div>
+                                            <div class="option_div">
+                                                <img src="~/Images/car.png" /><span>차량지원</span>
+                                            </div>
+                                            <div class="etc_option">
+                                                <p>
+                                                    세미나룸 : 세미나룸A | 세미나룸B<br />
+                                                    Remark : 인쇄물 요청
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estimate_con2">
+                            <div class="con_title">
+                                예약내역
+                            </div>
+                            @*<div id="CompareBkgNoData2">
+                                    <div class="no-data pc" >
+                                        <img src="~/Images/no_data_estimate_pc.png" />
+                                        <p>
+                                            요청하신<br />
+                                            <span>예약내역이</span> 없습니다.
+                                        </p>
+                                    </div>
+                                    <div class="no-data mo">
+                                        <img src="~/Images/no_data_mo.png" />
+                                        <p>요청하신 <span>예약내역이</span> 없습니다.</p>
+                                    </div>
+                                </div>*@
+                            <div class="confirm_box" id="reserveDetail" style="display:none">
+                                <div class="tab_area" id="SearchList">
+                                    <div class="r_tab on" id="reserve_detail">예약 상세</div>
+                                    <input type="hidden" name='bKg_no' />
+                                    <div class="r_tab" id="request_modify">수정 요청</div>
+                                    @*<input type="hidden" name='bKg_no' />*@
+                                    <div class="r_tab" id="inquriy">문의</div>
+                                    @*<input type="hidden" name='bKg_no' />*@
+                                </div>
+                                <div class="reserve_info estimate_detail on">
+                                    <div class="reserve_info_top">
+                                        <div class="detail_btn_area">
+                                            <button type="button" class="cancle_request" id="ReserveCancel">취소요청</button>
+                                            <input type='hidden' id='CancleBkg' value='' />
+                                            <input type='hidden' id='ItemDetail' value='' />
+                                            <a class="file_btn" id="ReserveDown"><img src="~/Images/download.png">예약확인서 다운로드</a>
+                                            <input type="hidden" id='File_Path' />
+                                            <input type="hidden" id='File_Nm' />
+                                            <button type="button" class="review_btn" id="review_btn">후기작성</button>
+                                        </div>
+                                    </div>
+                                    <div class="reserve_detail_box">
+                                        <div class="reserve_detail_cont">
+                                            <h4>예약 상세</h4>
+                                            <div class="reserve_detail_list" id="ConFirmDetail">
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/stay.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">숙박</span><span class="list_total_cost">18,000,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">1인실 : 5개</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">3인실 : 10개</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">5인실 : 5개</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/feed.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">식사</span><span class="list_total_cost">1,000,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">조식</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">중식</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">석식</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">커피브레이크</span><span class="info_cost">500,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/camera.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">영상시스템</span><span class="list_total_cost">2,000,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">빔 프로텍터</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">스크린</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">마이크</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">모니터</span><span class="info_cost">500,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/car.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">차량지원</span><span class="list_total_cost">500,000</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/seminar.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">세미나룸</span><span class="list_total_cost">12,200,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">세미나룸A</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">세미나룸B</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">세미나룸C</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="remark_title">Remark : 인쇄물 요청</span><span class="remark_cost">300,000</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="reserve_total">
+                                                <span class="reserve_total_cost_title">총 예상금액</span><span class="reserve_total_cost orange" id="TotExp">18,000,000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="announce_box">
+                                        <div class="announce_cont">
+                                            <div class="announce_txt">
+                                                이용안내
+                                                <button type="button" class="show_use_btn" id="show_use_btn"><img src="~/Images/show_detail.png" /></button>
+                                                <button type="button" class="hide_use_btn" id="hide_use_btn"><img src="~/Images/hide_detail.png" /></button>
+                                            </div>
+                                            <div class="announce_detail">
+                                                이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 이용안내 글 이용안내 글 이용안내 글 이용안내 글
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mileage_box">
+                                        <div class="mileage_cont">
+                                            <div class="mileage_txt">
+                                                마일리지 안내
+                                                <button type="button" class="show_mileage_btn" id="show_mileage_btn"><img src="~/Images/show_detail.png" /></button>
+                                                <button type="button" class="hide_mileage_btn" id="hide_mileage_btn"><img src="~/Images/hide_detail.png" /></button>
+                                            </div>
+                                            <div class="mileage_detail">
+                                                <div class="detail_cont">
+                                                    <div class="detail_title">마일리지 규정</div>
+                                                    <div class="detail_lists">
+                                                        <p>• 회원가입 후 본 사이트를 통해 계약하고 진행한 프로젝트 전체 행사비(부가세 제외)의 2%</p>
+                                                        <p>• 누적 마일리지는 50만포인트 이상부터 차기 행사 진행 시 차감해서 사용 가능합니다.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="detail_cont">
+                                                    <div class="detail_title">마일리지 적립 방법</div>
+                                                    <div class="detail_lists">
+                                                        <p>• 회원 로그인 후 계약하고 진행한 후 잔금 정산 시 자동적립됩니다.</p>
+                                                        <p>• 적립이 누락된 경우, 탑승일로부터 1년 이내 마일리지 적립을 신청할 수 있습니다.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="detail_cont">
+                                                    <div class="detail_title">마일리지 유효기간</div>
+                                                    <div class="detail_lists">
+                                                        <p>• 마일리지 적립일로부터 10년의 유효기간이 적용되어 사용할 수 있습니다.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="detail_cont">
+                                                    <div class="detail_title">마일리지가 적립되지 않는 경우</div>
+                                                    <div class="detail_lists">
+                                                        <p>• 마일리지 보너스 사용분</p>
+                                                        <p>• 마일리지 적립 불가 조건의 할인 프로모션 프로젝트 (30% 이상 할인 프로모션 적용시)</p>
+                                                        <p>• 프로젝트 진행 후 30일 이상 경과하여 회원 가입한 경우</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="regulation_box">
+                                        <div class="regulation_cont">
+                                            <div class="regulation_txt">
+                                                취소/환불 규정 안내
+                                                <button type="button" class="show_regulation_btn" id="show_regulation_btn"><img src="~/Images/show_detail.png" /></button>
+                                                <button type="button" class="hide_regulation_btn" id="hide_regulation_btn"><img src="~/Images/hide_detail.png" /></button>
+                                            </div>
+                                            <div class="regulation_detail">
+                                                <div class="detail_cont">
+                                                    <div class="detail_title">예약 취소 안내</div>
+                                                    <div class="detail_lists">
+                                                        <p>• 고객센터 운영시간 : 09:00~18:00  (공휴일 휴무)</p>
+                                                        <p>• 예약취소는 홈페이지 예약확인 및 취소에서 하시기 바랍니다.</p>
+                                                        <p>• 예약당일 포함하여 3일 이내 결제(무통장입금, 카드결제)하시지 않으면 예약이 자동취소됩니다.</p>
+                                                        <p>• 환불을 원하실 경우는, 반드시 예약취소를 해주세요.</p>
+                                                        <p>• 환불을 원하실 경우 환불기준에 따라 금액에 차이가 있으니 반드시 확인하시어 차질이 없으시길 바랍니다.</p>
+                                                        <p>• 예약취소시는 아래와 같은 취소/환불규정을 적용합니다.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="detail_cont">
+                                                    <div class="detail_title">취소 환불 규정</div>
+                                                    <div class="detail_lists">
+                                                        <p>• 판매처 업무시간외 취소 신청하는 경우, 다음 업무일 기준으로 취소규정 적용</p>
+                                                        <p>• 제휴점 및 예약조건에 따라 취소 환불 규정이 다를 수 있습니다.</p>
+                                                        <p>• 계약사항 내 숙박 및 대관 시설 취소시 아래와 같습니다.</p>
+                                                    </div>
+                                                    <div class="rule">
+                                                        <div class="rule_box">
+                                                            <div class="flex1">
+                                                                <div class="left_col">
+                                                                    <div class="left_col_title">구분</div>
+                                                                    <div class="left_col_con">
+                                                                        체크인 기준 31일 전까지 취소<br />
+                                                                        체크인 기준 30~14일 전 취소<br />
+                                                                        체크인 기준 13~7일 전 취소<br />
+                                                                        체크인 기준 6~3일 전 취소<br />
+                                                                        체크인 기준 2~1일 전 취소<br />
+                                                                        체크인 기준 당일 취소 또는 노쇼<br />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex2">
+                                                                <div class="right_col">
+                                                                    <div class="right_col_title">위약금기준</div>
+                                                                    <div class="right_col_con">
+                                                                        객실 금액의 10%<br />
+                                                                        객실 금액의 30%<br />
+                                                                        객실 금액의 50%<br />
+                                                                        객실 금액의 70%<br />
+                                                                        총 행사 금액의 70%<br />
+                                                                        총 행사 금액의 100%<br />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="reserve_info modify">
+                                    <div class="col2">
+                                        <div class="col_right">
+                                            <div class="schedule">
+                                                <div class="period">
+                                                    <h4>기간</h4>
+                                                    <div class="date_from_to">
+                                                        <div class="start_date cal_date no-past">
+                                                            <input type="text" id="Mod_From_Date" class="date" data-index="Regis1" placeholder="시작일" readonly>
+                                                            <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                                        </div>
+                                                        <span>~</span>
+                                                        <div class="end_date cal_date">
+                                                            <input type="text" id="Mod_To_Date" class="date" data-index="Regis2" readonly>
+                                                            <button type="button" class="btns icon calendar"><span class="blind">달력</span></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="budget">
+                                                    <h4>예산 범위</h4>
+                                                    <div class="budget_from_to">
+                                                        <div class="cal_budget int_box">
+                                                            <input type="text" class="cost" id="mod_min_prc" maxlength="12" disabled>
+                                                            <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                        </div>
+                                                        <span>~</span>
+                                                        <div class="cal_budget int_box">
+                                                            <input type="text" class="cost" id="mod_max_prc" maxlength="12" disabled>
+                                                            <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="people">
+                                                    <h4>예상인원</h4>
+                                                    <div class="people_input_simple">
+                                                        <input type="text" value="1" placeholder="인원" maxlength="4" id="HEAD_CNT"/>
+                                                    </div>
+                                                </div>
+                                                <div class="stay">
+                                                    <h4>숙박선택</h4><span id="room_select">[당일] 일정입니다. / []박 []일 입니다.</span>
+                                                    <div class="choice">
+                                                        <div class="choice_stay1" id="room_select_btn">
+                                                            <div class="room_head" style="display:none;">
+                                                                <div class="r_head" data-value="ROOM_NM"></div>
+                                                                <div class="r_head" data-value="BKG_SEQ"></div>
+                                                                <div class="r_head" data-value="ROOM_CNT"></div>
+                                                            </div>
+                                                            <button class="stay_btn"><img src="~/Images/circle.png" />숙박</button>
+                                                        </div>
+                                                        <div class="choice_stay2" id="room_date_select_btn">
+                                                            <button class="stay_btn"><img src="~/Images/x.png" />당일</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="seminar_area" style="display:none;">
+                                                    <h4>세미나룸</h4>
+                                                    <div class="seminar_head" style="display:none;">
+                                                        <div class="s_head" data-value="CONF_TYPE"></div>
+                                                        <div class="s_head" data-value="BKG_SEQ"></div>
+                                                    </div>
+                                                    <div class="seminar_box rev_seminar_box">
+                                                        @*<div class="seminar on">
+                                                                <button class="seminar_btn">세미나룸 A</button>
+                                                                <p class="room_info">최대 10명수용</p>
+                                                            </div>
+                                                            <div class="seminar">
+                                                                <button class="seminar_btn">세미나룸 B</button>
+                                                                <p class="room_info">최대 20명수용</p>
+                                                            </div>
+                                                            <div class="seminar">
+                                                                <button class="seminar_btn">세미나룸 C</button>
+                                                                <p class="room_info">최대 50명수용</p>
+                                                            </div>
+                                                            <div class="seminar">
+                                                                <button class="seminar_btn">세미나룸 D</button>
+                                                                <p class="room_info">최대 10명수용</p>
+                                                            </div>
+                                                            <div class="seminar">
+                                                                <button class="seminar_btn">세미나룸 E</button>
+                                                                <p class="room_info">최대 50명수용</p>
+                                                            </div>
+                                                            <div class="seminar">
+                                                                <button class="seminar_btn">세미나룸 F</button>
+                                                                <p class="room_info">최대 100명수용</p>
+                                                            </div>*@
+                                                    </div>
+                                                </div>
+                                                <div class="add_option">
+                                                    <h4>추가옵션(요청사항을 모두 선택해주세요)</h4>
+                                                    <div class="option_box">
+                                                        <div class="option" id="feed">
+                                                            <button class="option_btn"><img src="~/Images/feed.png" />식사</button>
+                                                        </div>
+                                                        <div class="option_head" style="display:none;">
+                                                            <div class="o_head" data-value="SVC_NM"></div>
+                                                            <div class="o_head" data-value="BKG_SEQ"></div>
+                                                        </div>
+                                                        @*<div class="option on" id="video">
+                                                                <button class="option_btn"><img src="~/Images/camera.png" />영상시스템</button>
+                                                            </div>
+                                                            <div class="option on">
+                                                                <button class="option_btn"><img src="~/Images/car.png" />차량지원</button>
+                                                            </div>*@
+                                                    </div>
+                                                </div>
+                                                <div class="remark">
+                                                    <h4>Remark</h4>
+                                                    <div class="remark_box">
+                                                        <textarea placeholder="옵션에 대한 디테일한 정보입력&#13;&#10;(행사여부, 지역관람, 인쇄 및 출력물)" id="RMK" maxlength="200"></textarea>
+                                                    </div>
+                                                </div>
+                                                <p class="warn">※ 상황에 따라 요청하신 견적이 적용되지 않을 수 있습니다.</p>
+                                            </div>
+                                        </div>
+                                        <div class="stay_form_area">
+                                            <h4>숙박형태</h4>
+                                            <div class="stay_form_con">
+                                                <div class="stay_form_box rev_form_box">
+                                                    @*<div class="stay_form">
+                                                            <p>1인실</p>
+                                                            <div class="count_btn">
+                                                                <button class="minus" id="minus"></button>
+                                                                <input type="text" id="count" value="10" onlynumber="">
+                                                                <button class="plus" id="plus"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stay_form">
+                                                            <p>2인실</p>
+                                                            <div class="count_btn">
+                                                                <button class="minus" id="minus"></button>
+                                                                <input type="text" id="count" value="10" onlynumber="">
+                                                                <button class="plus" id="plus"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stay_form">
+                                                            <p>3인실</p>
+                                                            <div class="count_btn">
+                                                                <button class="minus" id="minus"></button>
+                                                                <input type="text" id="count" value="10" onlynumber="">
+                                                                <button class="plus" id="plus"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stay_form">
+                                                            <p>4인실</p>
+                                                            <div class="count_btn">
+                                                                <button class="minus" id="minus"></button>
+                                                                <input type="text" id="count" value="10" onlynumber="">
+                                                                <button class="plus" id="plus"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stay_form">
+                                                            <p>5인실</p>
+                                                            <div class="count_btn">
+                                                                <button class="minus" id="minus"></button>
+                                                                <input type="text" id="count" value="10" onlynumber="">
+                                                                <button class="plus" id="plus"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stay_form">
+                                                            <p>6인실</p>
+                                                            <div class="count_btn">
+                                                                <button class="minus" id="minus"></button>
+                                                                <input type="text" id="count" value="10" onlynumber="">
+                                                                <button class="plus" id="plus"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stay_form">
+                                                            <p>7인실</p>
+                                                            <div class="count_btn">
+                                                                <button class="minus" id="minus"></button>
+                                                                <input type="text" id="count" value="10" onlynumber="">
+                                                                <button class="plus" id="plus"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stay_form">
+                                                            <p>8인실</p>
+                                                            <div class="count_btn">
+                                                                <button class="minus" id="minus"></button>
+                                                                <input type="text" id="count" value="10" onlynumber="">
+                                                                <button class="plus" id="plus"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="stay_form">
+                                                            <p>9인실</p>
+                                                            <div class="count_btn">
+                                                                <button class="minus" id="minus"></button>
+                                                                <input type="text" id="count" value="10" onlynumber="">
+                                                                <button class="plus" id="plus"></button>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <button class="close_stay" id="close_stay"><img src="/Images/close.png"></button>
+                                        </div>
+                                        <div class="feed_area">
+                                            <h4>식사</h4>
+                                            <div class="feed_choice">
+                                                <div class="food_head" style="display:none;">
+                                                    <div class="f_head" data-value="MEAL_NM"></div>
+                                                    <div class="f_head" data-value="BKG_SEQ"></div>
+                                                </div>
+                                                <div class="feed_box rev_feed_box">
+                                                    @*<div class="feed">
+                                                            <p>조식</p>
+                                                        </div>
+                                                        <div class="feed">
+                                                            <p>중식</p>
+                                                        </div>
+                                                        <div class="feed">
+                                                            <p>석식</p>
+                                                        </div>
+                                                        <div class="feed">
+                                                            <p>커피브레이크</p>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <button class="close_feed" id="close_feed"><img src="/Images/close.png"></button>
+                                        </div>
+                                        @*<div class="video_area" style="display:none;">
+                                                <h4>영상시스템</h4>
+                                                <div class="video_choice">
+                                                    <div class="video_box">
+                                                        <div class="video">
+                                                            <p>미디어월</p>
+                                                        </div>
+                                                        <div class="video">
+                                                            <p>빔 프로젝터</p>
+                                                        </div>
+                                                        <div class="video">
+                                                            <p>스크린</p>
+                                                        </div>
+                                                        <div class="video">
+                                                            <p>노래방</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="close_video" id="close_video"><img src="/Images/close.png"></button>
+                                            </div>*@
+                                    </div>
+                                    <div class="reserve_modify">
+                                        <button type="button" class="modify_btn" id="ModReserve">예약수정</button>
+                                    </div>
+                                </div>
+                                <div class="reserve_info _inquiry" style="display:none;">
+                                    <div class="col2">
+                                        <div class="col_right1">
+                                            <h4>문의</h4>
+                                            <div class="talk_box" id="talkBox_Reserve">
+                                                <div class="chat ch1">
+                                                    <div class="icon"><i class="fa-solid fa-user"></i></div>
+                                                    <div class="talk_area">
+                                                        <div class="textbox">문의사항 남겨주세요.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col_right2">
+                                            <div style="display:flex; align-items:center;">
+                                                <h4 id="Inq_Cnt_Reserve">문의횟수 : 0회</h4>
+                                                <img id="Refresh" src="~/Images/refresh.png" />
+                                            </div>
+                                            <div class="inquiry">
+                                                <textarea placeholder="문의내용" id="InquiryText_Reserve" maxlength="100"></textarea>
+                                                <button type="button" class="input_inquiry_btn" id="btn_talk_Reserve">입력</button>
+                                            </div>
+                                            <p class="warn">※ 담당자 확인 후 답변드리겠습니다.(운영시간:09:00 ~ 18:00)</p>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="confirm_box confirm">
+                                <div class="reserve_info">
+                                    <div class="reserve_detail_box">
+                                        <div class="reserve_detail_cont">
+                                            <h4>예약 상세</h4>
+                                            <div class="reserve_detail_list">
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/stay.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">숙박</span><span class="list_total_cost">18,000,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">1인실 : 5개</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">3인실 : 10개</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">5인실 : 5개</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/feed.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">식사</span><span class="list_total_cost">1,000,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">조식</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">중식</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">석식</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">커피브레이크</span><span class="info_cost">500,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/camera.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">영상시스템</span><span class="list_total_cost">2,000,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">빔 프로텍터</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">스크린</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">마이크</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">모니터</span><span class="info_cost">500,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/car.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">차량지원</span><span class="list_total_cost">500,000</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/seminar.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">세미나룸</span><span class="list_total_cost">12,200,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">세미나룸A</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">세미나룸B</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">세미나룸C</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="remark_title">Remark : 인쇄물 요청</span><span class="remark_cost">300,000</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="reserve_total">
+                                                <span class="reserve_total_cost_title">총 예상금액</span><span class="reserve_total_cost orange">18,000,000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="announce_box">
+                                        <div class="announce_cont">
+                                            <div class="announce_txt">
+                                                이용안내
+                                                <button type="button" class="show_use_btn" id="show_use_btn"><img src="~/Images/show_detail.png" /></button>
+                                                <button type="button" class="hide_use_btn" id="hide_use_btn"><img src="~/Images/hide_detail.png" /></button>
+                                            </div>
+                                            <div class="announce_detail">
+                                                이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글ㄴㅇㄹ
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="regulation_box">
+                                        <div class="regulation_cont">
+                                            <div class="regulation_txt">
+                                                취소/환불 규정 안내
+                                                <button type="button" class="show_regulation_btn" id="show_regulation_btn"><img src="~/Images/show_detail.png" /></button>
+                                                <button type="button" class="hide_regulation_btn" id="hide_regulation_btn"><img src="~/Images/hide_detail.png" /></button>
+                                            </div>
+                                            <div class="regulation_detail">
+                                                취소/환불 규정 안내 취소/환불 규정 안내취소/환불 규정 안내취소/환불 규정 안내취소/환불 규정 안내취소/환불 규정 안내취소/환불 규정 안내
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="file_down">
+                                        <a href="~/Files/sample.xlsx" download><img src="~/Images/download.png">예약확인서 다운로드</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="confirm_box cancle" id="status3">
+                                <div class="reserve_info">
+                                    <div class="reserve_detail_box">
+                                        <div class="reserve_detail_cont">
+                                            <h4>예약 상세</h4>
+                                            <div class="reserve_detail_list">
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/stay.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">숙박</span><span class="list_total_cost">18,000,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">1인실 : 5개</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">3인실 : 10개</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">5인실 : 5개</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/feed.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">식사</span><span class="list_total_cost">1,000,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">조식</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">중식</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">석식</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">커피브레이크</span><span class="info_cost">500,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/camera.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">영상시스템</span><span class="list_total_cost">2,000,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">빔 프로텍터</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">스크린</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">마이크</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">모니터</span><span class="info_cost">500,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/car.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">차량지원</span><span class="list_total_cost">500,000</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_img">
+                                                                <img src="~/Images/seminar.png" />
+                                                            </div>
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="list_title">세미나룸</span><span class="list_total_cost">12,200,000</span>
+                                                                </div>
+                                                                <div class="reserve_detail_show">
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">세미나룸A</span><span class="info_cost">5,200,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">세미나룸B</span><span class="info_cost">1,800,000</span>
+                                                                    </div>
+                                                                    <div class="list_info">
+                                                                        <span class="info_title">세미나룸C</span><span class="info_cost">2,300,000</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="hide_reserve_btn" id="hide_reserve_btn"><img src="~/Images/hide_detail.png" /></button>
+                                                        <button type="button" class="show_reserve_btn" id="show_reserve_btn"><img src="~/Images/show_detail.png" /></button>
+                                                    </div>
+                                                </div>
+                                                <div class="reserve_detail_area">
+                                                    <div class="detail_list">
+                                                        <div class="detail_area">
+                                                            <div class="list_cont">
+                                                                <div class="list_top">
+                                                                    <span class="remark_title">Remark : 인쇄물 요청</span><span class="remark_cost">300,000</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="reserve_total">
+                                                <span class="reserve_total_cost_title">총 예상금액</span><span class="reserve_total_cost orange">18,000,000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="announce_box">
+                                        <div class="announce_cont">
+                                            <div class="announce_txt">
+                                                이용안내
+                                                <button type="button" class="show_use_btn" id="show_use_btn"><img src="~/Images/show_detail.png" /></button>
+                                                <button type="button" class="hide_use_btn" id="hide_use_btn"><img src="~/Images/hide_detail.png" /></button>
+                                            </div>
+                                            <div class="announce_detail">
+                                                이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글 이용안내 글
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="regulation_box">
+                                        <div class="regulation_cont">
+                                            <div class="regulation_txt">
+                                                취소/환불 규정 안내
+                                                <button type="button" class="show_regulation_btn" id="show_regulation_btn"><img src="~/Images/show_detail.png" /></button>
+                                                <button type="button" class="hide_regulation_btn" id="hide_regulation_btn"><img src="~/Images/hide_detail.png" /></button>
+                                            </div>
+                                            <div class="regulation_detail">
+                                                취소/환불 규정 안내 취소/환불 규정 안내취소/환불 규정 안내취소/환불 규정 안내취소/환불 규정 안내취소/환불 규정 안내취소/환불 규정 안내
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layer_zone alert_type" id="ReserveCancle" style="z-index:10001;">
+            <div class="layer_wrap">
+                <div class="layer_inwrap">
+                    <article class="layer_cont">
+                        <!-- alert_cont -->
+                        <img src="~/Images/icn_alert.png" />
+                        <div class="alert_cont">
+                            <div class="inner">
+                                취소하시겠습니까?
+                            </div>
+                        </div>
+                        <!-- //alert_cont -->
+                        <!-- btn_w -->
+                        <div class="btn_w">
+                            <button type="button" class="btns radius cr1 ok_btn" id="ReservCancelAlert">확인</button>
+                            <button type="button" class="btns radius cr1 cancle_btn" id="ReservCancel" onclick="layerClose('#ReserveCancle');">취소</button>
+                        </div>
+                        <!-- //btn_w -->
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/js/Reservation/Index.js"></script>
+}

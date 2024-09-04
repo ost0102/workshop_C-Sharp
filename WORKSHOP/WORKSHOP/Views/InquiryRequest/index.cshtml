@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Container {
+    <div class="content">
+        <div class="main_visual">
+            <img src="~/Images/estimate_visual.png" class="pc" />
+            <img src="/Images/main_visual_m.png" class="mo">
+
+        </div>
+        <div class="main_title" style="font-size: 60px; font-weight:600; color: #fff; text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);">
+            견적문의
+        </div>
+    </div>
+    <div class="container" style="padding-top:50px;">
+        <div class="common_width view_padding inquiry_width">
+            <div class="inquiry-box">
+                <div class="inquiry-box-info">
+                    <div class="inquiry-box__info">
+                        <h6>제목<span class="warn">*</span></h6>
+                        <div class="int_box">
+                            <input type="text" placeholder="제목을 입력해주세요">
+                            <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                        </div>
+                    </div>
+                    <div class="inquiry-box__info">
+                        <h6>Remark</h6>
+                        <textarea id="Rmk_4" placeholder="옵션에 대한 디테일한 정보입력(행사여부, 지역관람, 인쇄 및 출력물)" maxlength="200" autocomplete="off" data-value="value4" data-listener-added_53dc80ec="true"></textarea>
+                    </div>
+                    <div class="inquiry-box__flex">
+                        <div class="inquiry-box__info">
+                            <h6>지역<span class="warn">*</span></h6>
+                            <div class="int_box">
+                                <input type="text" placeholder="지역" class="select_region" id="Region_4" readonly="" data-index="Layer_Esti10" data-value="value0" data-listener-added_53dc80ec="true">
+                                <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                            </div>
+                            <div class="popup pop-sch" style="display: none;">
+                                <h2 class="common-text--18 pb-2 border-bottom border-gray-6 city-text-dpt">지역 선택</h2>
+                                <button class="close_region" id="close_region"><img src="/Images/close.png"></button>
+                                <div class="dpt_wrap">
+                                    <div class="dpt_city">
+                                        <ul class="d-flex flex-wrap justify-content-start" id="Region_Detail_4">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inquiry-box__info">
+                            <h6>예산 범위<span class="warn">*</span></h6>
+                            <div class="budget_from_to">
+                                <div class="cal_budget int_box">
+                                    <input type="text" class="cost" id="From_cost4" maxlength="12" autocomplete="off" data-index="Layer_Esti1" data-value="value1">
+                                    <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                </div>
+                                <span>~</span>
+                                <div class="cal_budget int_box">
+                                    <input type="text" class="cost" id="To_cost4" maxlength="12" autocomplete="off" data-index="Layer_Esti2" data-value="value2">
+                                    <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inquiry-box__info">
+                            <h6>인원<span class="warn">*</span></h6>
+                            <div class="people_input_NoLogin">
+                                <input type="text" value="1" id="input_people_NoLogin" placeholder="인원" maxlength="4" autocomplete="off" data-index="Layer_Esti3" data-value="value3" data-listener-added_53dc80ec="true">
+                                <div class="count_btn_NoLogin">
+                                    <button class="minus" id="minus"></button>
+                                    <input type="text" id="quotCount" value="1" maxlength="4">
+                                    <button class="plus" id="plus"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inquiry-box__info">
+                        <h6>추가 옵션(요청사항을 모두 선택해주세요)</h6>
+                        <div class="add_option" id="add_opt_4">
+                            <div class="option_el">
+                                <div class="option" name="addopt_4" id="1;숙박">
+                                    <button type="button" id="opt_4"><img src="/Files/Admin/20230811/20230811103854777/stay.png">숙박</button>
+                                    <input type="hidden" id="Com_Cd_4" value="1">
+                                    <input type="hidden" id="Com_Nm_4" value="숙박">
+                                </div>
+                            </div>
+                            <div class="option_el">
+                                <div class="option" name="addopt_4" id="2;세미나실">
+                                    <button type="button" id="opt_4"><img src="/Files/Admin/20230811/20230811142750044/seminar.png">세미나실</button>
+                                    <input type="hidden" id="Com_Cd_4" value="2">
+                                    <input type="hidden" id="Com_Nm_4" value="세미나실">
+                                </div>
+                            </div>
+                            <div class="option_el">
+                                <div class="option" name="addopt_4" id="1;숙박">
+                                    <button type="button" id="opt_4"><img src="/Files/Admin/20230811/20230811103854777/stay.png">숙박</button>
+                                    <input type="hidden" id="Com_Cd_4" value="1">
+                                    <input type="hidden" id="Com_Nm_4" value="숙박">
+                                </div>
+                            </div>
+                            <div class="option_el">
+                                <div class="option" name="addopt_4" id="1;숙박">
+                                    <button type="button" id="opt_4"><img src="/Files/Admin/20230811/20230811103854777/stay.png">숙박</button>
+                                    <input type="hidden" id="Com_Cd_4" value="1">
+                                    <input type="hidden" id="Com_Nm_4" value="숙박">
+                                </div>
+                            </div>
+                            <div class="option_el">
+                                <div class="option" name="addopt_4" id="6;이동식 무대">
+                                    <button type="button" id="opt_4"><img src="/Images/etc.png">이동식 무대</button>
+                                    <input type="hidden" id="Com_Cd_4" value="6">
+                                    <input type="hidden" id="Com_Nm_4" value="이동식 무대">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inquiry-box__info">
+                        <h6>이메일<span class="warn">*</span></h6>
+                        <div class="int_box">
+                            <input type="text" placeholder="이메일을 입력해주세요">
+                            <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                        </div>
+                    </div>
+                    <div class="policy">
+                        <div class="chk_box">
+                            <span class="check type1">
+                                <input type="checkbox" id="login_keep_pc" name="login_keep" class="chk">
+                                <label for="login_keep_pc">개인정보 처리방침 동의(필수)</label>
+                            </span>
+                        </div>
+                        <div class="policy_text">
+                            <p class="policy_text_area">
+                                '메타케이아이티'이하 '메타케이아이티 홈페이지')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
+                                '메타케이아이티' 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.
+                                <br>
+                                <br>
+                                ○ 본 방침은부터 2020년 1월 1일부터 시행됩니다.
+                            </p>
+                        </div>
+                    </div>
+                    <p class="warn">※ 견적정보를 메일로 전달드립니다.</p>
+                    <div class="estimate">
+                        <button type="button" id="Req_submit" class="estimate_btn">간편견적문의</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/js/InquiryRequest/InquiryRequest.js"></script>
+}

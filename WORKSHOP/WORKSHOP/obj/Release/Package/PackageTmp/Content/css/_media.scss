@@ -1,0 +1,10 @@
+@import "_mixin.scss";
+
+@include mobile{
+    .mo{display:block;}
+    .pc{display:none;}
+}
+@include desktop{
+    .mo{display:none;}
+    .pc{display:block;}
+}

@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section Container {
+    <div class="content">
+        <div class="main_visual">
+            <img src="~/Images/estimate_visual.png" class="pc" />
+            <img src="/Images/main_visual_m.png" class="mo">
+
+        </div>
+        <div class="main_title" style="font-size: 60px; font-weight:600; color: #fff; text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);">
+            견적문의
+        </div>
+    </div>
+    <div class="container" style="padding-top:50px;">
+        <div class="common_width view_padding">
+            <div class="community">
+                <div class="commu_box">
+                    <div class="commu_area">
+                        <div class="commu_header">
+                            <div class="commu_header_area">
+                                <div class="commu_tit" id="Comm_title">@*<img src="~/Images/icn_lock.png" />*@</div>
+                                <div class="commu_tit_etc">
+                                    <span class="etc_tit" id="Comm_ID"></span>
+                                    <span class="etc_date" id="Comm_DT"></span>
+                                    <span class="etc_show" id="Comm_CNT"><img src="/Images/icn_view.png" /></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="commu_con">
+                            <div>
+                                <div class="inquiry-box">
+                                    <div class="inquiry-box-info">
+                                        <div class="inquiry-box__info">
+                                            <h6>제목<span class="warn">*</span></h6>
+                                            <div class="int_box">
+                                                <input type="text" placeholder="제목을 입력해주세요">
+                                                <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                            </div>
+                                        </div>
+                                        <div class="inquiry-box__info">
+                                            <h6>Remark</h6>
+                                            <textarea id="Rmk_4" placeholder="옵션에 대한 디테일한 정보입력(행사여부, 지역관람, 인쇄 및 출력물)" maxlength="200" autocomplete="off" data-value="value4" data-listener-added_53dc80ec="true"></textarea>
+                                        </div>
+                                        <div class="inquiry-box__flex">
+                                            <div class="inquiry-box__info">
+                                                <h6>지역<span class="warn">*</span></h6>
+                                                <div class="int_box">
+                                                    <input type="text" placeholder="지역" class="select_region" id="Region_4" readonly="" data-index="Layer_Esti10" data-value="value0" data-listener-added_53dc80ec="true">
+                                                    <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                </div>
+                                                <div class="popup pop-sch" style="display: none;">
+                                                    <h2 class="common-text--18 pb-2 border-bottom border-gray-6 city-text-dpt">지역 선택</h2>
+                                                    <button class="close_region" id="close_region"><img src="/Images/close.png"></button>
+                                                    <div class="dpt_wrap">
+                                                        <div class="dpt_city">
+                                                            <ul class="d-flex flex-wrap justify-content-start" id="Region_Detail_4">
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="inquiry-box__info">
+                                                <h6>예산 범위<span class="warn">*</span></h6>
+                                                <div class="budget_from_to">
+                                                    <div class="cal_budget int_box">
+                                                        <input type="text" class="cost" id="From_cost4" maxlength="12" autocomplete="off" data-index="Layer_Esti1" data-value="value1">
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                    <span>~</span>
+                                                    <div class="cal_budget int_box">
+                                                        <input type="text" class="cost" id="To_cost4" maxlength="12" autocomplete="off" data-index="Layer_Esti2" data-value="value2">
+                                                        <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="inquiry-box__info">
+                                                <h6>인원<span class="warn">*</span></h6>
+                                                <div class="people_input_NoLogin">
+                                                    <input type="text" value="1" id="input_people_NoLogin" placeholder="인원" maxlength="4" autocomplete="off" data-index="Layer_Esti3" data-value="value3" data-listener-added_53dc80ec="true">
+                                                    <div class="count_btn_NoLogin">
+                                                        <button class="minus" id="minus"></button>
+                                                        <input type="text" id="quotCount" value="1" maxlength="4">
+                                                        <button class="plus" id="plus"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inquiry-box__info">
+                                            <h6>추가 옵션(요청사항을 모두 선택해주세요)</h6>
+                                            <div class="add_option" id="add_opt_4">
+                                                <div class="option_el">
+                                                    <div class="option" name="addopt_4" id="1;숙박">
+                                                        <button type="button" id="opt_4"><img src="/Files/Admin/20230811/20230811103854777/stay.png">숙박</button>
+                                                        <input type="hidden" id="Com_Cd_4" value="1">
+                                                        <input type="hidden" id="Com_Nm_4" value="숙박">
+                                                    </div>
+                                                </div>
+                                                <div class="option_el">
+                                                    <div class="option" name="addopt_4" id="2;세미나실">
+                                                        <button type="button" id="opt_4"><img src="/Files/Admin/20230811/20230811142750044/seminar.png">세미나실</button>
+                                                        <input type="hidden" id="Com_Cd_4" value="2">
+                                                        <input type="hidden" id="Com_Nm_4" value="세미나실">
+                                                    </div>
+                                                </div>
+                                                <div class="option_el">
+                                                    <div class="option" name="addopt_4" id="1;숙박">
+                                                        <button type="button" id="opt_4"><img src="/Files/Admin/20230811/20230811103854777/stay.png">숙박</button>
+                                                        <input type="hidden" id="Com_Cd_4" value="1">
+                                                        <input type="hidden" id="Com_Nm_4" value="숙박">
+                                                    </div>
+                                                </div>
+                                                <div class="option_el">
+                                                    <div class="option" name="addopt_4" id="1;숙박">
+                                                        <button type="button" id="opt_4"><img src="/Files/Admin/20230811/20230811103854777/stay.png">숙박</button>
+                                                        <input type="hidden" id="Com_Cd_4" value="1">
+                                                        <input type="hidden" id="Com_Nm_4" value="숙박">
+                                                    </div>
+                                                </div>
+                                                <div class="option_el">
+                                                    <div class="option" name="addopt_4" id="6;이동식 무대">
+                                                        <button type="button" id="opt_4"><img src="/Images/etc.png">이동식 무대</button>
+                                                        <input type="hidden" id="Com_Cd_4" value="6">
+                                                        <input type="hidden" id="Com_Nm_4" value="이동식 무대">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inquiry-box__info">
+                                            <h6>이메일<span class="warn">*</span></h6>
+                                            <div class="int_box">
+                                                <input type="text" placeholder="이메일을 입력해주세요">
+                                                <button type="button" class="btns icon delete"><span class="blind">삭제</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment_btn_box">
+                    <div class="comment_btn_area">
+                        <div class="comment_modify">
+                            <button type="button" id="Comm_Modify">수정</button>
+                        </div>
+                        <div class="comment_del">
+                            <button type="button" id="Comm_Del">삭제</button>
+                        </div>
+                        <div class="comment_list">
+                            <button type="button">목록</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="commu_comments_list_box">
+                    <div class="move_commu_list" id="Notice_Prev_Next">
+                        <div class="commu_list">
+                            <div class="move_list up">
+                                <img src="~/Images/move_top_list.png" />
+                                <span>이전</span>
+                                <span>커뮤니티 게시판 이전</span>
+                            </div>
+                            <div class="move_list down">
+                                <img src="~/Images/move_bottom_list.png" />
+                                <span>다음</span>
+                                <span>커뮤니티 게시판 다음</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/js/InquiryDetail/InquiryDetail.js"></script>
+}

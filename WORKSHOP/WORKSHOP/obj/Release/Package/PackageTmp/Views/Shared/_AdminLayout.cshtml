@@ -1,0 +1,531 @@
+﻿@{
+
+    if (Session["AD_EMAIL"] == null)
+    {
+        Response.Redirect("/Admin/Login");
+    }
+    else
+    {
+        ViewBag.Title = "_AdminLayout.cshtml";
+    }
+
+}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>ADMIN</title>
+    @Styles.Render("~/Content/fonts.css")
+    @Styles.Render("~/Content/admin.css")
+    @Styles.Render("~/Content/API/font-awesome/css/font-awesome.min.css")
+    @Styles.Render("~/Content/API/bootstrap/css/bootstrap.min.css")
+    @Styles.Render("~/Content/API/libs.common.min.css")
+    @Styles.Render("~/Content/API/just.css")
+
+    @Scripts.Render("~/Scripts/API/jquery-2.2.3.min.js")
+    @*@Scripts.Render("~/Scripts/Pub/jquery.autocomplete.js")*@
+    @*@Scripts.Render("~/Scripts/js/Main/Main.js")*@
+    @Scripts.Render("~/Scripts/API/jquery.AutoComplete.js")
+    @Scripts.Render("~/Scripts/API/scrolloverflow.js")
+    @Scripts.Render("~/Scripts/API/bluebird.min.js")
+    @Scripts.Render("~/Scripts/API/smtp.js")
+    <script src="https://unpkg.com/devextreme-quill@1.6.2/dist/dx-quill.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/API/dx.web.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.0.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.1.4/css/dx.light.css">
+    @Scripts.Render("~/Scripts/js/Admin/admin.js")
+    @Scripts.Render("~/Scripts/js/Common/Comm.js")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <style>
+
+        .dx-datagrid-revert-tooltip {
+            display: none;
+        }
+    </style>
+    @*<script type="text/javascript">
+            var _HomeUrl = window.location.origin;
+            var _UserID = '@Session["admin_idx"]'; //로그인 아이디
+            var _Domain = ''; //Domain
+        </script>*@
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
+
+</head>
+
+<body class="sidebar-collapsible  sidebar-open" data-spy="scroll" data-target="#myScrollspy">
+    <!-- <body class="sidebar-offcanvas" data-spy="scroll" data-target="#myScrollspy"> -->
+    <!-- 세션 값 저장 -->
+
+
+    <div class="st-wrapper">
+        <!-- SIDE BAR -->
+        <div class="st-sidebar" id="admin_slide">
+            <div class="st-sidebar__header">
+                <a class="st-sidebar__logo" href="/">
+                    <img src="~/Images/admin_logo.png" id="admin_logo"/>
+                </a>
+                @*<button type="button" id="test">알림창</button>*@
+                @*<div class="st-sidebar__mico st-sidebar__toggle"><i class="fa fa-bars"></i></div>*@
+
+                @{
+                    if (Session["AD_EMAIL"] == null)
+                    {
+                        <input type="hidden" id="Session_AD_EMAIL" value="" />
+                        <input type="hidden" id="Session_AD_GRP_CD" value="" />
+                        <input type="hidden" id="Session_AD_CUST_NAME" value="" />
+                        <input type="hidden" id="Session_AD_TELNO" value="" />
+                        <input type="hidden" id="Session_AD_COMPANY" value="" />
+                        <input type="hidden" id="Session_AD_DEPARTURE" value="" />
+                        <input type="hidden" id="Session_AD_USER_TYPE" value="" />
+                    }
+                    else
+                    {
+                        <input type="hidden" id="Session_AD_EMAIL" value="@Session["AD_EMAIL"]" />
+                        <input type="hidden" id="Session_AD_GRP_CD" value="@Session["AD_GRP_CD"]" />
+                        <input type="hidden" id="Session_AD_CUST_NAME" value="@Session["AD_CUST_NAME"]" />
+                        <input type="hidden" id="Session_AD_TELNO" value="@Session["AD_TELNO"]" />
+                        <input type="hidden" id="Session_AD_COMPANY" value="@Session["AD_COMPANY"]" />
+                        <input type="hidden" id="Session_AD_DEPARTURE" value="@Session["AD_DEPARTURE"]" />
+                        <input type="hidden" id="Session_AD_USER_TYPE" value="@Session["AD_USER_TYPE"]" />
+                    }
+                }
+                <script>
+                    //$(document).on('click', '.info_alert_cont', function (e) {
+                    //    var linkId = $(this).attr('id');
+                    //    if (linkId == "QUOT") {
+                    //        window.location = "/Quotation/quotList";
+                    //        sessionStorage.setItem("quotAlert", "Y");
+                    //    }
+
+                    //    if (linkId == "BKG") {
+                    //        window.location = "/Admin/bkgList";
+                    //        sessionStorage.setItem("bkgAlert", "Y");
+                    //    }
+
+                    //    if (linkId == "QNA") {
+                    //        window.location = "/AdFAQ/";
+                    //        sessionStorage.setItem("qnaAlert", "Y");
+                    //    }
+
+                    //    if (linkId == "MODIFY") {
+                    //        window.location = "/Admin/bkgModList";
+                    //        sessionStorage.setItem("modifyAlert", "Y");
+                    //    }
+                    //});
+
+            var alert_index = 0;
+            // 토스트 메시지를 표시하는 함수
+            //function showToast(message , type) {
+            //    var vHtml = "";
+            //    alert_index += 1;
+            //    vHtml += "<div class='info_alert index" + alert_index + "'>";
+            //    vHtml += "  <div class='info_alert_box'>";
+            //    vHtml += "    <div class='alert_img'>";
+            //    vHtml += "        <img src='/Images/admin_alert.png' />";
+            //    vHtml += "    </div >";
+            //    if (type == "QUOT") {
+            //        vHtml += "    <a class='info_alert_cont' id='QUOT'>";
+            //    } else if (type == "BKG") {
+            //        vHtml += "    <a class='info_alert_cont' id='BKG'>";
+            //    } else if (type == "QNA") {
+            //        vHtml += "    <a class='info_alert_cont' id='QNA'>";
+            //    } else if (type == "MODIFY") {
+            //        vHtml += "    <a class='info_alert_cont' id='MODIFY'>";
+            //    }
+            //    vHtml += "        <p class='info_alert_tit'>INFO</p>";
+            //    vHtml += "        <p class='info_alert_sub'>" + message + "</p>";
+            //    vHtml += "    </a>";
+            //    vHtml += "    <img src='/Images/admin_close.png' id='admin_close" + alert_index + "'/>";
+            //    vHtml += "  </div >";
+            //    vHtml += "</div >";
+
+            //    $('.alert_box').append(vHtml);
+            //    var class_nm = ".index" + alert_index;
+            //    $(class_nm).addClass('on');
+
+
+            //    if (alert_index != 1) { // 이후 알람
+
+            //        for (var i = 0; i < alert_index; i++) {
+            //            var past_class = ".index" + (alert_index - i); // 이전 인덱스(for문을 돌면서 past_class에 index1, index2, index3...클래스가 담김)
+            //            var t = $(past_class).css('top'); // 이전 인덱스 높이(index1, index2, index3....의 높이)
+            //            var next_top = parseInt(t.replace("px", "")) + 100; // 이전 인덱스 높이 추가(index1, index2, index3...클래스마다 top +100px씩, 최초 높이가 50px이라면 2,3... 100px, 150px)
+            //            $(past_class).css('top', next_top + "px");
+            //        }
+            //        $(class_nm).css('top', '57px');
+
+
+            //    }
+            //    else { // 최초 알람 고정
+            //        $(class_nm).css('top', "57px");
+            //    }
+
+                
+
+            //}
+            //$(document).on('click', '#admin_close1', function () {
+            //    var Alert = $(this).parents('.info_alert');
+            //    Alert.hide();                
+            //})
+
+            //$(document).on('click', '#admin_close2', function () {
+            //    var Alert = $(this).parents('.info_alert');
+            //    var alertIndex = Alert.attr('class').split(' ')[1].replace("index", "");
+            //    Alert.hide();
+            //    if (alertIndex != 1) { // 이후 알람
+            //        var past_class = ".index" + (parseInt(alertIndex) - 1); // 이전 인덱스
+            //        var t = $(past_class).css('top'); // 이전 인덱스 높이
+            //        var next_top = parseInt(t.replace("px", "")) - 100; // 이전 인덱스 높이 추가
+            //        $(past_class).css('top', next_top + "px");
+            //    }
+            //    else { // 최초 알람 고정
+            //        $(class_nm).css('top', "57px");
+            //    }
+            //})
+
+            //$(document).on('click', '#admin_close3', function () {
+            //    var Alert = $(this).parents('.info_alert');
+            //    var alertIndex = Alert.attr('class').split(' ')[1].replace("index", "");
+            //    Alert.hide();
+            //    var idx = alertIndex;
+            //    if (alertIndex != 1) { // 이후 알람
+            //        for (var i = alertIndex; i > 0; i--){
+            //            idx = parseInt(idx) - 1;
+            //            if (idx > 0) {
+            //                var past_class = ".index" + idx; // 이전 인덱스
+            //                console.log("past_class" + past_class);
+            //                var t = $(past_class).css('top'); // 이전 인덱스 높이
+            //                var next_top = parseInt(t.replace("px", "")) - 100; // 이전 인덱스 높이 추가
+            //                $(past_class).css('top', next_top + "px");
+            //            }
+                     
+            //        }
+            //    }
+            //    else { // 최초 알람 고정
+            //        $(class_nm).css('top', "57px");
+            //    }
+            //})
+
+            //$(document).on('click', '#admin_close4', function () {
+            //    var Alert = $(this).parents('.info_alert');
+            //    var alertIndex = Alert.attr('class').split(' ')[1].replace("index", "");
+            //    Alert.hide();
+            //    var idx = alertIndex;
+            //    if (alertIndex != 1) { // 이후 알람
+            //        for (var i = alertIndex; i > 0; i--){
+            //            idx = parseInt(idx) - 1;
+            //            if (idx > 0) {
+            //                var past_class = ".index" + idx; // 이전 인덱스
+            //                var t = $(past_class).css('top'); // 이전 인덱스 높이
+            //                var next_top = parseInt(t.replace("px", "")) - 100; // 이전 인덱스 높이 추가
+            //                $(past_class).css('top', next_top + "px");
+            //            }
+                     
+            //        }
+            //    }
+            //    else { // 최초 알람 고정
+            //        $(class_nm).css('top', "57px");
+            //    }
+            //})
+            // 세션 상태를 주기적으로 확인하는 함수
+            function checkSessionStatus() {
+                
+                    var objJsonData = new Object();
+                    var isSessionExpired = false; // 세션 만료 여부 (서버로부터 받아온 값)
+                    if (_fnToNull($("#Session_AD_EMAIL").val()) != "") {
+                        //alert("ya")
+                        $.ajax({
+                            type: "POST",
+                            url: "/Quotation/fnToastMgt",
+                            async: false,
+                            dataType: "json",
+                            data: { "vJsonData": _fnMakeJson(objJsonData) },
+                            success: function (result) {
+                                //데이터바인딩
+                                if (JSON.parse(result).Result[0].trxCode == "Y") {
+                                    $(".alert_box").empty();
+                                    alert_index = 0;
+                                    var rtnVal = JSON.parse(result).Table1;
+                                    for (var i = 0; i < rtnVal.length; i++) {
+                                        console.log(rtnVal);
+                                        if (rtnVal[i].TITLE == "A") {
+                                            if (parseInt(rtnVal[i].MNGT_NO) > 0) {
+                                                $("#ReqNew").attr('src', "/Images/New.gif")
+                                                $("#ReqNew").attr('class', "new_gif");
+                                                //if (sessionStorage.getItem("quotAlert") != "Y") {
+                                                //    showToast('견적요청을 확인해주세요.', "QUOT");
+                                                //}
+                                            }
+                                        }
+                                        if (rtnVal[i].TITLE == "B") {
+                                            if (parseInt(rtnVal[i].MNGT_NO) > 0) {
+                                                $("#DetailNew").attr('src', "/Images/New.gif");
+                                                $("#DetailNew").attr('class', "new_gif");
+                                                //if (sessionStorage.getItem("bkgAlert") != "Y") {
+                                                //    showToast('예약요청을 확인해주세요.', "BKG");
+                                                //}
+                                            }
+                                        }
+                                        if (rtnVal[i].TITLE == "D") {
+                                            if (parseInt(rtnVal[i].MNGT_NO) > 0) {
+                                                $("#ModifyNew").attr('src', "/Images/New.gif");
+                                                $("#ModifyNew").attr('class', 'new_gif');
+                                                //if (sessionStorage.getItem("modifyAlert") != "Y") {
+                                                //    showToast('예약수정을 확인해주세요.', "MODIFY");
+                                                //}
+                                            }
+                                        }
+                                        if (rtnVal[i].TITLE == "C") {
+                                            if (parseInt(rtnVal[i].MNGT_NO) > 0) {
+                                                $("#FaqNew").attr('src', "/Images/New.gif");
+                                                $("#FaqNew").attr('class', "new_gif");
+                                                //if (sessionStorage.getItem("qnaAlert") != "Y") {
+                                                //    showToast('문의사항을 확인해주세요.', "QNA");
+                                                //}
+                                            }
+                                        }
+                                    }
+                                }
+                                //alert("ho")
+                            }, error: function (xhr, status, error) {
+                                console.log("에러");
+                                console.log(error);
+                            }
+                        });
+
+
+                    }
+
+                    setTimeout(checkSessionStatus, 100000);
+            }
+
+            // 페이지가 로드되면 주기적으로 세션 상태를 확인하기 시작합니다.
+            window.addEventListener('load', () => {
+                // 1분(60,000밀리초)마다 checkSessionStatus 함수를 호출하여 세션 상태를 확인합니다.
+                setTimeout(checkSessionStatus, 1000); // 1분마다 실행
+            });
+        </script>
+            </div>
+            <div id="toast-container"></div>
+
+            <div class="st-sidebar__cont">
+                <div class="st-sidebar__scroll">
+                    <div class="st-sidebar__nav">
+                        <ul>
+                            <li>
+                                <a href="/Admin/CommonCode">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-cog st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis"><span class="st-sidebar__title">공통코드 관리</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Customer">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-users st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis"><span class="st-sidebar__title">회원 관리</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Admin/ItemRegist">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-building st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis"><span class="st-sidebar__title">상품 등록</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Quotation/quotList">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-calculator st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis" style="overflow:unset; text-overflow:unset;"><span class="st-sidebar__title">견적 요청 조회</span></div>
+                                        <div class="expand-col text-ellipsis" style="text-align:right;"><img src="" class="st-sidebar__title" id="ReqNew" style="vertical-align:top"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Quotation/quotMgt">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-bar-chart st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis"><span class="st-sidebar__title">견적 관리</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Admin/bkgList">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-calendar-check-o st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis" style="overflow:unset; text-overflow:unset;"><span class="st-sidebar__title">예약 요청 조회</span></div>
+                                        <div class="expand-col text-ellipsis" style="text-align:right;"><img src="" class="st-sidebar__title" id="DetailNew" style="vertical-align:top"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Admin/bkgModList">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-calendar-plus-o st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis" style="overflow:unset; text-overflow:unset;"><span class="st-sidebar__title">예약 수정 조회</span></div>
+                                        <div class="expand-col text-ellipsis" style="text-align:right;"><img src="" class="st-sidebar__title" id="ModifyNew" style="vertical-align:top"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AdminNotice/Index">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-bullhorn st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis"><span class="st-sidebar__title">공지사항</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/AdFAQ/Index">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-comments st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis"><span class="st-sidebar__title">문의하기</span></div>
+                                        <div class="expand-col text-ellipsis"><img src="" class="st-sidebar__title" id="FaqNew" style="vertical-align:top"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Admin/ReviewMgt">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-edit st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis"><span class="st-sidebar__title">리뷰관리</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Community">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-edit st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis"><span class="st-sidebar__title">커뮤니티 관리</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Logout">
+                                    <div class="fluid-cols">
+                                        <div class="min-col"><i class="fa fa-sign-out st-sidebar__ico"></i>&nbsp;</div>
+                                        <div class="expand-col text-ellipsis"><span class="st-sidebar__title">로그아웃</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="st-sidebar__popup"></div>
+                <img src="~/Images/show_arr.png" class="slide_arr" id="show_arr" style="display:none;"/>
+                <img src="~/Images/hide_arr.png" class="slide_arr" id="hide_arr"/>
+            </div>
+        </div>
+        <!-- SIDE BAR -->
+        <div class="alert_box">
+            @*<div class="info_alert" id="Alert">
+                <div class="info_alert_box">
+                <div class="alert_img">
+                    <img src="~/Images/admin_alert.png" />
+                </div>
+                <div class="info_alert_cont">
+                    <p class="info_alert_tit">INFO</p>
+                    <p class="info_alert_sub">문의내역이 등록되었습니다.</p>
+                </div>
+            </div>*@
+        </div>
+        @RenderSection("stMain", required: false)
+
+
+    </div>
+
+    <!-- 프로그래스 바 loading -->
+    <div class="loading" id="ProgressBar_Loading" style="display:none">
+        <div class="ispinner ispinner-large">
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+            <div class="ispinner-blade"></div>
+        </div>
+    </div>
+    <!-- 프로그래스 바 loading -->
+    <div class="layer_zone alert_type" id="alert01">
+        <div class="layer_wrap">
+            <div class="layer_inwrap">
+                <article class="layer_cont">
+                    <div class="layer_tit">
+                        <h1 class="tit"></h1>
+                    </div>
+                    <!-- alert_cont -->
+                    <div class="alert_cont">
+                        <div class="inner">
+                            데이터가 삭제 되었습니다.
+                        </div>
+                    </div>
+                    <!-- //alert_cont -->
+                    <!-- btn_w -->
+                    <div class="btn_w">
+                        <button type="button" class="btns radius cr1 loginChk" id="alert_confirm" onclick="layerClose('#alert01');">확인</button>
+                    </div>
+                    <!-- //btn_w -->
+                </article>
+            </div>
+        </div>
+    </div>
+    <div class="layer_zone alert_type" id="alert02">
+        <div class="layer_wrap">
+            <div class="layer_inwrap">
+                <article class="layer_cont">
+                    <div class="layer_tit">
+                        <h1 class="tit"></h1>
+                    </div>
+                    <!-- alert_cont -->
+                    <div class="alert_cont">
+                        <div class="inner">
+                            데이터가 삭제 되었습니다.
+                        </div>
+                    </div>
+                    <!-- //alert_cont -->
+                    <!-- btn_w -->
+                    <div class="btn_w">
+                        <button type="button" class="btns radius cr2" onclick="_fnConfirmMsg_No();">취소</button>
+                        <button type="button" class="btns radius cr1" id="Layer_Confirm" onclick="_fnConfirmMsg_Yes();">확인</button>
+                    </div>
+                    <!-- //btn_w -->
+                </article>
+            </div>
+        </div>
+    </div>
+    <div style="display:none;">
+        <div id="layoutGRP_CD"></div>
+        <div id="layoutSearchGRP_CD"></div>
+        <div id="layoutGRP_KIND"></div>
+        <div id="layoutSearchGRP_KIND"></div>
+        <div id="layoutITEMTYPE"></div>
+        <div id="layoutSearchITEMTYPE"></div>
+        <div id="layoutGRPGRD"></div>
+        <div id="layoutSearchGRPGRD"></div>
+
+    </div>
+
+</body>
+</html>
+

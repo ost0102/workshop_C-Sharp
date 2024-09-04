@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "bkgMgt";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section stMain {
+    <script type="text/javascript" src="~/Scripts/js/Admin/_bkgMgt.js"></script>
+    <style>
+        .header_data{
+            display: flex;
+        }
+
+        .detail_data{
+            display:flex;
+        }
+        .arrow_img{padding-top:8%;padding-left:0.5%;padding-right:0.5%;}
+        .gridGrp{height: 350px;}
+
+        .hd_grid{height:200px;}
+
+        .mod_confirm_check{margin-left:10px}
+
+    </style>
+    <!-- DevExtreme theme -->
+    <div class="st-main">
+        <div class="st-header">
+            <div class="fluid_cols">
+                <div class="min_col">
+                    <div class="st-header__menu">
+                        <button class="btn st-sidebar__toggle"><i class="fa fa-bars"></i></button>
+                    </div>
+                </div>
+                <div class="expand-col text-ellipsis">
+                    <div class="st-header__title">
+                        <span>예약 수정 관리</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-content mb50 max_width">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-15">
+                        <div class="st-panel">
+                            <div class="search-panel">
+                                <div class="ad_label">예약번호:</div>
+                                <div id="BKG_NO"></div>
+                                <div class="ad_label">예약자:</div>
+                                <div id="CUST_NM"></div>
+                                <div class="ad_label">예약자 연락처:</div>
+                                <div id="CUST_TEL"></div>
+                                <div class="ad_label">예약자 이메일:</div>
+                                <div id="CUST_EMAIL"></div>
+                                <div id="btnSearch"></div>
+                                <div id="BKG_MOD_NO"></div>
+                                
+                            </div>
+                            <div class="header_data">
+                                @*<div class="modify">
+                                    <div class="ad_label">수정요청사항</div>
+                                    <div class="hd_grid" id="gridIHdMod"></div>
+                                </div>
+                                <div class="arrow_img">
+                                    <img src="~/Images/arrow.png">
+                                </div>*@
+                                <div class="origin">
+                                    @*<div class="ad_label">상품정보</div>*@
+                                    <div class="ad_label">예약정보</div>
+                                    <div class="hd_grid" id="gridHdOrg"></div>
+                                    <div class="ad_label">수정요청사항</div>
+                                    <div class="hd_grid" id="gridHdMod"></div>
+                                </div>
+                            </div>
+
+                            <div id="gridTabs"></div>
+
+                            <div class="detail_data">
+                                <div class="origin">
+                                    <div class="ad_label">예약정보</div>
+                                    <div class="gridGrp" id="orgConference"></div>
+                                    <div class="gridGrp" id="orgRoom" style="display:none"></div>
+                                    <div class="gridGrp" id="orgMeal" style="display:none"></div>
+                                    <div class="gridGrp" id="orgEtc" style="display:none"></div>
+                                </div>
+
+                                <div class="arrow_img">
+                                    <img src="~/Images/arrow.png">
+                                </div>
+                                <div class="modify">
+                                    <div class="ad_label">수정요청사항</div>
+                                    <div class="gridGrp" id="modConference"></div>
+                                    <div class="gridGrp" id="modRoom" style="display:none"></div>
+                                    <div class="gridGrp" id="modMeal" style="display:none"></div>
+                                    <div class="gridGrp" id="modEtc" style="display:none"></div>
+                                </div>
+
+                            </div>
+                            <div class="hidden_area">
+                                <div id="mod_confirm_pop" class="mod_pop"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="st-footer">
+            <div class="copyright">
+                Copyrightⓒ 관리자 모드. All right reserved.
+            </div>
+        </div>
+
+    </div>
+
+}
